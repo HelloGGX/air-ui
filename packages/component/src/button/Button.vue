@@ -6,14 +6,16 @@
 
 <script setup lang="ts">
 import { reactive, computed, defineProps, defineEmits } from 'vue';
-import { buttonEmits, ButtonProps } from './Button'
+import type { ButtonProps } from './Button'
 
 
 defineOptions({
   name: 'air-button',
 })
 
-const emit = defineEmits(buttonEmits)
+const emit = defineEmits({
+  click: (evt: MouseEvent) => evt instanceof MouseEvent,
+})
 const props = withDefaults(defineProps<ButtonProps>(), {
   label: "Button",
   primary: true,

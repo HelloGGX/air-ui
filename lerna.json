@@ -1,9 +1,9 @@
 {
   "packages": [
-    "packages/block/*",
-    "packages/component/*",
-    "packages/page/*",
-    "packages/scaffold/*"
+   "packages/block/src/*",
+    "packages/component/src/*",
+    "packages/page/src/*",
+    "packages/scaffold/src/*"
   ],
   "version": "independent",
   "useWorkspaces": true

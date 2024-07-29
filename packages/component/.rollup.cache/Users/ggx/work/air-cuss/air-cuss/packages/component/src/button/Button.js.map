@@ -1,0 +1,1 @@
+{"version":3,"file":"Button.js","sourceRoot":"","sources":["Button.ts"],"names":[],"mappings":"","sourcesContent":["export type ButtonProps = {\n    /**\n     * 按钮的名称\n     */\n    label: string;\n    primary?: boolean;\n    size?: \"small\" | \"medium\" | \"large\";\n    backgroundColor?: string;\n  };\n  "]}

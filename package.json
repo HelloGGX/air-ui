@@ -3,6 +3,12 @@
   "private": true,
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@storybook/addon-essentials": "^8.2.5",
     "@storybook/addon-interactions": "^8.2.5",
     "@storybook/addon-links": "^8.2.5",
@@ -13,9 +19,12 @@
     "@storybook/vue3-vite": "^8.2.5",
     "@vitejs/plugin-vue": "^5.1.0",
     "autoprefixer": "^10.4.19",
+    "glob": "^11.0.0",
     "lerna": "^4.0.0",
     "postcss": "^8.4.40",
     "rollup-plugin-css-only": "^4.5.2",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-vue": "^6.0.0",
     "storybook": "^8.2.5",
     "tailwindcss": "^3.4.6",
     "typescript": "^5.5.4",
@@ -28,9 +37,9 @@
     "build-storybook": "storybook build"
   },
   "workspaces": [
-    "packages/block/*",
-    "packages/component/*",
-    "packages/page/*",
-    "packages/scaffold/*"
+    "packages/block/src/*",
+    "packages/component/src/*",
+    "packages/page/src/*",
+    "packages/scaffold/src/*"
   ]
 }
