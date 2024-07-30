@@ -20,6 +20,6 @@
       "@air-ui/utils/*": ["../../packages/utils/src/*"]
     }
   },
-  "include": ["**/*.ts", "src/*", "vite.config.mjs"],
+  "include": ["src/index.ts", "src/**/*.vue", "src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

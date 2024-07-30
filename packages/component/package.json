@@ -1,14 +1,18 @@
 {
-  "name": "component",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "build": "INPUT_DIR=src/ OUTPUT_DIR=dist/ rollup -c",
-    "prepublishOnly": "npm run build"
+  "name": "@air-ui/component",
+  "version": "0.0.0",
+  "description": "all components are settled here",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "peerDependencies": {
+    "vue": "^3.2.0"
   },
-  "type": "module",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "scripts": {
+    "build": "vite build"
+  },
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "element-plus": "^2.7.8"
+  }
 }
