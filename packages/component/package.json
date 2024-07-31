@@ -4,14 +4,14 @@
   "description": "all components are settled here",
   "main": "src/index.ts",
   "module": "src/index.ts",
-  "peerDependencies": {
-    "vue": "^3.2.0"
-  },
   "scripts": {
     "build": "vite build"
   },
   "types": "index.d.ts",
   "sideEffects": false,
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  },
   "dependencies": {
     "element-plus": "^2.7.8"
   }

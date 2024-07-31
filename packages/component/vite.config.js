@@ -23,7 +23,7 @@ export default defineConfig({
       formats: ["cjs", "es"],
     },
     rollupOptions: {
-      external: ["vue", 'element-plus'],
+      external: ["vue"],
       input: Object.fromEntries(
         globSync(["src/**/*.vue"]).map((file) => [
           relative("src", file.slice(0, file.length - extname(file).length)),
@@ -33,13 +33,19 @@ export default defineConfig({
       output: {
         dir: resolve(__dirname, "dist"),
         globals: {
-          vue: "Vue",
+          vue: "Vue"
         },
         entryFileNames: "[name].mjs",
         exports: "auto",
         format: "es",
       },
     },
+  },
+  resolve: {
+    alias: {
+      // 让 Vite 能够解析到根目录的 node_modules
+      'element-plus': resolve(__dirname, '../../node_modules/element-plus')
+    }
   },
   css: {
     postcss: {

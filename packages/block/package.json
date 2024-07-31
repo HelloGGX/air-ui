@@ -1,5 +1,5 @@
 {
-  "name": "block",
+  "name": "@air-ui/block",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

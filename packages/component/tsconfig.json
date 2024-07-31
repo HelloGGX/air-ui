@@ -16,10 +16,11 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "@/*": ["./src/*"],
       "@air-ui/*": ["./src/*"],
       "@air-ui/utils/*": ["../../packages/utils/src/*"]
     }
   },
-  "include": ["src/index.ts", "src/**/*.vue", "src/**/*.ts"],
+  "include": ["src/index.ts", "src/components/**/*"],
   "exclude": ["node_modules", "dist"]
 }

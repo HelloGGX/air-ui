@@ -5,12 +5,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits, ref } from 'vue';
 import  { buttonProps, buttonEmits } from './Button'
 
 
 defineOptions({
-  name: 'air-button',
+  name: 'AirButton',
 })
 
 const props = defineProps(buttonProps);
@@ -21,6 +21,12 @@ const emit = defineEmits(buttonEmits);
 const onClick = (event: MouseEvent) => {
   emit('click', event);
 };
+
+const _ref = ref<HTMLButtonElement>()
+
+defineExpose({
+  ref: _ref
+})
 
 </script>
 
