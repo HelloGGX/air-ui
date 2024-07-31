@@ -1,26 +1,21 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": false,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": false,
-    "jsx": "preserve",
-    "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@air-ui/*": ["./src/*"],
-      "@air-ui/utils/*": ["../../packages/utils/src/*"]
-    }
+      "@/*": ["./src/*"]
+    },
+    "skipLibCheck": false
   },
-  "include": ["src/index.ts", "src/components/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/index.ts", "src/**/*"],
+  "vueCompilerOptions": {
+    "plugins": [
+      "@vue-macros/volar/define-model",
+      "@vue-macros/volar/define-props",
+      "@vue-macros/volar/define-props-refs",
+      "@vue-macros/volar/short-vmodel",
+      "@vue-macros/volar/define-slots",
+      "@vue-macros/volar/export-props"
+    ]
+  }
 }

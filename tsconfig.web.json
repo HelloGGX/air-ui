@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "@vue/tsconfig/tsconfig.dom.json",
+    "@vue/tsconfig/tsconfig.lib.json"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "types": ["unplugin-vue-macros/macros-global"],
+    "skipLibCheck": true
+  },
+  "include": ["packages", "typings/components.d.ts", "typings/env.d.ts"],
+  "exclude": ["node_modules", "**/dist", "**/__tests__/**/*", "**/*.md"]
+}

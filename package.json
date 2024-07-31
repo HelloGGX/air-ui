@@ -1,6 +1,20 @@
 {
-  "name": "root",
-  "private": true,
+  "name": "@air-ui",
+  "version": "0.0.0",
+  "description": "air-ui",
+  "type": "module",
+  "author": "玄子",
+  "license": "MIT",
+  "keywords": [
+    "Component",
+    "UI",
+    "Vue3"
+  ],
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
     "@storybook/addon-essentials": "^8.2.5",
@@ -12,9 +26,12 @@
     "@storybook/vue3": "^8.2.5",
     "@storybook/vue3-vite": "^8.2.5",
     "@vitejs/plugin-vue": "^5.1.0",
+    "@vue-macros/volar": "^0.25.0",
+    "@vue/tsconfig": "^0.5.1",
     "autoprefixer": "^10.4.19",
     "glob": "^11.0.0",
     "lerna": "^4.0.0",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.40",
     "storybook": "^8.2.5",
     "tailwindcss": "^3.4.6",

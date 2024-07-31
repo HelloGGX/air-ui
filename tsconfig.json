@@ -1,19 +1,8 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "esnext",
-    "strict": true,
-    "jsx": "preserve",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "declarationDir": "types",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["packages/*"],
-    }
-  },
-  "exclude": ["node_modules", "dist"]
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.web.json" },
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.vite-config.json" }
+  ]
 }
