@@ -4,8 +4,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@utils/*": ["../../node_modules/element-plus/es/utils/*"],
-      "@hooks/*": ["../../node_modules/element-plus/es/hooks/*"],
+      "@element-plus/utils/*": ["../../node_modules/element-plus/es/utils/*"],
+      "@element-plus/hooks/*": ["../../node_modules/element-plus/es/hooks/*"],
     },
     "skipLibCheck": true
   },

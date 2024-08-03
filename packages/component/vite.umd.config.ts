@@ -16,8 +16,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      "@utils/vue": resolve(__dirname, "../../node_modules/element-plus/es/utils/vue"),
-      "@hooks/use-size": resolve(__dirname, "../../node_modules/element-plus/es/hooks/use-size"),
+      "element-plus/utils/vue": resolve(__dirname, "../../node_modules/element-plus/es/utils/vue"),
+      "element-plus/hooks/use-size": resolve(__dirname, "../../node_modules/element-plus/es/hooks/use-size"),
     }
   },
   build: {

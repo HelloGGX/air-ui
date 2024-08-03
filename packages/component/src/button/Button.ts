@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from "vue";
-import { buildProps } from "@utils/vue";
-import { useSizeProp } from "@hooks/use-size";
+import { buildProps } from "@element-plus/utils/vue";
+import { useSizeProp } from "@element-plus/hooks/use-size";
 
 export const buttonTypes = [
   "default",

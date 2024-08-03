@@ -2,6 +2,9 @@
   "name": "@air-ui/component",
   "version": "0.0.0",
   "description": "air ui component library",
+  "files": [
+    "dist"
+  ],
   "main": "umd/index.cjs",
   "module": "es/index.mjs",
   "types": "es/types/index.d.ts",
@@ -56,6 +59,7 @@
   },
   "devDependencies": {
     "@vue/tsconfig": "^0.5.1",
+    "rollup-plugin-copy": "^3.5.0",
     "unplugin-vue-macros": "^2.10.0"
   }
 }

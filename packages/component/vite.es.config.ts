@@ -5,13 +5,19 @@ import dts from 'vite-plugin-dts';
 import { fileURLToPath, URL } from 'node:url';
 import { resolve, relative, extname } from "node:path";
 import { globSync } from "glob";
+import copy from 'rollup-plugin-copy';
 
 export default defineConfig({
   plugins: [
     VueMacros.vite({
       plugins: {
-        vue: vue()
+        vue: vue(),
       },
+    }),
+    copy({
+      targets: [
+        { src: 'package.json', dest: 'dist' }
+      ]
     }),
     dts({
       tsconfigPath: "./tsconfig.json",
@@ -21,8 +27,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      "@utils/vue": resolve(__dirname, "../../node_modules/element-plus/es/utils/vue"),
-      "@hooks/use-size": resolve(__dirname, "../../node_modules/element-plus/es/hooks/use-size"),
+      "@element-plus/utils": resolve(__dirname, "../../node_modules/element-plus/es/utils"),
+      "@element-plus/hooks": resolve(__dirname, "../../node_modules/element-plus/es/hooks"),
     }
   },
   build: {
@@ -43,7 +49,8 @@ export default defineConfig({
       ),
       output: {
         globals: {
-          vue: "Vue"
+          vue: "Vue",
+          'element-plus': 'ElementPlus'
         },
         entryFileNames: "[name].mjs",
         exports: "auto"
