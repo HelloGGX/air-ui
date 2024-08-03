@@ -3,9 +3,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@utils/*": ["../../node_modules/element-plus/es/utils/*"],
+      "@hooks/*": ["../../node_modules/element-plus/es/hooks/*"],
     },
-    "skipLibCheck": false
+    "skipLibCheck": true
   },
   "include": ["src/index.ts", "src/**/*"],
   "vueCompilerOptions": {
