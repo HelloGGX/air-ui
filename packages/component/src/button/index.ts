@@ -1,10 +1,7 @@
-import type { App } from 'vue'
-import Button from './Button.vue'
+import { withInstall } from 'element-plus/es/utils/vue'
+import Button from './Button.vue';
 
-Button.install = (app: App) => {
-  app.component(Button.name || 'AirButton', Button)
-}
-
-export default Button
+export const AirButton = withInstall(Button)
+export default AirButton
 
 export * from './Button'

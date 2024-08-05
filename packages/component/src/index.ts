@@ -1,5 +1,8 @@
+import { makeInstaller } from "element-plus/es/make-installer";
+import { AirButton } from "./button";
+import type { App, Plugin } from "vue";
 
-// Button
+const Components = [AirButton] as Plugin[];
+
 export * from './button';
-export { default as Button } from './button/Button.vue';
-
+export default makeInstaller([...Components]);

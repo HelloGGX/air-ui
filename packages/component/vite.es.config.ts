@@ -16,14 +16,13 @@ export default defineConfig({
     }),
     dts({
       tsconfigPath: "./tsconfig.json",
-      outDir: "dist/types",
-      staticImport: true
+      outDir: "dist/types"
     }),
-    copy({
-      targets: [
-        { src: 'package.json', dest: 'dist' }
-      ]
-    }),
+    // copy({
+    //   targets: [
+    //     { src: 'package.json', dest: 'dist' }
+    //   ]
+    // }),
   ],
   resolve: {
     alias: {
@@ -55,5 +54,13 @@ export default defineConfig({
         exports: "auto"
       },
     }
-  }
+  },
+  css: {
+    postcss: {
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ],
+    },
+  },
 });

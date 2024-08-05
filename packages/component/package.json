@@ -2,57 +2,16 @@
   "name": "@air-ui/component",
   "version": "0.0.0",
   "description": "air ui component library",
-  "files": [
-    "dist"
-  ],
-  "main": "umd/index.cjs",
-  "module": "es/index.mjs",
-  "types": "es/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./es/types/index.d.ts",
-      "import": "./es/index.mjs",
-      "require": "./umd/index.cjs"
-    },
-    "./es": {
-      "types": "./es/index.d.ts",
-      "import": "./es/index.mjs"
-    },
-    "./umd": {
-      "types": "./umd/index.d.ts",
-      "require": "./umd/index.cjs"
-    },
-    "./es/*.mjs": {
-      "types": "./es/*.d.ts",
-      "import": "./es/*.mjs"
-    },
-    "./es/*": {
-      "types": [
-        "./es/*.d.ts",
-        "./es/*/index.d.ts"
-      ],
-      "import": "./es/*.mjs"
-    },
-    "./umd/*.js": {
-      "types": "./umd/*.d.ts",
-      "require": "./umd/*.cjs"
-    },
-    "./umd/*": {
-      "types": [
-        "./umd/*.d.ts",
-        "./umd/*/index.d.ts"
-      ],
-      "require": "./umd/*.cjs"
-    },
-    "./*": "./*"
-  },
   "scripts": {
     "build": "run-p build-es build-umd",
     "build-umd": "vite build --config vite.umd.config.ts",
     "build-es": "vite build --config vite.es.config.ts"
   },
   "peerDependencies": {
-    "vue": "^3.2.0",
-    "element-plus": "^2.7.8"
+    "element-plus": "^2.7.8",
+    "vue": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.1.0"
   }
 }

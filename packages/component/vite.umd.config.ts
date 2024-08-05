@@ -43,5 +43,13 @@ export default defineConfig({
         exports: "auto"
       },
     }
-  }
+  },
+  css: {
+    postcss: {
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ],
+    },
+  },
 });
