@@ -14,15 +14,15 @@ export default defineConfig({
         vue: vue(),
       },
     }),
-    copy({
-      targets: [
-        { src: 'package.json', dest: 'dist' }
-      ]
-    }),
     dts({
       tsconfigPath: "./tsconfig.json",
       outDir: "dist/types",
       staticImport: true
+    }),
+    copy({
+      targets: [
+        { src: 'package.json', dest: 'dist' }
+      ]
     }),
   ],
   resolve: {

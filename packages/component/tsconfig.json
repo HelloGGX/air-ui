@@ -5,9 +5,7 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    },
+    "jsx": "preserve",
     "skipLibCheck": true,
     "types": ["unplugin-vue-macros/macros-global"]
   },
