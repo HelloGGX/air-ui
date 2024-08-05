@@ -21,14 +21,13 @@ export default defineConfig({
     }),
     dts({
       tsconfigPath: "./tsconfig.json",
-      outDir: "dist/types"
+      outDir: "dist/types",
+      staticImport: true
     }),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      "@element-plus/utils": resolve(__dirname, "../../node_modules/element-plus/es/utils"),
-      "@element-plus/hooks": resolve(__dirname, "../../node_modules/element-plus/es/hooks"),
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
   build: {
@@ -40,7 +39,7 @@ export default defineConfig({
       formats: ['es']
     },
     rollupOptions: {
-      external: ['vue', 'element-plus'],
+      external: ['vue', 'element-plus/es/utils/vue', 'element-plus/es/hooks/use-size'],
       input: Object.fromEntries(
         globSync(["src/**/*.vue"]).map((file) => [
           relative("src", file.slice(0, file.length - extname(file).length)),

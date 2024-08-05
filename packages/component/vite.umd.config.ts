@@ -15,9 +15,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      "element-plus/utils/vue": resolve(__dirname, "../../node_modules/element-plus/es/utils/vue"),
-      "element-plus/hooks/use-size": resolve(__dirname, "../../node_modules/element-plus/es/hooks/use-size"),
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
   build: {
@@ -29,7 +27,7 @@ export default defineConfig({
       formats: ['umd']
     },
     rollupOptions: {
-      external: ['vue', 'element-plus'],
+      external: ['vue', 'element-plus/es/utils/vue', 'element-plus/es/hooks/use-size'],
       input: Object.fromEntries(
         globSync(["src/**/*.vue"]).map((file) => [
           relative("src", file.slice(0, file.length - extname(file).length)),

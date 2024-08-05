@@ -1,13 +1,15 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": [
+    "@vue/tsconfig/tsconfig.dom.json",
+    "@vue/tsconfig/tsconfig.lib.json"
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@element-plus/utils/*": ["../../node_modules/element-plus/es/utils/*"],
-      "@element-plus/hooks/*": ["../../node_modules/element-plus/es/hooks/*"],
+      "@/*": ["./src/*"]
     },
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["unplugin-vue-macros/macros-global"]
   },
   "include": ["src/index.ts", "src/**/*"],
   "vueCompilerOptions": {
