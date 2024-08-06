@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.14.14",
     "@vitejs/plugin-vue": "^5.1.0",
     "@vue-macros/volar": "^0.25.0",
