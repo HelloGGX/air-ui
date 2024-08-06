@@ -5,7 +5,7 @@ import dts from "vite-plugin-dts";
 import { fileURLToPath, URL } from "node:url";
 import { resolve, relative, extname } from "node:path";
 import { globSync } from "glob";
-import copy from "rollup-plugin-copy";
+import { updatePackageJsonPlugin } from "./utils/updatePackageJsonPlugin";
 
 // externals
 const GLOBAL_EXTERNALS = [
@@ -16,32 +16,33 @@ const GLOBAL_EXTERNALS = [
 ];
 const INLINE_EXTERNALS = [/@air-ui\/component\/.*/];
 const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
-
-// alias
-const ALIAS_ENTRIES = [
-  { find: '@air-ui/component', replacement: './' }
+// plugins
+const UPDATE_PACKAGEJSON_PLUGIN_OPTION = {
+  input: "./",
+  output: "./dist",
+};
+const VUEMACROS_PLUGIN_OPTION = {
+  plugins: {
+    vue: vue(),
+  },
+};
+const DTS_PLUGIN_OPTION = {
+  tsconfigPath: "./tsconfig.json",
+  include: ["src/**/*.ts", "src/**/*.vue"],
+  outDir: "dist/types",
+};
+const PLUGINS = [
+  updatePackageJsonPlugin(UPDATE_PACKAGEJSON_PLUGIN_OPTION),
+  VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
+  dts(DTS_PLUGIN_OPTION),
 ];
 
 export default defineConfig({
-  plugins: [
-    VueMacros.vite({
-      plugins: {
-        vue: vue(),
-      },
-    }),
-    dts({
-      tsconfigPath: "./tsconfig.json",
-      include: ["src/**/*.ts", "src/**/*.vue"],
-      outDir: "dist/types",
-    }),
-    copy({
-      targets: [
-        { src: 'package.json', dest: 'dist' }
-      ]
-    }),
-  ],
+  plugins: PLUGINS,
   resolve: {
-    alias: ALIAS_ENTRIES
+    alias: {
+      '@air-ui/component': resolve(__dirname, 'src'),
+    },
   },
   build: {
     outDir: "dist/es",
@@ -67,10 +68,7 @@ export default defineConfig({
           vue: "Vue",
           "element-plus": "ElementPlus",
         },
-        entryFileNames: ({ facadeModuleId }) => {
-          // 默认情况下使用模块的原始名称
-          return "[name].mjs";
-        },
+        entryFileNames: "[name].mjs",
         exports: "auto",
       },
     },

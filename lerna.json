@@ -1,10 +1,4 @@
 {
-  "packages": [
-    "packages/block/*",
-    "packages/component",
-    "packages/page/*",
-    "packages/scaffold/*"
-  ],
   "version": "independent",
   "useWorkspaces": true
 }

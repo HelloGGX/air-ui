@@ -3,16 +3,16 @@
     <div class="text-2xl font-bold">{{ props.title }}</div>
     <nav>
       <ul class="flex space-x-4">
-        <li><a href="#" class="hover:underline"><Button label="Home" size="large" /></a></li>
-        <li><a href="#" class="hover:underline"><Button label="About" size="large" /></a></li>
-        <li><a href="#" class="hover:underline"><Button label="Contact" size="large" /></a></li>
+        <li><a href="#" class="hover:underline"><AirButton label="Home" size="large" /></a></li>
+        <li><a href="#" class="hover:underline"><AirButton label="About" size="large" /></a></li>
+        <li><a href="#" class="hover:underline"><AirButton label="Contact" size="large" /></a></li>
       </ul>
     </nav>
   </header>
 </template>
 
 <script setup>
-import { Button } from '@air-ui/component';
+import { AirButton } from '@air-ui/component';
 
 const props = defineProps({
   title: {

@@ -2,35 +2,10 @@
   "name": "@air-ui/component",
   "version": "0.0.0",
   "description": "air ui component library",
-  "module": "es/index.mjs",
-  "types": "types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./es/index.d.ts",
-      "import": "./es/index.mjs",
-      "require": "./lib/index.js"
-    },
-    "./es": {
-      "types": "./es/index.d.ts",
-      "import": "./es/index.mjs"
-    },
-    "./es/*/*.mjs": {
-      "types": "./types/*/*.d.ts",
-      "import": "./es/*/*.mjs"
-    },
-    "./es/*": {
-      "types": [
-        "./types/*/*.d.ts",
-        "./types/*/index.d.ts"
-      ],
-      "import": "./es/*.mjs"
-    },
-   "@air-ui/component/*": {
-      "types": "./types/*/index.d.ts",
-      "import": "./es/*/*.mjs"
-    },
-    "./*": "./*"
-  },
+  "files": [
+    "dist"
+  ],
+  "main": "index.ts",
   "scripts": {
     "build": "run-p build-es build-umd",
     "build-umd": "vite build --config vite.umd.config.ts",
