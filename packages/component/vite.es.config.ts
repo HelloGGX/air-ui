@@ -27,7 +27,7 @@ const VUEMACROS_PLUGIN_OPTION = {
 const DTS_PLUGIN_OPTION = {
   tsconfigPath: "./tsconfig.json",
   include: ["src/**/*.ts", "src/**/*.vue"],
-  outDir: "dist/types",
+  outDir: "dist/types"
 };
 const PLUGINS = [
   updatePackageJsonPlugin(UPDATE_PACKAGEJSON_PLUGIN_OPTION),
