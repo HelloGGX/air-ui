@@ -11,10 +11,8 @@ import { updatePackageJsonPlugin } from "./utils/updatePackageJsonPlugin";
 const GLOBAL_EXTERNALS = [
   "vue",
   /element-plus\/es\/.*/,
-  "element-plus/es/utils/vue",
-  "element-plus/es/hooks/use-size",
 ];
-const INLINE_EXTERNALS = [/@air-ui\/component\/.*/];
+const INLINE_EXTERNALS = [/@air-ui\/component\/.*/, /@air-ui\/component/];
 const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
 // plugins
 const UPDATE_PACKAGEJSON_PLUGIN_OPTION = {
@@ -39,11 +37,6 @@ const PLUGINS = [
 
 export default defineConfig({
   plugins: PLUGINS,
-  resolve: {
-    alias: {
-      '@air-ui/component': resolve(__dirname, 'src'),
-    },
-  },
   build: {
     outDir: "dist/es",
     lib: {

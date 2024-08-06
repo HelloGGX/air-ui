@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, ref } from 'vue';
-import  { buttonProps, buttonEmits } from './Button'
+import { ref } from 'vue';
+import  { buttonProps, buttonEmits } from './Button';
 
 
 defineOptions({
