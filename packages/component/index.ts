@@ -4,5 +4,5 @@ import type { Plugin } from "vue";
 
 const Components = [AirButton] as Plugin[];
 
-export * from "@air-ui/component/src";
+export * from "@air-ui/component";
 export default makeInstaller([...Components]);

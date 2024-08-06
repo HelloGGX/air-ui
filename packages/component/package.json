@@ -5,7 +5,7 @@
   "files": [
     "dist"
   ],
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "build": "run-p build-es build-umd",
     "build-umd": "vite build --config vite.umd.config.ts",
