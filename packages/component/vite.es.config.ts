@@ -1,11 +1,26 @@
 import { defineConfig } from "vite";
-import VueMacros from 'unplugin-vue-macros';
+import VueMacros from "unplugin-vue-macros";
 import vue from "@vitejs/plugin-vue";
-import dts from 'vite-plugin-dts';
-import { fileURLToPath, URL } from 'node:url';
+import dts from "vite-plugin-dts";
+import { fileURLToPath, URL } from "node:url";
 import { resolve, relative, extname } from "node:path";
 import { globSync } from "glob";
-import copy from 'rollup-plugin-copy';
+import copy from "rollup-plugin-copy";
+
+// externals
+const GLOBAL_EXTERNALS = [
+  "vue",
+  /element-plus\/es\/.*/,
+  "element-plus/es/utils/vue",
+  "element-plus/es/hooks/use-size",
+];
+const INLINE_EXTERNALS = [/@air-ui\/component\/.*/];
+const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
+
+// alias
+const ALIAS_ENTRIES = [
+  { find: '@air-ui/component', replacement: './' }
+];
 
 export default defineConfig({
   plugins: [
@@ -16,51 +31,54 @@ export default defineConfig({
     }),
     dts({
       tsconfigPath: "./tsconfig.json",
-      outDir: "dist/types"
+      include: ["src/**/*.ts", "src/**/*.vue"],
+      outDir: "dist/types",
     }),
-    // copy({
-    //   targets: [
-    //     { src: 'package.json', dest: 'dist' }
-    //   ]
-    // }),
+    copy({
+      targets: [
+        { src: 'package.json', dest: 'dist' }
+      ]
+    }),
   ],
   resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+    alias: ALIAS_ENTRIES
   },
   build: {
-    outDir: 'dist/es',
+    outDir: "dist/es",
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'AirUI',
-      fileName: 'air-ui',
-      formats: ['es']
+      entry: resolve(__dirname, "src/index.ts"),
+      name: "AirUI",
+      fileName: "air-ui",
+      formats: ["es"],
     },
     rollupOptions: {
-      external: ['vue', 'element-plus/es/utils/vue', 'element-plus/es/hooks/use-size'],
-      input: Object.fromEntries(
-        globSync(["src/**/*.vue"]).map((file) => [
-          relative("src", file.slice(0, file.length - extname(file).length)),
-          fileURLToPath(new URL(file, import.meta.url)),
-        ])
-      ),
+      external: EXTERNALS,
+      input: {
+        index: resolve(__dirname, "index.ts"),
+        ...Object.fromEntries(
+          globSync(["src/**/*.vue"]).map((file) => [
+            relative("src", file.slice(0, file.length - extname(file).length)),
+            fileURLToPath(new URL(file, import.meta.url)),
+          ])
+        ),
+      },
       output: {
         globals: {
           vue: "Vue",
-          'element-plus': 'ElementPlus'
+          "element-plus": "ElementPlus",
         },
-        entryFileNames: "[name].mjs",
-        exports: "auto"
+        entryFileNames: ({ facadeModuleId }) => {
+          // 默认情况下使用模块的原始名称
+          return "[name].mjs";
+        },
+        exports: "auto",
       },
-    }
+    },
+    minify: false, // 禁用代码压缩和混淆
   },
   css: {
     postcss: {
-      plugins: [
-        require('tailwindcss'),
-        require('autoprefixer'),
-      ],
+      plugins: [require("tailwindcss"), require("autoprefixer")],
     },
   },
 });
