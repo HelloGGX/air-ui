@@ -6,6 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
+    "@air-ui/component": "0.0.0",
     "vue": "^3.2.0"
   },
   "keywords": [],

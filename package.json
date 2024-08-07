@@ -16,7 +16,6 @@
     "url": ""
   },
   "devDependencies": {
-<<<<<<< HEAD
     "@chromatic-com/storybook": "^1.6.1",
     "@storybook/addon-essentials": "^8.2.5",
     "@storybook/addon-interactions": "^8.2.5",
@@ -27,10 +26,7 @@
     "@storybook/test": "^8.2.5",
     "@storybook/vue3": "^8.2.5",
     "@storybook/vue3-vite": "^8.2.5",
-=======
->>>>>>> e4c59b0980b8aa6ef28b24bce6fbd72cf7dd96d1
     "@tsconfig/node20": "^20.1.4",
-    "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.14.14",
     "@vitejs/plugin-vue": "^5.1.0",
     "@vue-macros/volar": "^0.25.0",
@@ -40,10 +36,7 @@
     "lerna": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.40",
-<<<<<<< HEAD
     "storybook": "^8.2.5",
-=======
->>>>>>> e4c59b0980b8aa6ef28b24bce6fbd72cf7dd96d1
     "tailwindcss": "^3.4.6",
     "typescript": "^5.5.4",
     "unplugin-vue-macros": "^2.10.0",
@@ -51,7 +44,9 @@
   },
   "scripts": {
     "build": "lerna run build",
-    "publish": "lerna publish"
+    "publish": "lerna publish",
+    "sb": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "workspaces": [
     "packages/block/*",
