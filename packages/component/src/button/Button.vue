@@ -10,10 +10,16 @@
 </template>
 
 <script setup lang="ts">
+<<<<<<< HEAD
 import { ref, computed } from 'vue';
 import { buttonProps, buttonEmits } from './Button'
 import { ElIcon } from 'element-plus';
 import "element-plus/es/components/icon/style/css";
+=======
+import { ref } from 'vue';
+import  { buttonProps, buttonEmits } from './Button';
+
+>>>>>>> e4c59b0980b8aa6ef28b24bce6fbd72cf7dd96d1
 
 defineOptions({
   name: 'AirButton',

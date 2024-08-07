@@ -12,11 +12,17 @@ import ElementPlus from 'unplugin-element-plus/vite'
 const GLOBAL_EXTERNALS = [
   "vue",
   /element-plus\/es\/.*/,
+<<<<<<< HEAD
   "@element-plus/icons-vue",
   "element-plus",
 ];
 const INLINE_EXTERNALS = [/@air-ui\/component\/.*/, /@air-ui\/component/];
 export const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
+=======
+];
+const INLINE_EXTERNALS = [/@air-ui\/component\/.*/, /@air-ui\/component/];
+const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
+>>>>>>> e4c59b0980b8aa6ef28b24bce6fbd72cf7dd96d1
 // plugins
 const UPDATE_PACKAGEJSON_PLUGIN_OPTION = {
   input: "./",
@@ -30,7 +36,7 @@ export const VUEMACROS_PLUGIN_OPTION = {
 const DTS_PLUGIN_OPTION = {
   tsconfigPath: "./tsconfig.json",
   include: ["src/**/*.ts", "src/**/*.vue"],
-  outDir: "dist/types",
+  outDir: "dist/types"
 };
 export const PLUGINS = [
   updatePackageJsonPlugin(UPDATE_PACKAGEJSON_PLUGIN_OPTION),
