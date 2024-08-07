@@ -1,6 +1,7 @@
 import type { ExtractPropTypes } from "vue";
-import { buildProps } from "element-plus/es/utils/vue";
+import { buildProps, iconPropType } from "element-plus/es/utils/vue";
 import { useSizeProp } from "element-plus/es/hooks/use-size";
+import { Loading } from '@element-plus/icons-vue'
 
 export const buttonTypes = [
   "default",
@@ -9,20 +10,37 @@ export const buttonTypes = [
   "warning",
   "info",
   "danger",
-  /**
-   * @deprecated
-   * Text type will be deprecated in the next major version (3.0.0)
-   */
-  "text",
-  "",
 ] as const;
 
 export const buttonProps = buildProps({
+  /**
+   * @description Button size
+   * @type {string}
+   * @values 'small', 'default', 'large'
+   */
   size: useSizeProp,
+  /**
+   * @description disable the button
+   */
+  disabled: Boolean,
+   /**
+   * @description button type
+   */
   type: {
     type: String,
     values: buttonTypes,
     default: "",
+  },
+  /**
+   * @description determine whether it's loading
+   */
+  loading: Boolean,
+  /**
+   * @description customize loading icon component
+   */
+  loadingIcon: {
+    type: iconPropType,
+    default: () => Loading,
   },
 } as const);
 

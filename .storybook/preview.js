@@ -1,5 +1,6 @@
 /** @type { import('@storybook/vue3').Preview } */
 import '../tailwind.css';
+import { withThemeByDataAttribute } from "@storybook/addon-themes";
 
 const preview = {
   parameters: {
@@ -10,6 +11,7 @@ const preview = {
       },
     },
   },
+
   globalTypes: {
     locale: {
       description: 'Internationalization locale',
@@ -23,6 +25,15 @@ const preview = {
       },
     },
   },
+
+  decorators: [withThemeByDataAttribute({
+      themes: {
+          light: 'light',
+          dark: 'dark',
+      },
+      defaultTheme: 'light',
+      dataAttribute: 'data-theme',
+  })]
 };
 
 export default preview;

@@ -1,5 +1,5 @@
-const defaultConfig = require('../../../tailwind.config.js');
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  ...defaultConfig, // 继承全局配置
-};
+  content: ['./src/**/*.{vue,js,ts,jsx,tsx}'],
+}
+

@@ -5,14 +5,20 @@
   "files": [
     "dist"
   ],
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "build": "run-p build-es build-umd",
     "build-umd": "vite build --config vite.umd.config.ts",
     "build-es": "vite build --config vite.es.config.ts"
   },
   "peerDependencies": {
-    "element-plus": "^2.7.8",
     "vue": "^3.2.0"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "element-plus": "^2.7.8"
+  },
+  "devDependencies": {
+    "unplugin-element-plus": "^0.8.0"
   }
 }

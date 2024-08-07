@@ -3,9 +3,15 @@
     <div class="text-2xl font-bold">{{ props.title }}</div>
     <nav>
       <ul class="flex space-x-4">
-        <li><a href="#" class="hover:underline"><AirButton label="Home" size="large" /></a></li>
-        <li><a href="#" class="hover:underline"><AirButton label="About" size="large" /></a></li>
-        <li><a href="#" class="hover:underline"><AirButton label="Contact" size="large" /></a></li>
+        <li><a href="#" class="hover:underline">
+            <AirButton size="large" type="primary">Home</AirButton>
+          </a></li>
+        <li><a href="#" class="hover:underline">
+            <AirButton size="large" type="success">About</AirButton>
+          </a></li>
+        <li><a href="#" class="hover:underline">
+            <AirButton size="large" type="danger" :disabled="true">Other</AirButton>
+          </a></li>
       </ul>
     </nav>
   </header>

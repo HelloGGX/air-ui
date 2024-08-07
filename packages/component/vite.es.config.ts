@@ -6,22 +6,23 @@ import { fileURLToPath, URL } from "node:url";
 import { resolve, relative, extname } from "node:path";
 import { globSync } from "glob";
 import { updatePackageJsonPlugin } from "./utils/updatePackageJsonPlugin";
+import ElementPlus from 'unplugin-element-plus/vite'
 
 // externals
 const GLOBAL_EXTERNALS = [
   "vue",
   /element-plus\/es\/.*/,
-  "element-plus/es/utils/vue",
-  "element-plus/es/hooks/use-size",
+  "@element-plus/icons-vue",
+  "element-plus",
 ];
-const INLINE_EXTERNALS = [/@air-ui\/component\/.*/];
-const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
+const INLINE_EXTERNALS = [/@air-ui\/component\/.*/, /@air-ui\/component/];
+export const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
 // plugins
 const UPDATE_PACKAGEJSON_PLUGIN_OPTION = {
   input: "./",
   output: "./dist",
 };
-const VUEMACROS_PLUGIN_OPTION = {
+export const VUEMACROS_PLUGIN_OPTION = {
   plugins: {
     vue: vue(),
   },
@@ -31,19 +32,17 @@ const DTS_PLUGIN_OPTION = {
   include: ["src/**/*.ts", "src/**/*.vue"],
   outDir: "dist/types",
 };
-const PLUGINS = [
+export const PLUGINS = [
   updatePackageJsonPlugin(UPDATE_PACKAGEJSON_PLUGIN_OPTION),
   VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
   dts(DTS_PLUGIN_OPTION),
+  ElementPlus({
+    format: 'esm'
+  })
 ];
 
 export default defineConfig({
   plugins: PLUGINS,
-  resolve: {
-    alias: {
-      '@air-ui/component': resolve(__dirname, 'src'),
-    },
-  },
   build: {
     outDir: "dist/es",
     lib: {
