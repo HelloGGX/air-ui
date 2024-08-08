@@ -1,25 +1,36 @@
 {
-  "name": "@air-ui/component",
-  "version": "0.0.0",
-  "description": "air ui component library",
-  "files": [
-    "dist"
-  ],
-  "style": "dist/index.css",
-  "main": "src/index.ts",
-  "scripts": {
-    "build": "run-p build-es build-umd",
-    "build-umd": "vite build --config vite.umd.config.ts",
-    "build-es": "vite build --config vite.es.config.ts"
-  },
-  "peerDependencies": {
-    "vue": "^3.2.0"
-  },
-  "dependencies": {
-    "@element-plus/icons-vue": "^2.3.1",
-    "element-plus": "^2.7.8"
-  },
-  "devDependencies": {
-    "unplugin-element-plus": "^0.8.0"
-  }
+    "name": "@air-ui/component",
+    "version": "0.0.0",
+    "description": "air ui component library",
+    "files": [
+        "dist"
+    ],
+    "style": "dist/index.css",
+    "main": "src/index.ts",
+    "scripts": {
+        "build": "cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",
+        "build:package": "pnpm run build:prebuild && build:es && pnpm run build:postbuild",
+        "build:prebuild": "node ./scripts/prebuild.mjs",
+        "build:postbuild": "node ./scripts/postbuild.mjs",
+        "build:es": "vite build --config vite.es.config.ts"
+    },
+    "peerDependencies": {
+        "vue": "^3.2.0"
+    },
+    "dependencies": {
+        "@element-plus/icons-vue": "^2.3.1",
+        "element-plus": "^2.7.8"
+    },
+    "devDependencies": {
+        "unplugin-element-plus": "^0.8.0"
+    },
+    "author": "玄子",
+    "homepage": "",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "bugs": {},
+    "engines": {}
 }

@@ -1,26 +1,16 @@
 {
-  "extends": [
-    "@vue/tsconfig/tsconfig.dom.json",
-    "@vue/tsconfig/tsconfig.lib.json"
-  ],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "jsx": "preserve",
-    "skipLibCheck": true,
-    "types": ["unplugin-vue-macros/macros-global", "element-plus/global"],
-    "paths": {
-      "@air-ui/component/*": ["src/*"]
+    "extends": ["@vue/tsconfig/tsconfig.dom.json", "@vue/tsconfig/tsconfig.lib.json"],
+    "compilerOptions": {
+        "baseUrl": ".",
+        "jsx": "preserve",
+        "skipLibCheck": true,
+        "types": ["unplugin-vue-macros/macros-global", "element-plus/global"],
+        "paths": {
+            "@air-ui/component/*": ["src/*"]
+        }
+    },
+    "include": ["src/**/*.ts", "src/**/*.vue", "./index.ts"],
+    "vueCompilerOptions": {
+        "plugins": ["@vue-macros/volar/define-model", "@vue-macros/volar/define-props", "@vue-macros/volar/define-props-refs", "@vue-macros/volar/short-vmodel", "@vue-macros/volar/define-slots", "@vue-macros/volar/export-props"]
     }
-  },
-  "include": ["src/**/*.ts", "src/**/*.vue", "./index.ts"],
-  "vueCompilerOptions": {
-    "plugins": [
-      "@vue-macros/volar/define-model",
-      "@vue-macros/volar/define-props",
-      "@vue-macros/volar/define-props-refs",
-      "@vue-macros/volar/short-vmodel",
-      "@vue-macros/volar/define-slots",
-      "@vue-macros/volar/export-props"
-    ]
-  }
 }
