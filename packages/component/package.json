@@ -5,6 +5,7 @@
   "files": [
     "dist"
   ],
+  "style": "dist/index.css",
   "main": "src/index.ts",
   "scripts": {
     "build": "run-p build-es build-umd",

@@ -1,19 +1,19 @@
-import Header from './Header.vue';
+import AirHeader from './AirHeader.vue';
 
 export default {
   title: 'BLOCK/Header',
-  component: Header,
+  component: AirHeader,
   argTypes: {
-    title: { control: 'text' }
-  }
+    title: { control: 'text' },
+  },
 };
 
 const Template = (args) => ({
-  components: { Header },
+  components: { AirHeader },
   setup() {
     return { args };
   },
-  template: '<Header v-bind="args" />',
+  template: '<AirHeader v-bind="args" />',
 });
 
 export const Default = Template.bind({});

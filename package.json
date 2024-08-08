@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
+    "@eslint/js": "^9.8.0",
     "@storybook/addon-essentials": "^8.2.5",
     "@storybook/addon-interactions": "^8.2.5",
     "@storybook/addon-links": "^8.2.5",
@@ -32,13 +33,18 @@
     "@vue-macros/volar": "^0.25.0",
     "@vue/tsconfig": "^0.5.1",
     "autoprefixer": "^10.4.19",
+    "eslint": "^9.8.0",
+    "eslint-plugin-vue": "^9.27.0",
     "glob": "^11.0.0",
-    "lerna": "^4.0.0",
+    "globals": "^15.9.0",
+    "lerna": "^8.1.8",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.40",
+    "prettier": "3.3.3",
     "storybook": "^8.2.5",
     "tailwindcss": "^3.4.6",
     "typescript": "^5.5.4",
+    "typescript-eslint": "^8.0.1",
     "unplugin-vue-macros": "^2.10.0",
     "vite-plugin-dts": "^4.0.0"
   },
@@ -46,7 +52,9 @@
     "build": "lerna run build",
     "publish": "lerna publish",
     "sb": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "eslint --fix 'packages/**/*.{js,jsx,ts,tsx,vue}'",
+    "format": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,vue,json,css,scss,md}'"
   },
   "workspaces": [
     "packages/block/*",

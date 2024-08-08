@@ -10,7 +10,7 @@
     "types": ["unplugin-vue-macros/macros-global", "element-plus/global"],
     "paths": {
       "@air-ui/component/*": ["src/*"]
-    },
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "./index.ts"],
   "vueCompilerOptions": {

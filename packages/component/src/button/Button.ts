@@ -1,15 +1,15 @@
-import type { ExtractPropTypes } from "vue";
-import { buildProps, iconPropType } from "element-plus/es/utils/vue";
-import { useSizeProp } from "element-plus/es/hooks/use-size";
-import { Loading } from '@element-plus/icons-vue'
+import type { ExtractPropTypes } from 'vue';
+import { buildProps, iconPropType } from 'element-plus/es/utils/vue';
+import { useSizeProp } from 'element-plus/es/hooks/use-size';
+import { Loading } from '@element-plus/icons-vue';
 
 export const buttonTypes = [
-  "default",
-  "primary",
-  "success",
-  "warning",
-  "info",
-  "danger",
+  'default',
+  'primary',
+  'success',
+  'warning',
+  'info',
+  'danger',
 ] as const;
 
 export const buttonProps = buildProps({
@@ -23,13 +23,13 @@ export const buttonProps = buildProps({
    * @description disable the button
    */
   disabled: Boolean,
-   /**
+  /**
    * @description button type
    */
   type: {
     type: String,
     values: buttonTypes,
-    default: "",
+    default: 'primary',
   },
   /**
    * @description determine whether it's loading
@@ -51,7 +51,7 @@ export const buttonEmits = {
 export type ButtonProps = ExtractPropTypes<typeof buttonProps>;
 export type ButtonEmits = typeof buttonEmits;
 
-export type ButtonType = ButtonProps["type"];
+export type ButtonType = ButtonProps['type'];
 
 export interface ButtonConfigContext {
   autoInsertSpace?: boolean;
