@@ -30,7 +30,12 @@ const DTS_PLUGIN_OPTION = {
     exclude: ['**/*.stories.ts'],
     outDir: 'dist/types'
 };
-export const PLUGINS = [updatePackageJsonPlugin(UPDATE_PACKAGEJSON_PLUGIN_OPTION), VueMacros.vite(VUEMACROS_PLUGIN_OPTION), dts(DTS_PLUGIN_OPTION), ElementPlus({ format: 'esm' })];
+export const PLUGINS = [
+    updatePackageJsonPlugin(UPDATE_PACKAGEJSON_PLUGIN_OPTION),
+    VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
+    dts(DTS_PLUGIN_OPTION),
+    ElementPlus({ format: 'esm' })
+];
 
 export default defineConfig({
     plugins: PLUGINS,
@@ -46,7 +51,12 @@ export default defineConfig({
             external: EXTERNALS,
             input: {
                 index: resolve(__dirname, 'index.ts'),
-                ...Object.fromEntries(globSync(['src/**/*.vue']).map((file) => [relative('src', file.slice(0, file.length - extname(file).length)), fileURLToPath(new URL(file, import.meta.url))]))
+                ...Object.fromEntries(
+                    globSync(['src/**/*.vue']).map((file) => [
+                        relative('src', file.slice(0, file.length - extname(file).length)),
+                        fileURLToPath(new URL(file, import.meta.url))
+                    ])
+                )
             },
             output: {
                 globals: {

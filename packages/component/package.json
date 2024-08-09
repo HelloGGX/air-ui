@@ -9,7 +9,7 @@
     "main": "src/index.ts",
     "scripts": {
         "build": "cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",
-        "build:package": "pnpm run build:prebuild && build:es && pnpm run build:postbuild",
+        "build:package": "pnpm run build:prebuild && npm run build:es && pnpm run build:postbuild",
         "build:prebuild": "node ./scripts/prebuild.mjs",
         "build:postbuild": "node ./scripts/postbuild.mjs",
         "build:es": "vite build --config vite.es.config.ts"

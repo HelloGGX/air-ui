@@ -48,7 +48,13 @@ const buttonClasses = computed(() => {
     const disabledClasses = 'cursor-not-allowed opacity-50';
     const loadingClasses = 'cursor-wait';
 
-    return [baseClasses, typeClasses[props.type || 'default'], sizeClasses[props.size || 'default'], props.disabled || props.loading ? disabledClasses : '', props.loading ? loadingClasses : ''].join(' ');
+    return [
+        baseClasses,
+        typeClasses[props.type || 'default'],
+        sizeClasses[props.size || 'default'],
+        props.disabled || props.loading ? disabledClasses : '',
+        props.loading ? loadingClasses : ''
+    ].join(' ');
 });
 
 defineExpose({

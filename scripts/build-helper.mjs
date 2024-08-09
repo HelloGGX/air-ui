@@ -21,13 +21,15 @@ export function resolvePath(metaUrl) {
 
 export function removeBuild(metaUrl) {
     const { OUTPUT_DIR } = resolvePath(metaUrl);
-   console.log(OUTPUT_DIR)
+    console.log(OUTPUT_DIR);
     fs.remove(OUTPUT_DIR);
 }
 
 export function updatePackageJson(localPackageJson) {
     const { __workspace } = resolvePath();
-    const packageJson = JSON.parse(fs.readFileSync(path.resolve(__workspace, './package.json'), { encoding: 'utf8', flag: 'r' }));
+    const packageJson = JSON.parse(
+        fs.readFileSync(path.resolve(__workspace, './package.json'), { encoding: 'utf8', flag: 'r' })
+    );
     const pkg = JSON.parse(fs.readFileSync(localPackageJson, { encoding: 'utf8', flag: 'r' }));
 
     pkg.version = packageJson.version;
