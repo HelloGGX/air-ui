@@ -5,7 +5,6 @@ import dts from 'vite-plugin-dts';
 import { fileURLToPath, URL } from 'node:url';
 import { resolve, relative, extname } from 'node:path';
 import { globSync } from 'glob';
-import { updatePackageJsonPlugin } from './scripts/updatePackageJsonPlugin';
 import ElementPlus from 'unplugin-element-plus/vite';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
@@ -15,10 +14,6 @@ const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vu
 const INLINE_EXTERNALS = [/@air-ui\/component\/.*/, /@air-ui\/component/];
 export const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
 // plugins
-const UPDATE_PACKAGEJSON_PLUGIN_OPTION = {
-    input: './',
-    output: './dist'
-};
 export const VUEMACROS_PLUGIN_OPTION = {
     plugins: {
         vue: vue()
@@ -31,7 +26,6 @@ const DTS_PLUGIN_OPTION = {
     outDir: 'dist/types'
 };
 export const PLUGINS = [
-    updatePackageJsonPlugin(UPDATE_PACKAGEJSON_PLUGIN_OPTION),
     VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
     dts(DTS_PLUGIN_OPTION),
     ElementPlus({ format: 'esm' })
@@ -51,12 +45,13 @@ export default defineConfig({
             external: EXTERNALS,
             input: {
                 index: resolve(__dirname, 'index.ts'),
-                ...Object.fromEntries(
-                    globSync(['src/**/*.vue']).map((file) => [
-                        relative('src', file.slice(0, file.length - extname(file).length)),
-                        fileURLToPath(new URL(file, import.meta.url))
-                    ])
-                )
+                'button/index': resolve(__dirname, 'src/button/index.ts')
+                // ...Object.fromEntries(
+                //     globSync(['src/**/index.ts']).map((file) => [
+                //         relative('src', file.slice(0, file.length - extname(file).length)),
+                //         fileURLToPath(new URL(file, import.meta.url))
+                //     ])
+                // )
             },
             output: {
                 globals: {
@@ -66,11 +61,11 @@ export default defineConfig({
                 entryFileNames: '[name].mjs',
                 exports: 'auto'
                 // paths: (id) => {
-                //   if (id.startsWith("@air-ui/component")) {
-                //     return id.replace("@air-ui/component", ".");
-                //   }
-                //   return id;
-                // },
+                //     if (id.startsWith('@air-ui/component')) {
+                //         return id.replace('@air-ui/component', '.');
+                //     }
+                //     return id;
+                // }
             }
         },
         minify: false // 禁用代码压缩和混淆

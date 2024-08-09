@@ -21,7 +21,6 @@ export function resolvePath(metaUrl) {
 
 export function removeBuild(metaUrl) {
     const { OUTPUT_DIR } = resolvePath(metaUrl);
-    console.log(OUTPUT_DIR);
     fs.remove(OUTPUT_DIR);
 }
 
@@ -76,20 +75,4 @@ export function copyDependencies(inFolder, outFolder, subFolder) {
             }
         }
     });
-}
-
-export async function renameDTSFile(dir, newName) {
-    const entries = await fs.readdir(dir, { withFileTypes: true });
-
-    for (const entry of entries) {
-        const fullPath = path.join(dir, entry.name);
-
-        if (entry.isDirectory()) {
-            await renameDTSFile(fullPath, newName);
-        } else if (entry.name.endsWith('.d.ts')) {
-            const newFullPath = path.join(dir, `${newName}.d.ts`);
-
-            await fs.rename(fullPath, newFullPath);
-        }
-    }
 }
