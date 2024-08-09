@@ -1,7 +1,7 @@
 import terser from '@rollup/plugin-terser';
 import postcss from 'rollup-plugin-postcss';
-import vue from 'rollup-plugin-vue';
-import VueMacros from 'unplugin-vue-macros';
+import VueMacros from 'unplugin-vue-macros/rollup'
+import vue from 'unplugin-vue/rollup'
 import ElementPlus from 'unplugin-element-plus/vite';
 import fs from 'fs-extra';
 import path from 'path';
@@ -36,7 +36,7 @@ const TERSER_PLUGIN_OPTIONS = {
     }
 };
 export const PLUGINS = [
-    VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
+    VueMacros(VUEMACROS_PLUGIN_OPTION),
     ElementPlus({ format: 'esm' }),
     postcss(POSTCSS_PLUGIN_OPTIONS)
 ];

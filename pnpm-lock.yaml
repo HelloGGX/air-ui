@@ -126,6 +126,9 @@ importers:
       unplugin-element-plus:
         specifier: ^0.8.0
         version: 0.8.0(rollup@4.20.0)
+      unplugin-vue:
+        specifier: ^5.0.5
+        version: 5.0.5(@types/node@20.14.14)(terser@5.31.5)(vue@3.4.36(typescript@5.5.4))
 
 packages:
 
@@ -4514,9 +4517,18 @@ packages:
     peerDependencies:
       vue: ^2.7.0 || ^3.2.25
 
+  unplugin-vue@5.0.5:
+    resolution: {integrity: sha512-TakFgOuKPf50pVZPPu54fWVtr3+d7T7G9aVG1X/4Y/4IloFFIetwrCa3T1teYlAYC8GvmAKmxXBz7CaPbeywTQ==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      vue: ^3.2.25
+
   unplugin@1.12.1:
     resolution: {integrity: sha512-aXEH9c5qi3uYZHo0niUtxDlT9ylG/luMW/dZslSCkbtC31wCyFkmM0kyoBBh+Grhn7CL+/kvKLfN61/EdxPxMQ==}
     engines: {node: '>=14.0.0'}
+
+  unplugin@1.7.1:
+    resolution: {integrity: sha512-JqzORDAPxxs8ErLV4x+LL7bk5pk3YlcWqpSNsIkAZj972KzFZLClc/ekppahKkOczGkwIG6ElFgdOgOlK4tXZw==}
 
   update-browserslist-db@1.1.0:
     resolution: {integrity: sha512-EdRAaAyk2cUE1wOf2DkEhzxqOQvFOoRJFNS6NeyJ01Gp2beMRpBAINjM2iDXE3KCuKhwnvHIQCJm6ThL2Z+HzQ==}
@@ -9706,7 +9718,32 @@ snapshots:
       - vue-tsc
       - webpack
 
+  unplugin-vue@5.0.5(@types/node@20.14.14)(terser@5.31.5)(vue@3.4.36(typescript@5.5.4)):
+    dependencies:
+      '@vue/reactivity': 3.4.36
+      debug: 4.3.6
+      unplugin: 1.7.1
+      vite: 5.4.0(@types/node@20.14.14)(terser@5.31.5)
+      vue: 3.4.36(typescript@5.5.4)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
   unplugin@1.12.1:
+    dependencies:
+      acorn: 8.12.1
+      chokidar: 3.6.0
+      webpack-sources: 3.2.3
+      webpack-virtual-modules: 0.6.2
+
+  unplugin@1.7.1:
     dependencies:
       acorn: 8.12.1
       chokidar: 3.6.0
