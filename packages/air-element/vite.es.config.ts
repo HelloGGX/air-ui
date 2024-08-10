@@ -14,8 +14,6 @@ const { resolvePath } = require('../../scripts/build-helper.mjs');
 
 const { __dirname, INPUT_DIR, OUTPUT_DIR, INPUT_PATH, OUTPUT_PATH } = resolvePath(import.meta.url);
 
-console.log('*************', __dirname, INPUT_DIR, OUTPUT_DIR, INPUT_PATH, OUTPUT_PATH);
-
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vue', 'element-plus'];
 export const EXTERNALS = [...GLOBAL_EXTERNALS];
