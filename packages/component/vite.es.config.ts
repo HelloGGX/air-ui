@@ -3,16 +3,21 @@ import VueMacros from 'unplugin-vue-macros';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
 import { fileURLToPath, URL } from 'node:url';
-import { resolve, relative, extname } from 'node:path';
+import { resolve, relative, extname, join } from 'node:path';
 import { globSync } from 'glob';
 import ElementPlus from 'unplugin-element-plus/vite';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
+const { resolvePath } = require('../../scripts/build-helper.mjs');
+
+const { __dirname, INPUT_DIR, OUTPUT_DIR, INPUT_PATH, OUTPUT_PATH } = resolvePath(import.meta.url);
+
+console.log('*************',__dirname, INPUT_DIR, OUTPUT_DIR, INPUT_PATH, OUTPUT_PATH);
+
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vue', 'element-plus'];
-const INLINE_EXTERNALS = [/@air-ui\/component\/.*/, /@air-ui\/component/];
-export const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
+export const EXTERNALS = [...GLOBAL_EXTERNALS];
 // plugins
 export const VUEMACROS_PLUGIN_OPTION = {
     plugins: {
@@ -21,9 +26,19 @@ export const VUEMACROS_PLUGIN_OPTION = {
 };
 const DTS_PLUGIN_OPTION = {
     tsconfigPath: './tsconfig.json',
-    include: ['src/**/*.ts', 'src/**/*.vue'],
+    include: [`${INPUT_DIR}**/*.ts`, `${INPUT_DIR}**/*.vue`, `index.ts`],
     exclude: ['**/*.stories.ts'],
-    outDir: 'dist/types'
+    outDir: 'dist/types',
+    beforeWriteFile: (filePath: string, content: string) => {
+        // 自定义某些文件的输出路径
+        if (filePath.includes(INPUT_DIR)) {
+            return {
+                filePath: filePath.replace('dist/types/src/', 'dist/types/component/'),
+                content: content
+            };
+        }
+        return { content };
+    }
 };
 export const PLUGINS = [
     VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
@@ -44,14 +59,15 @@ export default defineConfig({
         rollupOptions: {
             external: EXTERNALS,
             input: {
-                index: resolve(__dirname, 'index.ts'),
-                'button/index': resolve(__dirname, 'src/button/index.ts')
-                // ...Object.fromEntries(
-                //     globSync(['src/**/index.ts']).map((file) => [
-                //         relative('src', file.slice(0, file.length - extname(file).length)),
-                //         fileURLToPath(new URL(file, import.meta.url))
-                //     ])
-                // )
+                index: fileURLToPath(new URL('index.ts', import.meta.url)), // 添加新的入口文件
+                ...Object.fromEntries(
+                    globSync(['src/**/*.ts'])
+                        .filter((file) => !file.endsWith('stories.ts')) // 过滤掉以 stories.ts 结尾的文件
+                        .map((file) => [
+                            join('component', relative('src', file.slice(0, file.length - extname(file).length))),
+                            fileURLToPath(new URL(file, import.meta.url))
+                        ])
+                )
             },
             output: {
                 globals: {
@@ -60,12 +76,6 @@ export default defineConfig({
                 },
                 entryFileNames: '[name].mjs',
                 exports: 'auto'
-                // paths: (id) => {
-                //     if (id.startsWith('@air-ui/component')) {
-                //         return id.replace('@air-ui/component', '.');
-                //     }
-                //     return id;
-                // }
             }
         },
         minify: false // 禁用代码压缩和混淆

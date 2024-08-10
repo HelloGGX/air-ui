@@ -8,7 +8,7 @@
     "main": "src/index.ts",
     "scripts": {
         "build": "cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",
-        "build:package": "pnpm run build:prebuild && rollup -c && pnpm run build:postbuild",
+        "build:package": "pnpm run build:prebuild && npm run build:es && pnpm run build:postbuild",
         "build:prebuild": "node ./scripts/prebuild.mjs",
         "build:postbuild": "node ./scripts/postbuild.mjs",
         "build:es": "vite build --config vite.es.config.ts"
@@ -21,12 +21,9 @@
         "element-plus": "^2.7.8"
     },
     "devDependencies": {
-        "@rollup/plugin-alias": "^5.1.0",
-        "@rollup/plugin-terser": "^0.4.4",
-        "rollup-plugin-postcss": "^4.0.2",
-        "rollup-plugin-vue": "^6.0.0",
-        "unplugin-element-plus": "^0.8.0",
-        "unplugin-vue": "^5.0.5"
+        "@types/fs-extra": "^11.0.4",
+        "fs-extra": "^11.2.0",
+        "unplugin-element-plus": "^0.8.0"
     },
     "author": "玄子",
     "license": "MIT",
