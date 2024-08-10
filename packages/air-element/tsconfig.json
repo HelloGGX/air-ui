@@ -6,10 +6,10 @@
         "skipLibCheck": true,
         "types": ["unplugin-vue-macros/macros-global", "element-plus/global"],
         "paths": {
-            "@air-ui/component/*": ["src/*"]
+            "@air-ui/air-element/*": ["components/*"]
         }
     },
-    "include": ["src/**/*.ts", "src/**/*.vue", "./*.ts"],
+    "include": ["components/**/*.ts", "components/**/*.vue", "./*.ts"],
     "vueCompilerOptions": {
         "plugins": ["@vue-macros/volar/define-model", "@vue-macros/volar/define-props", "@vue-macros/volar/define-props-refs", "@vue-macros/volar/short-vmodel", "@vue-macros/volar/define-slots", "@vue-macros/volar/export-props"]
     }

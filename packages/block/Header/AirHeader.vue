@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { AirButton } from '@air-ui/component';
+import { AirButton } from '@air-ui/air-element';
 
 const props = defineProps({
     title: {

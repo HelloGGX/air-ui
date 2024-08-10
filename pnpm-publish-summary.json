@@ -1,7 +1,7 @@
 {
 	"publishedPackages": [
 		{
-			"name": "@air-ui/component",
+			"name": "@air-ui/air-element",
 			"version": "0.0.0"
 		}
 	]

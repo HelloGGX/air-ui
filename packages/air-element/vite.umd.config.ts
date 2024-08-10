@@ -18,7 +18,7 @@ export default defineConfig({
     build: {
         outDir: 'dist/umd',
         lib: {
-            entry: resolve(__dirname, 'src/index.ts'),
+            entry: resolve(__dirname, 'components/index.ts'),
             name: 'AirUI',
             fileName: 'air-ui',
             formats: ['umd']

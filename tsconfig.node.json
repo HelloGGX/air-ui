@@ -1,5 +1,5 @@
 {
   "extends": "@tsconfig/node20/tsconfig.json",
-  "include": ["packages/component/package.json"],
+  "include": ["packages/air-element/package.json"],
   "exclude": ["**/__tests__/**", "**/tests/**", "**/dist"]
 }

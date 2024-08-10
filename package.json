@@ -8,7 +8,7 @@
     },
     "license": "MIT",
     "keywords": [
-        "Component",
+        "air-element",
         "UI",
         "Vue3"
     ],
@@ -16,8 +16,8 @@
         "setup": "rm -rf **/node_modules **/dist ./pnpm-lock.yaml && pnpm install",
         "build": "NODE_ENV=production pnpm run build:check && pnpm run build:packages",
         "build:check": "pnpm run format:check && pnpm run security:check",
-        "build:packages": "pnpm run build:component && pnpm run build:block",
-        "build:component": "pnpm --filter component build",
+        "build:packages": "pnpm run build:air-element && pnpm run build:block",
+        "build:air-element": "pnpm --filter air-element build",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
         "security:check": "pnpm audit --prod --audit-level high",
@@ -66,7 +66,7 @@
     },
     "workspaces": [
         "packages/block/*",
-        "packages/component",
+        "packages/air-element",
         "packages/page/*",
         "packages/scaffold/*"
     ]
