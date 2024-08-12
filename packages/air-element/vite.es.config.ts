@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite';
-import type { PluginOption } from 'vite';
-import type { RollupOptions, InputOption, OutputOptions } from 'rollup';
+import type { PluginOption, LibraryOptions } from 'vite';
+import type { RollupOptions, OutputOptions } from 'rollup';
 import VueMacros from 'unplugin-vue-macros';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
-import { fileURLToPath, URL } from 'node:url';
-import { resolve, extname } from 'node:path';
+import { fileURLToPath, URL } from 'url';
+import { extname } from 'path';
 import { globSync } from 'glob';
 import ElementPlus from 'unplugin-element-plus/vite';
 import tailwindcss from 'tailwindcss';
@@ -13,7 +13,7 @@ import autoprefixer from 'autoprefixer';
 
 const { resolvePath } = require('../../scripts/build-helper.mjs');
 
-const { __dirname, INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
+const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vue', 'element-plus'];
@@ -37,18 +37,24 @@ export const PLUGINS: PluginOption = [
     ElementPlus({ format: 'esm' })
 ];
 
-// rollupOptions
-const ROLLUP_INPUT_OPTION: InputOption = {
-    index: fileURLToPath(new URL('index.ts', import.meta.url)), // 添加新的入口文件
-    ...Object.fromEntries(
-        globSync([`${INPUT_DIR}**/*.ts`])
-            .filter((file) => !file.endsWith('stories.ts')) // 过滤掉以 stories.ts 结尾的文件
-            .map((file) => [
-                file.slice(0, file.length - extname(file).length),
-                fileURLToPath(new URL(file, import.meta.url))
-            ])
-    )
+// build.lib
+const LIB_OPTIONS: LibraryOptions = {
+    entry: {
+        index: fileURLToPath(new URL('index.ts', import.meta.url)), // 添加新的入口文件
+        ...Object.fromEntries(
+            globSync([`${INPUT_DIR}**/*.ts`])
+                .filter((file) => !file.endsWith('stories.ts')) // 过滤掉以 stories.ts 结尾的文件
+                .map((file) => [
+                    file.slice(0, file.length - extname(file).length),
+                    fileURLToPath(new URL(file, import.meta.url))
+                ])
+        )
+    },
+    name: 'AirElement',
+    formats: ['es']
 };
+
+// rollupOptions
 const ROLLUP_OUTPUT_OPTION: OutputOptions = {
     globals: {
         vue: 'Vue',
@@ -59,7 +65,6 @@ const ROLLUP_OUTPUT_OPTION: OutputOptions = {
 };
 const ROLLUP_OPTIONS: RollupOptions = {
     external: EXTERNALS,
-    input: ROLLUP_INPUT_OPTION,
     output: ROLLUP_OUTPUT_OPTION
 };
 
@@ -67,15 +72,10 @@ export default defineConfig({
     plugins: PLUGINS,
     build: {
         outDir: `${OUTPUT_DIR}es`,
-        cssCodeSplit: true, // 启用 CSS 分离
-        lib: {
-            entry: resolve(__dirname, `${INPUT_DIR}index.ts`),
-            name: 'AirUI',
-            fileName: 'air-ui',
-            formats: ['es']
-        },
+        lib: LIB_OPTIONS,
         rollupOptions: ROLLUP_OPTIONS,
-        minify: false // 禁用代码压缩和混淆
+        minify: false,
+        cssCodeSplit: true
     },
     css: {
         postcss: {
