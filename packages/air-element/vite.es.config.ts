@@ -17,6 +17,7 @@ const { __dirname, INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vue', 'element-plus'];
 export const EXTERNALS = [...GLOBAL_EXTERNALS];
+
 // plugins
 export const VUEMACROS_PLUGIN_OPTION = {
     plugins: {
@@ -65,6 +66,7 @@ export default defineConfig({
     plugins: PLUGINS,
     build: {
         outDir: `${OUTPUT_DIR}es`,
+        cssCodeSplit: true, // 启用 CSS 分离
         lib: {
             entry: resolve(__dirname, `${INPUT_DIR}index.ts`),
             name: 'AirUI',
@@ -72,8 +74,7 @@ export default defineConfig({
             formats: ['es']
         },
         rollupOptions: ROLLUP_OPTIONS,
-        minify: false, // 禁用代码压缩和混淆
-        sourcemap: true
+        minify: false // 禁用代码压缩和混淆
     },
     css: {
         postcss: {
