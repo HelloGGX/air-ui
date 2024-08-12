@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
-import type { RollupOptions } from 'rollup';
+import type { PluginOption } from 'vite';
+import type { RollupOptions, InputOption, OutputOptions } from 'rollup';
 import VueMacros from 'unplugin-vue-macros';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
@@ -30,14 +31,14 @@ const DTS_PLUGIN_OPTION = {
     exclude: ['**/*.stories.ts'],
     outDir: `${OUTPUT_DIR}types`
 };
-export const PLUGINS = [
+export const PLUGINS: PluginOption = [
     VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
     dts(DTS_PLUGIN_OPTION),
     ElementPlus({ format: 'esm' })
 ];
 
 // rollupOptions
-const ROLLUP_INPUT_OPTION = {
+const ROLLUP_INPUT_OPTION: InputOption = {
     index: fileURLToPath(new URL('index.ts', import.meta.url)), // 添加新的入口文件
     ...Object.fromEntries(
         globSync([`${INPUT_DIR}**/*.ts`])
@@ -48,7 +49,7 @@ const ROLLUP_INPUT_OPTION = {
             ])
     )
 };
-const ROLLUP_OUTPUT_OPTION = {
+const ROLLUP_OUTPUT_OPTION: OutputOptions = {
     globals: {
         vue: 'Vue',
         'element-plus': 'ElementPlus'
