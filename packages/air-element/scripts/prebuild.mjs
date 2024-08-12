@@ -3,8 +3,3 @@ import { removeBuild, resolvePath, updatePackageJson } from '../../../scripts/bu
 
 removeBuild(import.meta.url);
 updatePackageJson(path.resolve(resolvePath(import.meta.url).__dirname, '../package.json'));
-
-
-
-
-

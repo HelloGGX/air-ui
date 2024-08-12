@@ -4,7 +4,7 @@ import VueMacros from 'unplugin-vue-macros';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
 import { fileURLToPath, URL } from 'node:url';
-import { resolve, relative, extname, join } from 'node:path';
+import { resolve, extname } from 'node:path';
 import { globSync } from 'glob';
 import ElementPlus from 'unplugin-element-plus/vite';
 import tailwindcss from 'tailwindcss';
@@ -12,7 +12,7 @@ import autoprefixer from 'autoprefixer';
 
 const { resolvePath } = require('../../scripts/build-helper.mjs');
 
-const { __dirname, INPUT_DIR, OUTPUT_DIR, INPUT_PATH, OUTPUT_PATH } = resolvePath(import.meta.url);
+const { __dirname, INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vue', 'element-plus'];
@@ -55,7 +55,7 @@ const ROLLUP_OUTPUT_OPTION = {
     entryFileNames: '[name].mjs',
     exports: 'auto' as 'auto'
 };
-const ROLLUP_OPTIONS: RollupOptions  = {
+const ROLLUP_OPTIONS: RollupOptions = {
     external: EXTERNALS,
     input: ROLLUP_INPUT_OPTION,
     output: ROLLUP_OUTPUT_OPTION
@@ -72,7 +72,8 @@ export default defineConfig({
             formats: ['es']
         },
         rollupOptions: ROLLUP_OPTIONS,
-        minify: false // 禁用代码压缩和混淆
+        minify: false, // 禁用代码压缩和混淆
+        sourcemap: true
     },
     css: {
         postcss: {

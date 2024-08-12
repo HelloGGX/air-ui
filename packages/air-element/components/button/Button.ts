@@ -1,6 +1,7 @@
 import type { ExtractPropTypes } from 'vue';
-import { buildProps, iconPropType } from 'element-plus/es/utils/vue';
-import { useSizeProp } from 'element-plus/es/hooks/use-size';
+import { buildProps } from 'element-plus/es/utils/vue/props/runtime';
+import { iconPropType } from 'element-plus/es/utils/vue/icon';
+import { useSizeProp } from 'element-plus';
 import { Loading } from '@element-plus/icons-vue';
 
 export const buttonTypes = ['default', 'primary', 'success', 'warning', 'info', 'danger'] as const;

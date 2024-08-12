@@ -13,6 +13,10 @@
         "build:postbuild": "node ./scripts/postbuild.mjs",
         "build:es": "vite build --config vite.es.config.ts"
     },
+    "sideEffects": [
+        "dist/*",
+        "es/components/*/style/*"
+    ],
     "peerDependencies": {
         "vue": "^3.2.0"
     },
