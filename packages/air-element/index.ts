@@ -1,12 +1,6 @@
-import { makeInstaller } from 'element-plus/es/make-installer';
-import { AirButton } from './components/button';
-import type { Plugin } from 'vue';
+import installer from './default';
+export * from '@air-ui/air-element/components';
 
-const Components = [AirButton] as Plugin[];
-
-export * from './components';
-
-export const installer = makeInstaller([...Components]);
-export const install = installer.install;
-export const version = installer.version;
-export default installer;
+export const install = installer.install
+export const version = installer.version
+export default installer
