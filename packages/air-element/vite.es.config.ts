@@ -11,10 +11,11 @@ import ElementPlus from 'unplugin-element-plus/vite';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 import { addCSSImport } from './scripts/addCSSImport';
+import { updatePackageJson } from './scripts/updatePackageJson';
 
 const { resolvePath } = require('../../scripts/build-helper.mjs');
 
-const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
+const { INPUT_PATH, OUTPUT_PATH, INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vue', 'element-plus'];
@@ -69,7 +70,13 @@ const ROLLUP_OUTPUT_OPTION: OutputOptions = {
 const ROLLUP_OPTIONS: RollupOptions = {
     external: EXTERNALS,
     output: ROLLUP_OUTPUT_OPTION,
-    plugins: [addCSSImport()]
+    plugins: [
+        addCSSImport(),
+        updatePackageJson({
+            inputPath: INPUT_PATH,
+            outputPath: OUTPUT_PATH
+        })
+    ]
 };
 
 export default defineConfig({

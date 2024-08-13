@@ -1,2 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-export const content = ['./components/**/*.{vue,js,ts,jsx,tsx}'];
+import rootConfig from '../../tailwind.config.js';
+
+export default {
+    ...rootConfig,
+    content: ['./components/**/*.{vue,js,ts,jsx,tsx}'],
+
+}
