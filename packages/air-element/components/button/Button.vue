@@ -31,7 +31,7 @@ const onClick = (event: MouseEvent) => {
 const _ref = ref<HTMLButtonElement>();
 
 const buttonClasses = computed(() => {
-    const baseClasses = 'px-4 py-2 rounded transition-colors duration-300';
+    const baseClasses = 'btn-primary px-4 py-2 rounded transition-colors duration-300';
     const typeClasses = {
         default: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
         primary: 'bg-blue-500 text-white hover:bg-blue-700',
