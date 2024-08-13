@@ -1,4 +1,4 @@
-import { basename, dirname, join, relative } from 'path';
+import { basename, dirname, join, relative, sep, posix } from 'path';
 import type { NormalizedOutputOptions, OutputBundle } from 'rollup';
 import { promisify } from 'util';
 import fs from 'fs';
@@ -8,8 +8,8 @@ const readFile = promisify(fs.readFile);
 const fileExists = promisify(fs.exists);
 
 async function generateCssImportStatements(jsFilePath: string, cssFilePath: string, baseCssFilePath: string): Promise<string> {
-    const relativeCssPath = relative(dirname(jsFilePath), cssFilePath);
-    const relativeBaseCssPath = relative(dirname(jsFilePath), baseCssFilePath);
+    const relativeCssPath = relative(dirname(jsFilePath), cssFilePath).split(sep).join(posix.sep);
+    const relativeBaseCssPath = relative(dirname(jsFilePath), baseCssFilePath).split(sep).join(posix.sep);
 
     return `import '${relativeBaseCssPath}';\nimport '${relativeCssPath}';\n`;
 }
@@ -32,10 +32,8 @@ export async function addCSSImport() {
                 return;
             }
 
-            const fileRegex = /^components\/[^/]+\/style\/[^/]+\.mjs$/;
-
             for (const [fileName] of Object.entries(bundle)) {
-                if (!fileRegex.test(fileName)) {
+                if (!fileName.includes('style')) {
                     continue;
                 }
 
