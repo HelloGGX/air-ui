@@ -9,7 +9,6 @@ fs.copySync(path.resolve(__dirname, '../README.md'), `${OUTPUT_DIR}/README.md`);
 // fs.copySync(path.resolve(__workspace, './LICENSE.md'), `${OUTPUT_DIR}/LICENSE.md`);
 
 const outputpkg = path.resolve(__dirname, `../${OUTPUT_DIR}/package.json`);
-
 // package.json
 const pkgJson = JSON.parse(fs.readFileSync(outputpkg, { encoding: 'utf8', flag: 'r' }));
 

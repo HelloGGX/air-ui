@@ -11,7 +11,6 @@ import ElementPlus from 'unplugin-element-plus/vite';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 import { addCSSImport } from './scripts/addCSSImport';
-import { updatePackageJson } from './scripts/updatePackageJson';
 
 const { resolvePath } = require('../../scripts/build-helper.mjs');
 
@@ -70,13 +69,7 @@ const ROLLUP_OUTPUT_OPTION: OutputOptions = {
 const ROLLUP_OPTIONS: RollupOptions = {
     external: EXTERNALS,
     output: ROLLUP_OUTPUT_OPTION,
-    plugins: [
-        addCSSImport(),
-        updatePackageJson({
-            inputPath: INPUT_PATH,
-            outputPath: OUTPUT_PATH
-        })
-    ]
+    plugins: [addCSSImport()]
 };
 
 export default defineConfig({
