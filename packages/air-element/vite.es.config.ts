@@ -14,7 +14,7 @@ import { addCSSImport } from './scripts/addCSSImport';
 
 const { resolvePath } = require('../../scripts/build-helper.mjs');
 
-const { INPUT_PATH, OUTPUT_PATH, INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
+const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vue', 'element-plus'];
