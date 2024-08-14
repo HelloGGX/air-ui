@@ -1,5 +1,5 @@
 /** @type { import('@storybook/vue3').Preview } */
-import '../tailwind.css';
+import '@air-element/theme/index.scss';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
 const preview = {
@@ -29,10 +29,11 @@ const preview = {
     decorators: [
         withThemeByDataAttribute({
             themes: {
-                light: 'light',
-                dark: 'dark'
+                ['春节']: 'springFestival',
+                ['圣诞节']: 'christmas',
+                ['万圣节']: 'halloween'
             },
-            defaultTheme: 'light',
+            defaultTheme: '春节',
             dataAttribute: 'data-theme'
         })
     ]

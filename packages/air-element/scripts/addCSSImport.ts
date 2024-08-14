@@ -7,11 +7,20 @@ const writeFile = promisify(fs.writeFile);
 const readFile = promisify(fs.readFile);
 const fileExists = promisify(fs.exists);
 
-async function generateCssImportStatements(jsFilePath: string, cssFilePath: string, baseCssFilePath: string): Promise<string> {
-    const relativeCssPath = relative(dirname(jsFilePath), cssFilePath).split(sep).join(posix.sep);
+async function generateCssImportStatements(
+    jsFilePath: string,
+    cssFilePath: string | null,
+    baseCssFilePath: string
+): Promise<string> {
     const relativeBaseCssPath = relative(dirname(jsFilePath), baseCssFilePath).split(sep).join(posix.sep);
+    let importStatements = `import '${relativeBaseCssPath}';\n`;
 
-    return `import '${relativeBaseCssPath}';\nimport '${relativeCssPath}';\n`;
+    if (cssFilePath) {
+        const relativeCssPath = relative(dirname(jsFilePath), cssFilePath).split(sep).join(posix.sep);
+        importStatements += `import '${relativeCssPath}';\n`;
+    }
+
+    return importStatements;
 }
 
 async function updateJsFileWithCssImports(jsFilePath: string, cssImportStatements: string): Promise<void> {
@@ -33,7 +42,7 @@ export async function addCSSImport() {
             }
 
             for (const [fileName] of Object.entries(bundle)) {
-                if (!fileName.includes('style')) {
+                if (!(fileName.includes('style') && fileName.endsWith('mjs'))) {
                     continue;
                 }
 
@@ -41,10 +50,13 @@ export async function addCSSImport() {
                 const jsFilePath = join(outputDir, fileName);
                 const cssFilePath = join(cssDir, `${baseFileName}.css`);
 
-                if (await fileExists(cssFilePath)) {
-                    const cssImportStatements = await generateCssImportStatements(jsFilePath, cssFilePath, baseCssFilePath);
-                    await updateJsFileWithCssImports(jsFilePath, cssImportStatements);
-                }
+                const cssImportStatements = await generateCssImportStatements(
+                    jsFilePath,
+                    (await fileExists(cssFilePath)) ? cssFilePath : null,
+                    baseCssFilePath
+                );
+
+                await updateJsFileWithCssImports(jsFilePath, cssImportStatements);
             }
         }
     };

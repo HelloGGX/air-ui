@@ -1,31 +1,64 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
     content: ['./packages/**/*.{vue,js,ts,jsx,tsx}'],
-    darkMode: ['class', '[data-mode="dark"]'],
     theme: {
         extend: {
             colors: {
-                // 定义节日主题颜色
-                springFestival: {
-                    primary: '#FF4B4B', // 春节主题的红色
-                    secondary: '#FFD700' // 春节主题的金色
+                gray: {
+                    800: 'var(--color-gray-800)',
+                    700: 'var(--color-gray-700)',
+                    600: 'var(--color-gray-600)',
+                    500: 'var(--color-gray-500)',
+                    400: 'var(--color-gray-400)',
+                    300: 'var(--color-gray-300)',
+                    200: 'var(--color-gray-200)',
+                    100: 'var(--color-gray-100)'
                 },
-                christmas: {
-                    primary: '#007F0E', // 圣诞节的绿色
-                    secondary: '#FF0000' // 圣诞节的红色
+                primary: {
+                    800: 'var(--color-primary-800)',
+                    700: 'var(--color-primary-700)',
+                    600: 'var(--color-primary-600)',
+                    500: 'var(--color-primary-500)',
+                    400: 'var(--color-primary-400)',
+                    300: 'var(--color-primary-300)',
+                    200: 'var(--color-primary-200)',
+                    100: 'var(--color-primary-100)'
                 },
-                halloween: {
-                    primary: '#FF7518', // 万圣节的橙色
-                    secondary: '#1E1E1E' // 万圣节的黑色
+                red: {
+                    400: 'var(--color-red-400)',
+                    200: 'var(--color-red-200)',
+                    100: 'var(--color-red-100)',
+                    50: 'var(--color-red-50)'
+                },
+                blue: {
+                    400: 'var(--color-blue-400)',
+                    300: 'var(--color-blue-300)',
+                    200: 'var(--color-blue-200)',
+                    150: 'var(--color-blue-150)',
+                    100: 'var(--color-blue-100)'
+                },
+                green: {
+                    400: 'var(--color-green-400)',
+                    200: 'var(--color-green-200)',
+                    100: 'var(--color-green-100)'
+                },
+                purple: {
+                    400: 'var(--color-purple-400)',
+                    200: 'var(--color-purple-200)',
+                    100: 'var(--color-purple-100)'
+                },
+                orange: {
+                    400: 'var(--color-orange-400)',
+                    300: 'var(--color-orange-300)',
+                    200: 'var(--color-orange-200)',
+                    100: 'var(--color-orange-100)'
                 }
             },
-            backgroundImage: {
-                // 定义节日主题背景图片
-                'spring-festival': "url('/images/spring-festival-bg.jpg')",
-                'christmas': "url('/images/christmas-bg.jpg')",
-                'halloween': "url('/images/halloween-bg.jpg')",
-              },
+            boxShadow: {
+                'size-l': 'var(--shadow-size-l)',
+                'size-s': 'var(--shadow-size-s)'
+            }
         }
-    },
-    plugins: []
+    }
 };

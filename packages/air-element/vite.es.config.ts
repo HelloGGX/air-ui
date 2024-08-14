@@ -5,7 +5,7 @@ import VueMacros from 'unplugin-vue-macros';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
 import { fileURLToPath, URL } from 'url';
-import { extname } from 'path';
+import { extname, resolve } from 'path';
 import { globSync } from 'glob';
 import ElementPlus from 'unplugin-element-plus/vite';
 import tailwindcss from 'tailwindcss';
@@ -14,7 +14,7 @@ import { addCSSImport } from './scripts/addCSSImport';
 
 const { resolvePath } = require('../../scripts/build-helper.mjs');
 
-const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
+const { INPUT_DIR, OUTPUT_DIR,  __workspace} = resolvePath(import.meta.url);
 
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vue', 'element-plus'];
@@ -79,11 +79,12 @@ export default defineConfig({
         lib: LIB_OPTIONS,
         rollupOptions: ROLLUP_OPTIONS,
         minify: false,
-        cssCodeSplit: true
+        cssCodeSplit: true,
+        sourcemap: true
     },
     css: {
         postcss: {
-            plugins: [tailwindcss, autoprefixer]
+            plugins: [tailwindcss('./tailwind.config.js'), autoprefixer]
         }
     }
 });

@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-white-800: #ffffff;
+        --color-primary-800: #051773;
+        --color-primary-700: #0e2a99;
+        --color-primary-600: #1b41bf;
+        --color-primary-500: #2c5de5;
+        --color-primary-400: #5584f2;
+        --color-primary-300: #82acff;
+        --color-primary-200: #abcaff;
+        --color-primary-100: #edf4ff;
+        --color-gray-800: #000000;
+        --color-gray-700: #202532;
+        --color-gray-600: #50545e;
+        --color-gray-500: #838791;
+        --color-gray-400: #b1b5bd;
+        --color-gray-300: #cccdd3;
+        --color-gray-200: #eaeaeb;
+        --color-gray-100: #f2f2f3;
+        --color-red-400: #e83f4e;
+        --color-red-200: #ffd6d7;
+        --color-red-100: #ffeff0;
+        --color-red-50: #fff5f3;
+        --color-blue-400: #5584f2;
+        --color-blue-300: #608de7;
+        --color-blue-200: #abcaff;
+        --color-blue-150: #dbe8ff;
+        --color-blue-100: #edf4ff;
+        --color-green-400: #41be5f;
+        --color-green-200: #d6f3e2;
+        --color-green-100: #e9fbf1;
+        --color-purple-400: #9c5bfc;
+        --color-purple-200: #e5d5fc;
+        --color-purple-100: #f6f0ff;
+        --color-orange-400: #ee843e;
+        --color-orange-300: #f2a36e;
+        --color-orange-200: #ffe1be;
+        --color-orange-100: #fff1e2;
+        --shadow-size-l: 0rem 1rem 1.625rem;
+        --shadow-size-s: 0rem 0.125rem 0.375rem;
+    }
+    body {
+        font-family: 'OPPOSans-regular';
+    }
+}
