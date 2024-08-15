@@ -9,13 +9,13 @@ import { extname, resolve } from 'path';
 import { globSync } from 'glob';
 import ElementPlus from 'unplugin-element-plus/vite';
 
-const { resolvePath } = require('../../scripts/build-helper.mjs');
 
+const { resolvePath } = require('../../scripts/build-helper.mjs');
 const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vue', 'element-plus'];
-const SCSS_EXTERNALS = [/\.css$/];
+const SCSS_EXTERNALS = [/\.css$/, /\.scss$/];
 const EXTERNALS = [...GLOBAL_EXTERNALS, ...SCSS_EXTERNALS];
 
 // plugins
@@ -27,8 +27,9 @@ const VUEMACROS_PLUGIN_OPTION = {
 const DTS_PLUGIN_OPTION: PluginOptions = {
     tsconfigPath: './tsconfig.json',
     include: [`${INPUT_DIR}**/*.ts`, `${INPUT_DIR}**/*.vue`, `index.ts`, 'component.ts', 'default.ts'],
-    exclude: ['**/*.stories.ts', '**/style/**/*.ts'],
+    exclude: ['**/*.stories.ts'],
     outDir: `${OUTPUT_DIR}types`,
+    clearPureImport: false
 };
 const PLUGINS: PluginOption = [
     VueMacros.vite(VUEMACROS_PLUGIN_OPTION),

@@ -1,2 +1,2 @@
-import '@air-ui/air-element/theme/base.css';
-import '@air-ui/air-element/theme/card.css';
+import '@air-ui/air-element/theme/src/base.scss';
+import '@air-ui/air-element/theme/src/card.scss';

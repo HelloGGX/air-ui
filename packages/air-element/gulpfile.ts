@@ -11,12 +11,12 @@ import consola from 'consola';
 import chalk from 'chalk';
 import gulpPostCss from 'gulp-postcss';
 import tailwindcss from 'tailwindcss';
-import { resolvePath } from '../../scripts/build-helper.mjs';
+
+const { resolvePath } = require('../../scripts/build-helper.mjs');
 
 const { OUTPUT_PATH } = resolvePath(import.meta.url);
 const distFolder = path.resolve(__dirname, 'theme/dist');
 const distBundle = path.resolve(OUTPUT_PATH, 'theme');
-
 /**
  * using `postcss` and `cssnano` to compress CSS
  * @returns
@@ -62,6 +62,16 @@ function compressWithCssnano() {
     });
 }
 
+function buildThemeChalk() {
+    const sass = gulpSass(dartSass);
+    return src(path.resolve(__dirname, 'theme/src/*.scss'))
+        .pipe(sass.sync())
+        .pipe(gulpPostCss([tailwindcss('./tailwind.config.js')]))
+        .pipe(autoprefixer({ cascade: false }))
+        .pipe(compressWithCssnano())
+        .pipe(dest(distFolder));
+}
+
 /**
  * copy from air-element/theme/dist to air-element/theme
  */
@@ -74,17 +84,7 @@ export function copyThemeChalkBundle() {
  */
 
 export function copyThemeChalkSource() {
-    return src(path.resolve(__dirname, 'theme/**')).pipe(dest(path.resolve(distBundle, 'src')));
-}
-
-function buildThemeChalk() {
-    const sass = gulpSass(dartSass);
-    return src(path.resolve(__dirname, 'theme/*.scss'))
-        .pipe(sass.sync())
-        .pipe(gulpPostCss([tailwindcss('./tailwind.config.js')]))
-        .pipe(autoprefixer({ cascade: false }))
-        .pipe(compressWithCssnano())
-        .pipe(dest(distFolder));
+    return src(path.resolve(__dirname, 'theme/src/**')).pipe(dest(path.resolve(distBundle, 'src')));
 }
 
 export const build: TaskFunction = parallel(copyThemeChalkSource, series(buildThemeChalk, copyThemeChalkBundle));

@@ -9,7 +9,7 @@
         "skipLibCheck": true,
         "types": ["unplugin-vue-macros/macros-global", "element-plus/global"]
     },
-    "include": ["components/**/*.ts", "components/**/*.vue", "./*.ts", "theme/gulpfile.ts", "theme/gulpfile.ts", "theme/*.ts"],
+    "include": ["components/**/*.ts", "components/**/*.vue", "./*.ts"],
     "vueCompilerOptions": {
         "plugins": [
             "@vue-macros/volar/define-model",
