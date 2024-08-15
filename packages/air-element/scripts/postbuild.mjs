@@ -22,13 +22,13 @@ pkgJson.exports = {
         import: './es/index.mjs'
         // require: './umd/index.js'
     },
-    './es': {
-        types: './types/index.d.ts',
-        import: './es/index.mjs'
+    './es/*': {
+        types: './types/*.d.ts',
+        import: './es/*.mjs'
     },
-    './es/**/*.mjs': {
-        types: './types/**/*.d.ts',
-        import: './es/**/*.mjs'
+    './es/**/*': {
+        types: ['./types/**/*.d.ts', './types/**/*',],
+        import: ['./es/**/*.mjs', './es/**/*']
     },
     './*': './*'
 };
