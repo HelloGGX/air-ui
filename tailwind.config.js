@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import elementTailwindConfig from 'packages/air-element/tailwind.config.js';
+import elementTailwindConfig from './packages/air-element/tailwind.config';
 
 module.exports = {
     ...elementTailwindConfig,
