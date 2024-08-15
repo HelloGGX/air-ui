@@ -1,5 +1,7 @@
 /** @type { import('@storybook/vue3').Preview } */
 import '@air-element/theme/index.scss';
+import '../theme/festival/index.scss';
+
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
 const preview = {

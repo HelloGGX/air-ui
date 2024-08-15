@@ -35,7 +35,7 @@ export async function addCSSImport() {
         async writeBundle(options: NormalizedOutputOptions, bundle: OutputBundle) {
             const outputDir = options.dir || '.';
             const cssDir = join(outputDir, 'assets');
-            const baseCssFilePath = join(cssDir, 'index.css');
+            const baseCssFilePath = join(cssDir, 'base.css');
 
             if (!(await fileExists(baseCssFilePath))) {
                 return;

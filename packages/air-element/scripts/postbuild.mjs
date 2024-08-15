@@ -19,16 +19,16 @@ pkgJson.types = 'types/index.d.ts';
 pkgJson.exports = {
     '.': {
         types: './types/index.d.ts',
-        import: './es/index.mjs',
+        import: './es/index.mjs'
         // require: './umd/index.js'
     },
     './es': {
         types: './types/index.d.ts',
         import: './es/index.mjs'
     },
-    './es/components/*/*.mjs': {
-        types: './types/components/*/index.d.ts',
-        import: './es/components/*/index.mjs'
+    './es/**/*.mjs': {
+        types: './types/**/*.d.ts',
+        import: './es/**/*.mjs'
     },
     './*': './*'
 };
