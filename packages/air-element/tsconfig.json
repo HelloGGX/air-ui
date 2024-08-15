@@ -3,13 +3,13 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@air-ui/air-element/*": ["./components"]
+            "@air-ui/air-element": ["./"]
         },
         "jsx": "preserve",
         "skipLibCheck": true,
         "types": ["unplugin-vue-macros/macros-global", "element-plus/global"]
     },
-    "include": ["components/**/*.ts", "components/**/*.vue", "./*.ts"],
+    "include": ["components/**/*.ts", "components/**/*.vue", "./*.ts", "theme/gulpfile.ts", "theme/gulpfile.ts", "theme/*.ts"],
     "vueCompilerOptions": {
         "plugins": [
             "@vue-macros/volar/define-model",

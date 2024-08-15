@@ -3,12 +3,11 @@ import type { PluginOption, LibraryOptions } from 'vite';
 import type { RollupOptions, OutputOptions, InputOption } from 'rollup';
 import VueMacros from 'unplugin-vue-macros';
 import vue from '@vitejs/plugin-vue';
-import dts from 'vite-plugin-dts';
+import dts, { type PluginOptions } from 'vite-plugin-dts';
 import { fileURLToPath, URL } from 'url';
-import { extname } from 'path';
+import { extname, resolve } from 'path';
 import { globSync } from 'glob';
 import ElementPlus from 'unplugin-element-plus/vite';
-import { addCSSImport } from './scripts/addCSSImport';
 
 const { resolvePath } = require('../../scripts/build-helper.mjs');
 
@@ -16,7 +15,8 @@ const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vue', 'element-plus'];
-const EXTERNALS = [...GLOBAL_EXTERNALS];
+const SCSS_EXTERNALS = [/\.css$/];
+const EXTERNALS = [...GLOBAL_EXTERNALS, ...SCSS_EXTERNALS];
 
 // plugins
 const VUEMACROS_PLUGIN_OPTION = {
@@ -24,11 +24,11 @@ const VUEMACROS_PLUGIN_OPTION = {
         vue: vue()
     }
 };
-const DTS_PLUGIN_OPTION = {
+const DTS_PLUGIN_OPTION: PluginOptions = {
     tsconfigPath: './tsconfig.json',
     include: [`${INPUT_DIR}**/*.ts`, `${INPUT_DIR}**/*.vue`, `index.ts`, 'component.ts', 'default.ts'],
-    exclude: ['**/*.stories.ts'],
-    outDir: `${OUTPUT_DIR}types`
+    exclude: ['**/*.stories.ts', '**/style/**/*.ts'],
+    outDir: `${OUTPUT_DIR}types`,
 };
 const PLUGINS: PluginOption = [
     VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
@@ -61,17 +61,20 @@ const ROLLUP_OUTPUT_OPTION: OutputOptions = {
     },
     entryFileNames: '[name].mjs',
     exports: 'named',
-    hoistTransitiveImports: false,
-    assetFileNames: 'assets/[name][extname]'
+    assetFileNames: 'theme/[name][extname]'
 };
 const ROLLUP_OPTIONS: RollupOptions = {
     external: EXTERNALS,
-    output: ROLLUP_OUTPUT_OPTION,
-    plugins: [addCSSImport()]
+    output: ROLLUP_OUTPUT_OPTION
 };
 
 export default defineConfig({
     plugins: PLUGINS,
+    resolve: {
+        alias: {
+            '@air-ui/air-element': resolve(__dirname, './')
+        }
+    },
     build: {
         outDir: `${OUTPUT_DIR}es`,
         lib: LIB_OPTIONS,
@@ -79,14 +82,5 @@ export default defineConfig({
         minify: false,
         cssCodeSplit: true,
         sourcemap: true
-    },
-    css: {
-        postcss: {
-            plugins: [
-                require('postcss-import'),
-                require('tailwindcss')('./tailwind.config.js'),
-                require('autoprefixer')
-            ]
-        }
     }
 });

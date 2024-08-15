@@ -5,6 +5,8 @@
         "skipLibCheck": true
     },
     "path": {
+        "@scripts": ["./scripts"],
+        "@theme": ["./theme"],
         "@air-element": ["./packages/air-element"],
         "@block": ["./packages/block"],
         "@page": ["./packages/page"],

@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/vue3';
 import AirButton from './Button.vue';
 import type { ButtonProps } from './Button';
 
-export default {
+const meta: Meta<typeof AirButton> = {
     title: 'component/Button',
     component: AirButton,
     tags: ['autodocs'],
@@ -55,8 +55,9 @@ export default {
         loading: false,
         default: 'Button'
     }
-} as Meta;
+};
 
+export default meta;
 const Template: StoryFn<ButtonProps & { default: string }> = (args) => ({
     components: { AirButton },
     setup() {
