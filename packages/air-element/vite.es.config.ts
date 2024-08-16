@@ -12,7 +12,7 @@ import ElementPlus from 'unplugin-element-plus/vite';
 
 const { resolvePath } = require('../../scripts/build-helper.mjs');
 const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
-
+const outDir = `${OUTPUT_DIR}es`;
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/es\/.*/, '@element-plus/icons-vue', 'element-plus'];
 const SCSS_EXTERNALS = [/\.css$/, /\.scss$/];
@@ -28,7 +28,7 @@ const DTS_PLUGIN_OPTION: PluginOptions = {
     tsconfigPath: './tsconfig.json',
     include: [`${INPUT_DIR}**/*.ts`, `${INPUT_DIR}**/*.vue`, `index.ts`, 'component.ts', 'default.ts'],
     exclude: ['**/*.stories.ts'],
-    outDir: `${OUTPUT_DIR}types`,
+    outDir,
     clearPureImport: false
 };
 const PLUGINS: PluginOption = [
@@ -40,7 +40,7 @@ const PLUGINS: PluginOption = [
 // build.lib
 const INPUT_OPTION: InputOption = {
     ...Object.fromEntries(
-        globSync([`${INPUT_DIR}**/*.ts`, 'index.ts'])
+        globSync([`${INPUT_DIR}**/*.ts`, 'index.ts', 'default.ts', 'component.ts'])
             .filter((file) => !file.endsWith('stories.ts')) // 过滤掉以 stories.ts 结尾的文件
             .map((file) => [
                 file.slice(0, file.length - extname(file).length),
@@ -77,7 +77,7 @@ export default defineConfig({
         }
     },
     build: {
-        outDir: `${OUTPUT_DIR}es`,
+        outDir,
         lib: LIB_OPTIONS,
         rollupOptions: ROLLUP_OPTIONS,
         minify: false,

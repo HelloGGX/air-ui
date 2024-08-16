@@ -14,21 +14,24 @@ const pkgJson = JSON.parse(fs.readFileSync(outputpkg, { encoding: 'utf8', flag: 
 
 pkgJson.main = 'es/index.mjs';
 pkgJson.module = 'es/index.mjs';
-pkgJson.types = 'types/index.d.ts';
+pkgJson.types = 'es/index.d.ts';
 // Update exports field
 pkgJson.exports = {
     '.': {
-        types: './types/index.d.ts',
+        types: './es/index.d.ts',
         import: './es/index.mjs'
-        // require: './umd/index.js'
     },
-    './es/*': {
-        types: './types/*.d.ts',
+    './es/*.mjs': {
+        types: './es/*.d.ts',
         import: './es/*.mjs'
     },
-    './es/**/*': {
-        types: ['./types/**/*.d.ts', './types/**/*',],
-        import: ['./es/**/*.mjs', './es/**/*']
+    './es/*': {
+        types: ['./es/*.d.ts', './es/*/index.d.ts'],
+        import: './es/*.mjs'
+    },
+    './components/*': {
+        import: './es/components/*',
+        types: './es/components/*'
     },
     './*': './*'
 };
