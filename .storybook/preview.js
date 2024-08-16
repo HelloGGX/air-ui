@@ -30,11 +30,10 @@ const preview = {
     decorators: [
         withThemeByDataAttribute({
             themes: {
-                ['春节']: 'springFestival',
-                ['圣诞节']: 'christmas',
-                ['万圣节']: 'halloween'
+                ['立夏']: 'summer',
+                ['情人节']: 'love',
             },
-            defaultTheme: '春节',
+            defaultTheme: '立夏',
             dataAttribute: 'data-theme'
         })
     ]

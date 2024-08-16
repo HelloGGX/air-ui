@@ -4,7 +4,6 @@ import { iconPropType } from 'element-plus/es/utils/vue/icon';
 import { useSizeProp } from 'element-plus';
 import { Loading } from '@element-plus/icons-vue';
 
-
 export const buttonTypes = ['default', 'primary', 'success', 'warning', 'info', 'danger'] as const;
 
 export const buttonProps = buildProps({
@@ -19,7 +18,9 @@ export const buttonProps = buildProps({
      */
     disabled: Boolean,
     /**
-     * @description button type
+     * @description Button type
+     * @type {string}
+     * @values "default", "primary", "success", "warning", "info", "danger"
      */
     type: {
         type: String,
@@ -27,15 +28,43 @@ export const buttonProps = buildProps({
         default: 'primary'
     },
     /**
-     * @description determine whether it's loading
+     * @description 是否为圆角
+     */
+    round: {
+        type: Boolean,
+        default: false
+    },
+    /**
+     * @description 是否展示loading
      */
     loading: Boolean,
     /**
-     * @description customize loading icon component
+     * @description 自定义loading图标
      */
     loadingIcon: {
         type: iconPropType,
         default: () => Loading
+    },
+    /**
+     * @description 展示按钮左边的svg图片
+     */
+    leftIcon: {
+        type: iconPropType,
+        default: ''
+    },
+    /**
+     * @description 展示按钮右边的svg图片
+     */
+    rightIcon: {
+        type: iconPropType,
+        default: ''
+    },
+    /**
+     * @description 自定义按钮颜色
+     */
+    color: {
+        type: String,
+        default: ''
     }
 } as const);
 
