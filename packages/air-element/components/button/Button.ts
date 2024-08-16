@@ -1,4 +1,4 @@
-import type { ExtractPropTypes } from 'vue';
+import type { Component, ExtractPropTypes, PropType } from 'vue';
 import { buildProps } from 'element-plus/es/utils/vue/props/runtime';
 import { iconPropType } from 'element-plus/es/utils/vue/icon';
 import { useSizeProp } from 'element-plus';
@@ -8,7 +8,7 @@ export const buttonTypes = ['default', 'primary', 'success', 'warning', 'info', 
 
 export const buttonProps = buildProps({
     /**
-     * @description Button size
+     * @description 按钮大小
      * @type {string}
      * @values 'small', 'default', 'large'
      */
@@ -18,14 +18,14 @@ export const buttonProps = buildProps({
      */
     disabled: Boolean,
     /**
-     * @description Button type
+     * @description 按钮类型
      * @type {string}
      * @values "default", "primary", "success", "warning", "info", "danger"
      */
     type: {
         type: String,
         values: buttonTypes,
-        default: 'primary'
+        default: 'default'
     },
     /**
      * @description 是否为圆角
@@ -49,15 +49,15 @@ export const buttonProps = buildProps({
      * @description 展示按钮左边的svg图片
      */
     leftIcon: {
-        type: iconPropType,
-        default: ''
+        type: Object as PropType<Component | string>, // 允许传递组件或本地引入的图片资源
+        default: null,
     },
     /**
      * @description 展示按钮右边的svg图片
      */
     rightIcon: {
-        type: iconPropType,
-        default: ''
+        type: Object as PropType<Component | string>, // 只能传组件或者本地引入的SVG/PNG
+        default: null
     },
     /**
      * @description 自定义按钮颜色

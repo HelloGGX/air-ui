@@ -1,3 +1,76 @@
-.btn-primary {
-  @apply py-2 px-5 bg-violet-500 text-white font-semibold rounded-full shadow-md hover:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75;
+@layer components {
+  .btn {
+    @apply relative flex items-center justify-between max-w-md rounded-full px-14 py-3;
+  }
+
+  /* 默认大小按钮 */
+  .btn-default-size {
+    @apply text-base;
+  }
+
+  /* 小按钮 */
+  .btn-small {
+    @apply text-sm;
+  }
+
+  /* 大按钮 */
+  .btn-large {
+    @apply text-lg;
+  }
+
+  .btn-default {
+    @apply bg-gray-200 text-gray-800 rounded-base shadow-md;
+    @apply hover:bg-gray-300 focus:ring-gray-400 focus:ring-opacity-75;
+  }
+
+  .btn-primary {
+    @apply bg-primary-400 text-white rounded-base shadow-md;
+    @apply hover:bg-primary-700 focus:ring-primary-400 focus:ring-opacity-75;
+  }
+
+  .btn-success {
+    @apply bg-green-400 text-white rounded-base shadow-md;
+    @apply hover:bg-green-600 focus:ring-green-200 focus:ring-opacity-75;
+  }
+
+  .btn-danger {
+    @apply bg-red-400 text-white rounded-base shadow-md;
+    @apply hover:bg-red-600 focus:ring-red-200 focus:ring-opacity-75;
+  }
+
+  .btn-warning {
+    @apply bg-orange-400 text-white rounded-base shadow-md;
+    @apply hover:bg-orange-600 focus:ring-orange-200 focus:ring-opacity-75;
+  }
+
+  .btn-info {
+    @apply bg-blue-400 text-white rounded-base shadow-md;
+    @apply hover:bg-blue-600 focus:ring-blue-200 focus:ring-opacity-75;
+  }
+
+  .btn-disabled {
+    @apply bg-gray-400 text-gray-100 cursor-not-allowed opacity-50;
+  }
+
+  .left-icon,
+  .right-icon {
+    @apply absolute top-1/2 h-full transform -translate-y-1/2 flex items-center justify-center;
+  }
+
+  .icon-class {
+    @apply h-full
+  }
+
+
+  .left-icon {
+    @apply  left-0;
+  }
+
+  .right-icon {
+    @apply  right-0;
+  }
+
+  .animate-spin {
+    @apply h-4 w-4;
+  }
 }

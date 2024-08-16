@@ -1,19 +1,30 @@
 <template>
-    <button 
-        :class="buttonClasses" 
-        :disabled="isDisabled" 
-        @click="handleClick" 
-        ref="buttonRef"
-    >
-        <!-- 显示加载图标 -->
-        <template v-if="props.loading">
-            <el-icon :size="props.size">
-                <component :is="props.loadingIcon" />
-            </el-icon>
-        </template>
-        <!-- 显示按钮内容 -->
-        <slot v-else />
-    </button>
+  <button
+    :class="[
+      'btn',
+      buttonSizeClass,
+      buttonTypeClass,
+      { 'btn-disabled': isDisabled },
+      { 'rounded-full': props.round },
+      { 'relative': props.loading }
+    ]"
+    :style="{ backgroundColor: props.color }"
+    @click="handleClick"
+    :disabled="isDisabled"
+  >
+    <span v-if="props.loading" class="absolute inset-0 flex items-center justify-center">
+      <ElIcon :component="props.loadingIcon" class="animate-spin h-4 w-4" />
+    </span>
+    <span v-if="!props.loading && props.leftIcon" class="left-icon">
+      <img v-if="isString(props.leftIcon)" :src="props.leftIcon" alt="left icon" class="icon-class" />
+      <component v-else :is="props.leftIcon" class="icon-class" />
+    </span>
+    <slot />
+    <span v-if="!props.loading && props.rightIcon" class="right-icon">
+      <img v-if="isString(props.rightIcon)" :src="props.rightIcon" alt="right icon" class="icon-class" />
+      <component v-else :is="props.rightIcon" class="icon-class" />
+    </span>
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -27,48 +38,44 @@ defineOptions({ name: 'AirButton' });
 const props = defineProps(buttonProps);
 const emit = defineEmits(buttonEmits);
 
-
 const buttonRef = ref<HTMLButtonElement>();
+
+// 计算按钮的禁用状态
+const isDisabled = computed(() => props.disabled || props.loading);
+
+// 检查是否为字符串类型（本地图片路径）
+const isString = (value: unknown): value is string => {
+  return typeof value === 'string';
+};
+
+// 按钮类型与大小类映射
+const buttonTypes = {
+  primary: 'btn-primary',
+  success: 'btn-success',
+  danger: 'btn-danger',
+  warning: 'btn-warning',
+  info: 'btn-info',
+  default: 'btn-default',
+};
+
+const buttonSizes = {
+  small: 'btn-small',
+  large: 'btn-large',
+  default: 'btn-default-size',
+};
+
+// 计算按钮类型的类
+const buttonTypeClass = computed(() => buttonTypes[props.type || 'default']);
+
+// 计算按钮大小的类
+const buttonSizeClass = computed(() => buttonSizes[props.size || 'default']);
 
 // 处理按钮点击事件
 const handleClick = (event: MouseEvent) => {
-    if (!isDisabled) {
-        emit('click', event);
-    }
+  if (!isDisabled.value) {
+    emit('click', event);
+  }
 };
-
-// 计算按钮是否禁用
-const isDisabled = computed(() => props.disabled || props.loading);
-
-// 计算按钮的类名
-const buttonClasses = computed(() => {
-    const baseClasses = 'px-4 py-2 rounded transition-colors duration-300';
-    const typeClasses = {
-        default: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
-        primary: 'bg-primary-700 text-white hover:bg-blue-700',
-        success: 'bg-green-500 text-white hover:bg-green-700',
-        warning: 'bg-yellow-500 text-white hover:bg-yellow-700',
-        info: 'bg-teal-500 text-white hover:bg-teal-700',
-        danger: 'bg-red-500 text-white hover:bg-red-700',
-    };
-    const sizeClasses = {
-        small: 'text-sm',
-        default: 'text-base',
-        large: 'text-lg',
-    };
-    const stateClasses = {
-        disabled: 'cursor-not-allowed opacity-50',
-        loading: 'cursor-wait',
-    };
-
-    return [
-        baseClasses,
-        typeClasses[props.type || 'default'],
-        sizeClasses[props.size || 'default'],
-        isDisabled.value ? stateClasses.disabled : '',
-        props.loading ? stateClasses.loading : '',
-    ].filter(Boolean).join(' ');
-});
 
 defineExpose({ buttonRef });
 </script>

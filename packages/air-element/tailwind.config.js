@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-
 export default {
     content: ['./components/**/*.{vue,js,ts,jsx,tsx}'],
     theme: {
@@ -28,14 +27,11 @@ export default {
                 red: {
                     400: 'var(--color-red-400)',
                     200: 'var(--color-red-200)',
-                    100: 'var(--color-red-100)',
-                    50: 'var(--color-red-50)'
+                    100: 'var(--color-red-100)'
                 },
                 blue: {
                     400: 'var(--color-blue-400)',
-                    300: 'var(--color-blue-300)',
                     200: 'var(--color-blue-200)',
-                    150: 'var(--color-blue-150)',
                     100: 'var(--color-blue-100)'
                 },
                 green: {
@@ -50,7 +46,6 @@ export default {
                 },
                 orange: {
                     400: 'var(--color-orange-400)',
-                    300: 'var(--color-orange-300)',
                     200: 'var(--color-orange-200)',
                     100: 'var(--color-orange-100)'
                 }
@@ -58,6 +53,25 @@ export default {
             boxShadow: {
                 'size-l': 'var(--shadow-size-l)',
                 'size-s': 'var(--shadow-size-s)'
+            },
+            fontSize: {
+                56: 'var(--font-size-56)',
+                48: 'var(--font-size-48)',
+                40: 'var(--font-size-40)',
+                32: 'var(--font-size-32)',
+                24: 'var(--font-size-24)',
+                20: 'var(--font-size-20)',
+                16: 'var(--font-size-16)',
+                14: 'var(--font-size-14)'
+            },
+            borderRadius: {
+                none: 'var(--radius-none)', // 无圆角
+                sm: 'var(--radius-sm)', // 小圆角
+                base: 'var(--radius-base)', // 默认圆角
+                DEFAULT: 'var(--radius-base)', // 默认圆角
+                md: 'var(--radius-base)', // 中等圆角 (保持与默认相同)
+                lg: 'var(--radius-lg)', // 大圆角
+                full: 'var(--radius-full)' // 完全圆角
             }
         }
     }
