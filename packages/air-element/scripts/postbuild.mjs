@@ -29,7 +29,7 @@ pkgJson.exports = {
         types: ['./es/*.d.ts', './es/*/index.d.ts'],
         import: './es/*.mjs'
     },
-    './components/*': {
+    './es/components/*': {
         import: './es/components/*',
         types: './es/components/*'
     },
