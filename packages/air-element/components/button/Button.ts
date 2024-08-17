@@ -1,4 +1,4 @@
-import type { Component, ExtractPropTypes, PropType } from 'vue';
+import type { ExtractPropTypes } from 'vue';
 import { buildProps } from 'element-plus/es/utils/vue/props/runtime';
 import { iconPropType } from 'element-plus/es/utils/vue/icon';
 import { useSizeProp } from 'element-plus';
@@ -44,20 +44,6 @@ export const buttonProps = buildProps({
     loadingIcon: {
         type: iconPropType,
         default: () => Loading
-    },
-    /**
-     * @description 展示按钮左边的svg图片
-     */
-    leftIcon: {
-        type: Object as PropType<Component | string>, // 允许传递组件或本地引入的图片资源
-        default: null,
-    },
-    /**
-     * @description 展示按钮右边的svg图片
-     */
-    rightIcon: {
-        type: Object as PropType<Component | string>, // 只能传组件或者本地引入的SVG/PNG
-        default: null
     },
     /**
      * @description 自定义按钮颜色

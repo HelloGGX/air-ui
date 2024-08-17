@@ -2,28 +2,12 @@ import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn } from '@storybook/vue3';
 import AirButton from './Button.vue';
 import type { ButtonProps } from './Button';
-import summerBg from '../../../../theme/festival/summer/btn-bg.png';
 
 const meta: Meta<typeof AirButton> = {
     title: 'Component/Button',
     component: AirButton,
     tags: ['autodocs'],
-    decorators: [
-        (story, context) => {
-            const theme = context.globals.theme; // 获取当前主题
-           
-            // 如果主题是立夏，并且按钮类型是 primary，则添加 rightIcon
-            if (theme === '立夏' && context.args.type === 'primary') {
-                console.log(context.args)
-                context.args.rightIcon = summerBg;
-            }
-
-            return {
-                components: { story },
-                template: '<story />'
-            };
-        }
-    ],
+    
     argTypes: {
         size: {
             control: { type: 'select' },
@@ -73,22 +57,6 @@ const meta: Meta<typeof AirButton> = {
             table: {
                 type: { summary: 'string | Component' },
                 defaultValue: { summary: 'Loading' }
-            }
-        },
-        leftIcon: {
-            control: 'text',
-            description: '左边的图标',
-            table: {
-                type: { summary: 'string | Component' },
-                defaultValue: { summary: '' }
-            }
-        },
-        rightIcon: {
-            control: 'text',
-            description: '右边的图标',
-            table: {
-                type: { summary: 'string | Component' },
-                defaultValue: { summary: '' }
             }
         },
         color: {
@@ -171,13 +139,4 @@ Loading.args = {
     size: 'default',
     loading: true,
     default: 'Loading Button'
-};
-
-export const WithIcons = Template.bind({});
-WithIcons.args = {
-    type: 'primary',
-    round: true,
-    size: 'default',
-    rightIcon: summerBg,
-    default: 'Button with Icons'
 };
