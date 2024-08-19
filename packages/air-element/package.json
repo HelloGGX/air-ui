@@ -2,11 +2,25 @@
     "name": "@air-ui/air-element",
     "version": "0.0.0",
     "description": "air ui component library",
-    "files": [
-        "dist"
+    "keywords": [
+        "air-element",
+        "element",
+        "component library",
+        "ui framework",
+        "ui",
+        "vue"
     ],
-    "type": "module",
+    "author": "玄子",
+    "license": "MIT",
     "main": "index.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/HelloGGX/air-ui.git"
+    },
+    "bugs": {},
+    "engines": {
+        "node": ">=20.0.0"
+    },
     "scripts": {
         "build": "cross-env NODE_ENV=production INPUT_DIR=components/ OUTPUT_DIR=dist/ pnpm run build:package",
         "build:package": "pnpm run build:prebuild && pnpm run build:es && pnpm run build:lib && pnpm run build:theme && pnpm run build:postbuild",
@@ -44,15 +58,5 @@
         "rollup-plugin-postcss": "^4.0.2",
         "sass": "^1.77.8",
         "unplugin-element-plus": "^0.8.0"
-    },
-    "author": "玄子",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/HelloGGX/air-ui.git"
-    },
-    "bugs": {},
-    "engines": {
-        "node": ">=20.0.0"
     }
 }
