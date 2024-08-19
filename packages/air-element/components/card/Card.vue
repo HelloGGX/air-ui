@@ -13,7 +13,6 @@
 import { ref, computed } from 'vue';
 import { cardProps, cardEmits } from './Card';
 import { ElIcon } from 'element-plus';
-import 'element-plus/es/components/icon/style/css';
 
 defineOptions({
   name: 'AirCard'

@@ -3,7 +3,6 @@ import type { PluginOption, LibraryOptions } from 'vite';
 import type { RollupOptions, OutputOptions, InputOption } from 'rollup';
 import VueMacros from 'unplugin-vue-macros';
 import vue from '@vitejs/plugin-vue';
-import dts, { type PluginOptions } from 'vite-plugin-dts';
 import { fileURLToPath, URL } from 'url';
 import { extname, resolve } from 'path';
 import { globSync } from 'glob';
@@ -12,7 +11,7 @@ import ElementPlus from 'unplugin-element-plus/vite';
 
 const { resolvePath } = require('../../scripts/build-helper.mjs');
 const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
-const outDir = `${OUTPUT_DIR}es`;
+const outDir = `${OUTPUT_DIR}lib`;
 // externals
 const GLOBAL_EXTERNALS = ['vue', /element-plus\/.*/, '@element-plus/icons-vue', 'element-plus'];
 const SCSS_EXTERNALS = [/\.css$/, /\.scss$/];
@@ -24,17 +23,10 @@ const VUEMACROS_PLUGIN_OPTION = {
         vue: vue()
     }
 };
-const DTS_PLUGIN_OPTION: PluginOptions = {
-    tsconfigPath: './tsconfig.json',
-    include: [`${INPUT_DIR}**/*.ts`, `${INPUT_DIR}**/*.vue`, `index.ts`, 'component.ts', 'default.ts'],
-    exclude: ['**/*.stories.ts'],
-    outDir,
-    clearPureImport: false
-};
+
 const PLUGINS: PluginOption = [
     VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
-    dts(DTS_PLUGIN_OPTION),
-    ElementPlus({ format: 'esm' })
+    ElementPlus({ format: 'cjs' })
 ];
 
 // build.lib
@@ -51,7 +43,7 @@ const INPUT_OPTION: InputOption = {
 const LIB_OPTIONS: LibraryOptions = {
     entry: INPUT_OPTION,
     name: 'AirElement',
-    formats: ['es']
+    formats: ['cjs']
 };
 
 // rollupOptions
@@ -60,9 +52,8 @@ const ROLLUP_OUTPUT_OPTION: OutputOptions = {
         vue: 'Vue',
         'element-plus': 'ElementPlus'
     },
-    entryFileNames: '[name].mjs',
-    exports: 'named',
-    assetFileNames: 'theme/[name][extname]'
+    entryFileNames: '[name].js',
+    exports: 'named'
 };
 const ROLLUP_OPTIONS: RollupOptions = {
     external: EXTERNALS,

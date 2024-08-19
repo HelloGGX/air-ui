@@ -1,5 +1,5 @@
-import { addons } from '@storybook/manager-api';
+import { addons } from '@storybook/addons';
 
 addons.setConfig({
-    panelPosition: 'right',
+  panelPosition: 'right', // 将面板位置设置为右侧
 });

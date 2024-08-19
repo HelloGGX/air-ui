@@ -12,7 +12,7 @@ const outputpkg = path.resolve(__dirname, `../${OUTPUT_DIR}/package.json`);
 // package.json
 const pkgJson = JSON.parse(fs.readFileSync(outputpkg, { encoding: 'utf8', flag: 'r' }));
 
-pkgJson.main = 'es/index.mjs';
+pkgJson.main = 'lib/index.js';
 pkgJson.module = 'es/index.mjs';
 pkgJson.types = 'es/index.d.ts';
 // Update exports field

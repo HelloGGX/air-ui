@@ -24,7 +24,6 @@
 import { ref, computed } from 'vue';
 import { buttonProps, buttonEmits } from './Button';
 import { ElIcon } from 'element-plus';
-import 'element-plus/es/components/icon/style/css';
 
 defineOptions({ name: 'AirButton' });
 

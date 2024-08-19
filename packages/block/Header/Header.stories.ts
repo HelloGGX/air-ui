@@ -1,27 +1,37 @@
-import AirHeader from './AirHeader.vue';
+import type { Meta, StoryFn } from "@storybook/vue3";
+import AirHeader from "./AirHeader.vue";
 
-export default {
+
+const meta: Meta<typeof AirHeader> = {
     title: 'BLOCK/Header',
+    tags: ['autodocs'],
     component: AirHeader,
     argTypes: {
-        title: { control: 'text' }
+        title: {
+            control: { type: 'text' },
+            description: '标题',
+            table: {
+                type: { summary: 'string' },
+                defaultValue: { summary: 'Logo' }
+            }
+        }
+    },
+    args: {
+        title: 'Logo',
     }
-};
 
-const Template = (args) => ({
+};
+const Template: StoryFn = (args) => ({
     components: { AirHeader },
     setup() {
         return { args };
     },
-    template: '<AirHeader v-bind="args" />'
+    template: '<AirHeader v-bind="args">{{ args.default }}</AirHeader>'
 });
 
 export const Default = Template.bind({});
-Default.args = {
-    title: 'My Application'
-};
 
-export const CustomTitle = Template.bind({});
-CustomTitle.args = {
-    title: 'Custom Title'
-};
+export default meta;
+
+
+
