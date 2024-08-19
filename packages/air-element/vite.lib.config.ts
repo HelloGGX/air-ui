@@ -3,6 +3,7 @@ import type { PluginOption, LibraryOptions } from 'vite';
 import type { RollupOptions, OutputOptions, InputOption } from 'rollup';
 import VueMacros from 'unplugin-vue-macros';
 import vue from '@vitejs/plugin-vue';
+import dts, { type PluginOptions } from 'vite-plugin-dts';
 import { fileURLToPath, URL } from 'url';
 import { extname, resolve } from 'path';
 import { globSync } from 'glob';
@@ -23,9 +24,16 @@ const VUEMACROS_PLUGIN_OPTION = {
         vue: vue()
     }
 };
-
+const DTS_PLUGIN_OPTION: PluginOptions = {
+    tsconfigPath: './tsconfig.json',
+    include: [`${INPUT_DIR}**/*.ts`, `${INPUT_DIR}**/*.vue`, `index.ts`, 'component.ts', 'default.ts'],
+    exclude: ['**/*.stories.ts'],
+    outDir,
+    clearPureImport: false
+};
 const PLUGINS: PluginOption = [
     VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
+    dts(DTS_PLUGIN_OPTION),
     ElementPlus({ format: 'cjs' })
 ];
 

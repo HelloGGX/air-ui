@@ -33,6 +33,14 @@ pkgJson.exports = {
         import: './es/components/*',
         types: './es/components/*'
     },
+    './lib/*.js': {
+        types: './lib/*.d.ts',
+        require: './lib/*.js'
+    },
+    './lib/*': {
+        types: ['./lib/*.d.ts', './lib/*/index.d.ts'],
+        require: './lib/*.js'
+    },
     './*': './*'
 };
 fs.writeFileSync(outputpkg, JSON.stringify(pkgJson, null, 4));
