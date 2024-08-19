@@ -4,7 +4,6 @@
     buttonSizeClass,
     buttonTypeClass,
     { 'air-btn--disabled': isDisabled },
-    { 'rounded-full': props.round },
   ]" :style="buttonStyle" @click="handleClick" :disabled="isDisabled">
     <!-- Loading 图标显示在按钮的右侧 -->
     <span v-if="props.loading" class="air-btn__loading">
@@ -61,6 +60,7 @@ const buttonSizeClass = computed(() => buttonSizes[props.size || 'default']);
 const buttonStyle = computed(() => {
   return {
     backgroundColor: props.color,
+    borderRadius: props.round? 'var(--radius-full)': 'var(--radius-base)'
   };
 });
 

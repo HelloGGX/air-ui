@@ -1,5 +1,5 @@
 .air-btn {
-  @apply relative flex items-center justify-between max-w-md rounded-full px-14 py-3 bg-no-repeat bg-right bg-contain;
+  @apply relative flex items-center justify-between max-w-md rounded-base px-14 py-3 bg-no-repeat bg-right bg-contain;
 }
 
 /* 默认大小按钮 */
@@ -19,34 +19,35 @@
 
 /* 按钮类型修饰符 */
 .air-btn--default {
-  @apply bg-gray-200 text-gray-800 rounded-base shadow-md;
-  @applyhover: bg-gray-300focus:ring-gray-400focus:ring-opacity-75;
+  @apply bg-gray-200 text-gray-800 shadow-md;
+  @apply hover:bg-gray-300 focus:ring-gray-400 focus:ring-opacity-75;
 }
 
 .air-btn--primary {
-  @apply bg-primary-400 text-white rounded-base shadow-md;
-  @applyhover: bg-primary-700focus:ring-primary-400focus:ring-opacity-75;
+  @apply bg-primary-400 text-white shadow-md;
+  @apply hover:bg-primary-700 focus:ring-primary-400 focus:ring-opacity-75;
 }
 
 .air-btn--success {
-  @apply bg-green-400 text-white rounded-base shadow-md;
-  @applyhover: bg-green-600focus:ring-green-200focus:ring-opacity-75;
+  @apply bg-green-400 text-white shadow-md;
+  @apply hover:bg-green-600 focus:ring-green-200 focus:ring-opacity-75;
 }
 
 .air-btn--danger {
-  @apply bg-red-400 text-white rounded-base shadow-md;
-  @applyhover: bg-red-600focus:ring-red-200focus:ring-opacity-75;
+  @apply bg-red-400 text-white shadow-md;
+  @apply hover:bg-red-600 focus:ring-red-200 focus:ring-opacity-75;
 }
 
 .air-btn--warning {
-  @apply bg-orange-400 text-white rounded-base shadow-md;
-  @applyhover: bg-orange-600focus:ring-orange-200focus:ring-opacity-75;
+  @apply bg-orange-400 text-white shadow-md;
+  @apply hover:bg-orange-600 focus:ring-orange-200 focus:ring-opacity-75;
 }
 
 .air-btn--info {
-  @apply bg-blue-400 text-white rounded-base shadow-md;
-  @applyhover: bg-blue-600focus:ring-blue-200focus:ring-opacity-75;
+  @apply bg-blue-400 text-white shadow-md;
+  @apply hover:bg-blue-600 focus:ring-blue-200 focus:ring-opacity-75;
 }
+
 
 .air-btn--disabled {
   @apply bg-gray-400 text-gray-100 cursor-not-allowed opacity-50;
