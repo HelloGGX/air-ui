@@ -1,0 +1,10 @@
+{
+    "name": "vue-component",
+    "type": "component",
+    "entries": {
+        "main": "index.ts",
+        "style": "style/index.ts",
+        "preview": "__docs__/index.mdx",
+        "jsdoc": ["interface.ts"]
+    }
+}

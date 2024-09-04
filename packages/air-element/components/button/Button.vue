@@ -11,7 +11,6 @@
         <component :is="props.loadingIcon" />
       </ElIcon>
     </span>
-
     <slot />
 
 
@@ -60,7 +59,7 @@ const buttonSizeClass = computed(() => buttonSizes[props.size || 'default']);
 const buttonStyle = computed(() => {
   return {
     backgroundColor: props.color,
-    borderRadius: props.round? 'var(--radius-full)': 'var(--radius-base)'
+    borderRadius: props.round ? 'var(--radius-full)' : 'var(--radius-base)'
   };
 });
 
