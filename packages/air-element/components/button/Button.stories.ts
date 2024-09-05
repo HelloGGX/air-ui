@@ -7,7 +7,6 @@ const meta: Meta<typeof AirButton> = {
     title: 'Component/Button',
     component: AirButton,
     tags: ['autodocs'],
-
     argTypes: {
         size: {
             control: { type: 'select' },
