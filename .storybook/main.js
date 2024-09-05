@@ -19,6 +19,6 @@ const config = {
         builder: {
             name: '@storybook/builder-vite'
         }
-    },
+    }
 };
 export default config;
