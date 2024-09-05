@@ -1,25 +1,38 @@
-import { TemplateFunction } from '../../../types';
+import type { TemplateFunction } from '../../../utils/types';
 
 const templateFn: TemplateFunction = function ({ name: componentName }) {
-  componentName = componentName.replace(/-(.)/g, (_, $1) => $1.toUpperCase());
+    componentName = componentName.replace(/-(.)/g, (_, $1) => $1.toUpperCase());
 
-  return {
-    filename: 'index.mdx',
-    contents: `---
-title: ${componentName}
-description: Some description about this component.
-labels: ['Keyword-1', 'Keyword-2']
----
+    return {
+        filename: `${componentName}.stories.ts`,
+        contents: `import type { Meta, StoryObj } from '@storybook/vue3';
+import ${componentName} from '../${componentName}.vue';
 
-# 基本用法
+const meta: Meta<typeof ${componentName}> = {
+  title: '${componentName}',
+  component: ${componentName},
+  tags: ['autodocs'],
+  argTypes: {
+    // Define your component's props here
+  },
+};
 
-import Basic from './basic';
+export default meta;
+type Story = StoryObj<typeof ${componentName}>;
 
-<div data-arco-demo="Basic">
-  <Basic />
-</div>
-`,
-  };
+export const Default: Story = {
+  args: {
+    // Define default props here
+  },
+};
+
+export const CustomExample: Story = {
+  args: {
+    // Define custom props here
+  },
+};
+`
+    };
 };
 
 export default templateFn;
