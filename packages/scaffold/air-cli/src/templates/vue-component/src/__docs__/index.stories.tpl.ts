@@ -1,4 +1,4 @@
-import type { TemplateFunction } from '../../../utils/types';
+import { TemplateFunction } from '../../../../types';
 
 const templateFn: TemplateFunction = function ({ name: componentName }) {
     componentName = componentName.replace(/-(.)/g, (_, $1) => $1.toUpperCase());
@@ -9,28 +9,15 @@ const templateFn: TemplateFunction = function ({ name: componentName }) {
 import ${componentName} from '../${componentName}.vue';
 
 const meta: Meta<typeof ${componentName}> = {
-  title: '${componentName}',
-  component: ${componentName},
-  tags: ['autodocs'],
-  argTypes: {
-    // Define your component's props here
-  },
+    title: 'Components/${componentName}',
+    component: ${componentName},
+    tags: ['autodocs'],
 };
 
 export default meta;
 type Story = StoryObj<typeof ${componentName}>;
 
-export const Default: Story = {
-  args: {
-    // Define default props here
-  },
-};
-
-export const CustomExample: Story = {
-  args: {
-    // Define custom props here
-  },
-};
+export const Default: Story = {};
 `
     };
 };

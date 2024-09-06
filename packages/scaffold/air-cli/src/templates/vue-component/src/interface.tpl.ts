@@ -1,4 +1,4 @@
-import type { TemplateFunction } from '../../utils/types';
+import { TemplateFunction } from '../../../types';
 
 const templateFn: TemplateFunction = function ({ name: componentName }) {
     componentName = componentName.replace(/-(.)/g, (_, $1) => $1.toUpperCase());
@@ -12,7 +12,7 @@ const templateFn: TemplateFunction = function ({ name: componentName }) {
  */
 export interface ${componentName}Props {
   style?: CSSProperties;
-  class?: string | string[] | Record<string, boolean>;
+  className?: string | string[];
   /**
    * @zh 组件尺寸
    * @en Component Size

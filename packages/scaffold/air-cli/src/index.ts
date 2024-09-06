@@ -1,16 +1,34 @@
 #!/usr/bin/env node
+import { intro, outro } from '@clack/prompts';
+import { createComponent, createProject } from './commands/create';
+import { buildProject } from './commands/build';
+import { publishProject } from './commands/publish';
+import * as color from 'picocolors';
 
-import { program } from 'commander';
-import init from './commands/init';
-import publish from './commands/publish';
-import use from './commands/use';
+async function main() {
+    intro(color.cyan('欢迎使用cuss团队air-cli'));
 
-program.version('1.0.0').description('AirDesign Material CLI');
+    const args = process.argv.slice(2);
+    const command = args[0];
 
-program.command('init <projectName>').description('Initialize a new AirDesign material project').action(init);
+    switch (command) {
+        case 'init':
+            await createProject();
+            break;
+        case 'add':
+            await createComponent();
+            break;
+        case 'build':
+            await buildProject();
+            break;
+        case 'publish':
+            await publishProject();
+            break;
+        default:
+            console.log('Invalid command. Available commands: init, build, publish');
+    }
 
-program.command('publish').description('Publish a material').action(publish);
+    outro(color.green('感谢使用air-cli!'));
+}
 
-program.command('use <materialId>').description('Use a material in your project').action(use);
-
-program.parse(process.argv);
+main().catch(console.error);

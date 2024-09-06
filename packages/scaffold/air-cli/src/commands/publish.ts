@@ -1,29 +1,23 @@
-import fs from 'fs-extra';
-import path from 'path';
-import chalk from 'chalk';
-import { publishToNpm } from '../utils/npm';
-import { PackageJson } from '../utils/types';
+import { execSync } from 'child_process';
+import { confirm } from '@clack/prompts';
 
-export default async function publish(): Promise<void> {
-    const packageJsonPath = path.join(process.cwd(), 'package.json');
+export async function publishProject() {
+    console.log('Preparing to publish...');
 
-    try {
-        const packageJson: PackageJson = await fs.readJson(packageJsonPath);
-        const { name, version, airMaterial } = packageJson;
-
-        if (!airMaterial) {
-            throw new Error('This is not a valid AirDesign material project');
-        }
-
-        // Publish to NPM
-        await publishToNpm();
-
-        // Register material in a hypothetical material registry
-        const materialId = `${name}/${airMaterial.type}`;
-        // TODO: Implement material registration logic
-
-        console.log(chalk.green(`Successfully published material: ${materialId}@${version}`));
-    } catch (err) {
-        console.error(chalk.red('Error publishing material:'), err);
+    const shouldBuild = await confirm({ message: 'Do you want to run build before publishing?' });
+    if (shouldBuild) {
+        console.log('Running build...');
+        execSync('npm run build', { stdio: 'inherit' });
     }
+
+    const shouldScreenshot = await confirm({ message: 'Do you want to run screenshot before publishing?' });
+    if (shouldScreenshot) {
+        console.log('Running screenshot...');
+        execSync('npm run screenshot', { stdio: 'inherit' });
+    }
+
+    console.log('Publishing to npm...');
+    execSync('npm publish', { stdio: 'inherit' });
+
+    console.log('Project published successfully!');
 }
