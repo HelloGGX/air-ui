@@ -14,7 +14,7 @@ export async function createBusinessComponent(
     await generator.generate();
 }
 
-export async function createMonorepoProject(projectName: string) {
+export async function createMonorepo(projectName: string) {
     const templatePath = path.join(__dirname, '../templates/vue-monorepo');
     const targetPath = path.join(process.cwd(), projectName);
 
