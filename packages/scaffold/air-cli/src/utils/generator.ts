@@ -1,6 +1,6 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { GenerateOptions, TemplateFunction } from '../types';
+import { GenerateOptions } from '../types';
 
 // 默认模板名称
 const DEFAULT_TEMPLATE_NAME = 'vue-component';
@@ -17,6 +17,10 @@ export class Generator {
         this.options.path ||= process.cwd();
         this.options.packageName ||= this.name;
         this.options.template ||= DEFAULT_TEMPLATE_NAME;
+        this.options.version ||= '0.1.0';
+        this.options.description ||= `${this.name} component`;
+        this.options.useTailwindCSS ??= false;
+        this.options.componentLibrary ||= 'none';
 
         // 初始化模板路径和目标路径
         this.templatePath = path.join(__dirname, '..', 'templates', this.options.template);
@@ -32,13 +36,12 @@ export class Generator {
             await this.generatePackageJson();
             await this.copyConfigFiles();
             console.log(`Business component "${this.name}" created successfully.`);
-        } catch (error) {
-            console.error(`Error creating component: ${error.message}`);
+        } catch (error: unknown) {
+            console.error(`Error creating component: ${error instanceof Error ? error.message : 'Unknown error'}`);
             await this.cleanup();
             throw error;
         }
     }
-
     // 确保目标目录不存在
     private async ensureTargetDirectoryDoesNotExist() {
         if (await fs.pathExists(this.targetPath)) {
@@ -71,8 +74,7 @@ export class Generator {
     private async processTemplateFile(dirent: fs.Dirent) {
         const templateFilePath = path.join(this.templatePath, dirent.name);
         const templateModule = await import(templateFilePath);
-        const templateFn = templateModule.default as TemplateFunction;
-
+        const templateFn = templateModule.default;
         const result = templateFn({
             path: this.options.path,
             name: this.name,
@@ -87,7 +89,6 @@ export class Generator {
             await this.writeTemplateResult(dirent, result);
         }
     }
-
     private async writeTemplateResult(dirent: fs.Dirent, result: { filename: string; contents: string }) {
         const { filename, contents } = result;
         const targetFilePath = this.getTargetFilePath(dirent, filename);
@@ -117,7 +118,6 @@ export class Generator {
             }
         }
     }
-
     // 生成 package.json 文件
     private async generatePackageJson() {
         const packageJsonTemplate = {
@@ -137,8 +137,7 @@ export class Generator {
             dependencies: {
                 vue: 'latest',
                 ...(this.options.componentLibrary === 'air-element' && { '@air-ui/air-element': 'latest' }),
-                ...(this.options.componentLibrary === 'element-plus' && { 'element-plus': 'latest' }),
-                ...(this.options.componentLibrary === 'headless-ui' && { '@headlessui/vue': 'latest' })
+                ...(this.options.componentLibrary === 'element-plus' && { 'element-plus': 'latest' })
             },
             devDependencies: {
                 '@chromatic-com/storybook': 'latest',
@@ -171,7 +170,6 @@ export class Generator {
         const packageJsonPath = path.join(this.targetPath, 'package.json');
         await fs.writeJson(packageJsonPath, packageJsonTemplate, { spaces: 2 });
     }
-
     // 复制配置文件
     private async copyConfigFiles() {
         const configFiles = ['tsconfig.json', '.storybook/main.ts', '.storybook/preview.ts'];
@@ -201,7 +199,6 @@ export class Generator {
             }
         }
     }
-
     // 清理生成的文件（如果发生错误）
     private async cleanup() {
         if (await fs.pathExists(this.targetPath)) {

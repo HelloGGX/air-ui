@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { intro, outro } from '@clack/prompts';
-import { createComponent, createProject } from './commands/create';
+import { createBlock, createProject } from './commands/create';
 import { buildProject } from './commands/build';
 import { publishProject } from './commands/publish';
 import * as color from 'picocolors';
@@ -10,13 +10,16 @@ async function main() {
 
     const args = process.argv.slice(2);
     const command = args[0];
+    const subCommand = args[1];
 
     switch (command) {
         case 'init':
             await createProject();
             break;
         case 'add':
-            await createComponent();
+            if (subCommand === 'block') {
+                createBlock();
+            }
             break;
         case 'build':
             await buildProject();

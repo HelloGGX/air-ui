@@ -1,4 +1,4 @@
-import { TemplateFunction } from '../../../types';
+import type { TemplateFunction } from '../../../types';
 
 const templateFn: TemplateFunction = function ({ name: componentName, useTailwindCSS, componentLibrary }) {
     componentName = componentName.replace(/-(.)/g, (_, $1) => $1.toUpperCase());
@@ -14,8 +14,6 @@ const templateFn: TemplateFunction = function ({ name: componentName, useTailwin
         imports += `\nimport { ElButton } from 'element-plus';`;
     } else if (componentLibrary === 'air-element') {
         imports += `\nimport { AirButton } from '@air-ui/air-element';`;
-    } else if (componentLibrary === 'headless-ui') {
-        imports += `\nimport { Menu } from '@headlessui/vue';`;
     }
 
     return {
@@ -28,9 +26,7 @@ const templateFn: TemplateFunction = function ({ name: componentName, useTailwin
             ? '<ElButton>Element Plus Button</ElButton>'
             : componentLibrary === 'air-element'
               ? '<AirButton>Air Element Button</AButton>'
-              : componentLibrary === 'headless-ui'
-                ? '<Menu><Menu.Button>Headless UI Menu</Menu.Button></Menu>'
-                : ''
+              : ''
     }
   </div>
 </template>

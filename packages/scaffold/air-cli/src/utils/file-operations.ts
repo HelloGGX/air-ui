@@ -19,5 +19,8 @@ export async function createMonorepo(projectName: string) {
     const targetPath = path.join(process.cwd(), projectName);
 
     await fs.copy(templatePath, targetPath);
+    // 创建 packages 目录
+    await fs.ensureDir(path.join(targetPath, 'packages'));
+
     console.log(`Monorepo project "${projectName}" created successfully.`);
 }
