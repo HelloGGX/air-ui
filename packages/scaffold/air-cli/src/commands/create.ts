@@ -16,7 +16,7 @@ const projectOptions = {
 
 const promptText = (message: string, placeholder?: string) => text({ message, placeholder });
 
-export async function createBusinessComponentProject() {
+export async function createBlock() {
     const projectName = await promptText('请输入业务组件名称:', 'button');
     const useTailwindCSS = await confirm({ message: '是否使用 Tailwind CSS?' });
     const componentLibrary = await select({

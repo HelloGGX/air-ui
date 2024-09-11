@@ -3,10 +3,9 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "dev": "pnpm -r run dev",
-        "build": "pnpm -r run build",
+        "build:block": "pnpm --filter block build",
         "test": "pnpm -r run test",
-        "storybook": "pnpm -r run storybook",
+        "storybook": "storybook dev -p 6006",
         "build-storybook": "pnpm -r run build-storybook",
         "publish": "pnpm -r publish"
     },

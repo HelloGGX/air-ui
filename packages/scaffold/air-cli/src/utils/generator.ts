@@ -35,12 +35,29 @@ export class Generator {
             await this.processTemplates();
             await this.generatePackageJson();
             await this.copyConfigFiles();
+            await this.updatePublishSummary(); // 新添加的方法调用
             console.log(`Business component "${this.name}" created successfully.`);
         } catch (error: unknown) {
             console.error(`Error creating component: ${error instanceof Error ? error.message : 'Unknown error'}`);
             await this.cleanup();
             throw error;
         }
+    }
+    private async updatePublishSummary() {
+        const packagesDir = path.dirname(this.options.path || '');
+        const summaryPath = path.join(packagesDir, 'pnpm-publish-summary.json');
+        let summary: { publishedPackages: Array<{ name: string; version: string }> } = { publishedPackages: [] };
+
+        if (await fs.pathExists(summaryPath)) {
+            summary = await fs.readJson(summaryPath);
+        }
+
+        summary.publishedPackages.push({
+            name: this.options.packageName || this.name,
+            version: this.options.version || '0.0.0'
+        });
+
+        await fs.writeJson(summaryPath, summary, { spaces: 2 });
     }
     // 确保目标目录不存在
     private async ensureTargetDirectoryDoesNotExist() {
