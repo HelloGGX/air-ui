@@ -23,7 +23,7 @@
     </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { AirButton } from '@air-ui/air-element/components/button';
 
 const props = defineProps({

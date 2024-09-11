@@ -1,3 +1,1 @@
-import AirHeader from './AirHeader.vue';
-
-export default AirHeader;
+export { default as AirHeader } from './AirHeader.vue';

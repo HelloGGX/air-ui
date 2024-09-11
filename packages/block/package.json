@@ -1,9 +1,10 @@
 {
     "name": "@air-ui/block",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "index.ts",
+    
     "scripts": {
-        "build": "vite build"
+        "build": "cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ vite build"
     },
     "peerDependencies": {
         "@air-ui/air-element": "0.0.0",
