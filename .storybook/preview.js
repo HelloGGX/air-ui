@@ -32,7 +32,7 @@ const preview = {
             themes: {
                 ['默认']: 'default',
                 ['立夏']: 'summer',
-                ['圣诞节']: 'christmas',
+                ['圣诞节']: 'christmas'
             },
             defaultTheme: '默认',
             dataAttribute: 'data-theme'

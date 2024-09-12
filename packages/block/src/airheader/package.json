@@ -1,0 +1,8 @@
+{
+    "main": "./AirHeader.vue",
+    "types": "./AirHeader.d.ts",
+    "module": "./AirHeader.vue",
+    "sideEffects": [
+        "*.vue"
+    ]
+}

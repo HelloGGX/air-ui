@@ -1,6 +1,5 @@
-import type { Meta, StoryFn } from "@storybook/vue3";
-import AirHeader from "./AirHeader.vue";
-
+import type { Meta, StoryFn } from '@storybook/vue3';
+import AirHeader from './AirHeader.vue';
 
 const meta: Meta<typeof AirHeader> = {
     title: 'BLOCK/Header',
@@ -17,9 +16,8 @@ const meta: Meta<typeof AirHeader> = {
         }
     },
     args: {
-        title: 'Logo',
+        title: 'Logo'
     }
-
 };
 const Template: StoryFn = (args) => ({
     components: { AirHeader },
@@ -32,6 +30,3 @@ const Template: StoryFn = (args) => ({
 export const Default = Template.bind({});
 
 export default meta;
-
-
-

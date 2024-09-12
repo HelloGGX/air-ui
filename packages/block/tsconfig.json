@@ -1,23 +1,16 @@
 {
     "extends": ["@vue/tsconfig/tsconfig.dom.json", "@vue/tsconfig/tsconfig.lib.json"],
     "compilerOptions": {
+        "allowJs": true,
+        "skipLibCheck": false,
+        "strict": true,
+        "jsx": "preserve",
         "baseUrl": ".",
         "paths": {
-            "@air-ui/block/*": ["./src/*"]
-        },
-        "jsx": "preserve",
-        "skipLibCheck": true,
-        "types": ["unplugin-vue-macros/macros-global", "element-plus/global"]
+            "airBlock/*": ["./src/*"],
+            "@air-element/*": ["../air-element/*"]
+        }
     },
-    "include": ["src/**/*.ts", "src/**/*.vue", "./*.ts"],
-    "vueCompilerOptions": {
-        "plugins": [
-            "@vue-macros/volar/define-model",
-            "@vue-macros/volar/define-props",
-            "@vue-macros/volar/define-props-refs",
-            "@vue-macros/volar/short-vmodel",
-            "@vue-macros/volar/define-slots",
-            "@vue-macros/volar/export-props"
-        ]
-    }
+    "include": ["**/*.ts", "src/*"],
+    "exclude": ["node_modules", "dist"]
 }

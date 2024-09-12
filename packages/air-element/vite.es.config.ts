@@ -9,7 +9,6 @@ import { extname, resolve } from 'path';
 import { globSync } from 'glob';
 import ElementPlus from 'unplugin-element-plus/vite';
 
-
 const { resolvePath } = require('../../scripts/build-helper.mjs');
 const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 const outDir = `${OUTPUT_DIR}es`;

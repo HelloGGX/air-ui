@@ -1,4 +1,4 @@
 import { makeInstaller } from 'element-plus';
-import Components from './component'
+import Components from './component';
 
-export default makeInstaller([...Components])
+export default makeInstaller([...Components]);
