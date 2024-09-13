@@ -164,8 +164,8 @@ importers:
   packages/block:
     dependencies:
       '@air-ui/air-element':
-        specifier: file:../air-element
-        version: link:../air-element
+        specifier: file:../air-element/dist
+        version: file:packages/air-element/dist(vue@3.5.4(typescript@5.6.2))
       vue:
         specifier: ^3.2.0
         version: 3.5.4(typescript@5.6.2)
@@ -199,6 +199,12 @@ packages:
 
   '@adobe/css-tools@4.4.0':
     resolution: {integrity: sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==}
+
+  '@air-ui/air-element@file:packages/air-element/dist':
+    resolution: {directory: packages/air-element/dist, type: directory}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      vue: ^3.2.0
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -5303,6 +5309,14 @@ packages:
 snapshots:
 
   '@adobe/css-tools@4.4.0': {}
+
+  '@air-ui/air-element@file:packages/air-element/dist(vue@3.5.4(typescript@5.6.2))':
+    dependencies:
+      '@element-plus/icons-vue': 2.3.1(vue@3.5.4(typescript@5.6.2))
+      element-plus: 2.8.2(vue@3.5.4(typescript@5.6.2))
+      vue: 3.5.4(typescript@5.6.2)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
 
   '@alloc/quick-lru@5.2.0': {}
 

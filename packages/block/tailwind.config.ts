@@ -1,6 +1,6 @@
-import elementTailwindConfig from '@air-ui/air-element/tailwind.config';
+import elementTailwindConfig from '../air-element/tailwind.config';
 
 module.exports = {
     ...elementTailwindConfig,
-    content: ["./src/**/*.{vue,js,ts,jsx,tsx}",]
+    content: ['./src/**/*.{vue,js,ts,jsx,tsx}']
 };

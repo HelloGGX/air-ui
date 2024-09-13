@@ -41,7 +41,6 @@ const ALIAS_ENTRIES = [
 
                 return ['.vue', '.js'].includes(ext) && path.basename(file, ext).toLowerCase() === fName.toLowerCase();
             });
-            console.log(targetFile);
 
             return targetFile ? path.join(folderPath, targetFile) : null;
         }
@@ -64,15 +63,11 @@ const ALIAS_PLUGIN_OPTIONS = {
 };
 
 const POSTCSS_PLUGIN_OPTIONS = {
-    plugins: [
-        postcssImport(),
-        tailwindcss('./tailwind.config.ts'),
-        autoprefixer(),
-      ],
-      extract: 'styles.css',
-      modules: false,
-      minimize: true,
-      sourceMap: false
+    plugins: [postcssImport(), tailwindcss('./tailwind.config.ts'), autoprefixer()],
+    extract: 'styles.css',
+    modules: false,
+    minimize: true,
+    sourceMap: false
 };
 
 const TERSER_PLUGIN_OPTIONS = {
@@ -179,7 +174,7 @@ const ENTRY = {
                     (pkg.main = path.basename(options?.main) ? `./${path.basename(options.main)}` : pkg.main);
                 pkg.module = path.basename(options?.module) ? `./${path.basename(options.module)}` : packageJson.module;
                 pkg.types && (pkg.types = './index.d.ts');
-                pkg.style = './style.css';  // 添加这行
+                pkg.style = './style.css'; // 添加这行
 
                 fs.writeFileSync(packageJson, JSON.stringify(pkg, null, 4));
             } catch {}
