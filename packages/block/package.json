@@ -8,7 +8,7 @@
         "build:postbuild": "node ./scripts/postbuild.mjs"
     },
     "peerDependencies": {
-        "@air-ui/air-element": "0.0.0",
+        "@air-ui/air-element": "file:../air-element",
         "vue": "^3.2.0"
     },
     "keywords": [],
