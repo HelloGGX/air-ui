@@ -8,7 +8,7 @@ const meta: Meta<typeof AirHeader> = {
     argTypes: {
         title: {
             control: { type: 'text' },
-            description: '标题',
+            description: '标题222',
             table: {
                 type: { summary: 'string' },
                 defaultValue: { summary: 'Logo' }
