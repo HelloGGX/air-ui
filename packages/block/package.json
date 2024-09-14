@@ -8,7 +8,7 @@
         "build:postbuild": "node ./scripts/postbuild.mjs"
     },
     "peerDependencies": {
-        "@air-ui/air-element": "file:../air-element",
+        "@air-ui/air-element": "^0.0.0",
         "vue": "^3.2.0"
     },
     "keywords": [],
@@ -23,8 +23,10 @@
         "@rollup/plugin-node-resolve": "^15.2.3",
         "@rollup/plugin-terser": "^0.4.4",
         "rollup-plugin-postcss": "^4.0.2",
-        "rollup-plugin-vue": "^6.0.0"
+        "rollup-plugin-vue": "^6.0.0",
+        "@air-ui/air-element": "file:../air-element/dist"
     },
+    "dependencies": {},
     "repository": {
         "type": "git",
         "url": "https://github.com/HelloGGX/air-ui.git"

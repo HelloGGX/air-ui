@@ -21,8 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import { AirButton } from '@air-ui/air-element/components/button';
 import { ref } from 'vue';
+import { AirButton } from '@air-ui/air-element';
+import '@air-ui/air-element/theme/button.css';
 import '../../theme/base.css'
 
 const props = defineProps({
