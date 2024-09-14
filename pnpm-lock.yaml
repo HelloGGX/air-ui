@@ -172,7 +172,7 @@ importers:
     devDependencies:
       '@air-ui/air-element':
         specifier: file:../air-element/dist
-        version: dist@file:packages/air-element/dist
+        version: file:packages/air-element/dist(vue@3.5.4(typescript@5.6.2))
       '@babel/preset-env':
         specifier: ^7.25.4
         version: 7.25.4(@babel/core@7.25.2)
@@ -191,6 +191,9 @@ importers:
       '@rollup/plugin-terser':
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.21.3)
+      babel-plugin-import:
+        specifier: ^1.13.8
+        version: 1.13.8
       rollup-plugin-postcss:
         specifier: ^4.0.2
         version: 4.0.2(postcss@8.4.45)
@@ -202,6 +205,12 @@ packages:
 
   '@adobe/css-tools@4.4.0':
     resolution: {integrity: sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==}
+
+  '@air-ui/air-element@file:packages/air-element/dist':
+    resolution: {directory: packages/air-element/dist, type: directory}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      vue: ^3.2.0
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -2382,6 +2391,9 @@ packages:
   b4a@1.6.6:
     resolution: {integrity: sha512-5Tk1HLk6b6ctmjIkAcU/Ujv/1WqiDl0F0JdRCR80VsOcUlHcu7pWeWRlOqQLHfDEsVx9YH/aif5AG4ehoCtTmg==}
 
+  babel-plugin-import@1.13.8:
+    resolution: {integrity: sha512-36babpjra5m3gca44V6tSTomeBlPA7cHUynrE2WiQIm3rEGD9xy28MKsx5IdO45EbnpJY7Jrgd00C6Dwt/l/2Q==}
+
   babel-plugin-polyfill-corejs2@0.4.11:
     resolution: {integrity: sha512-sMEJ27L0gRHShOh5G54uAAPaiCOygY/5ratXuiyb2G46FmlSpc9eFCzYVyDiPxfNbwzA7mYahmjQc5q+CZQ09Q==}
     peerDependencies:
@@ -2775,9 +2787,6 @@ packages:
 
   didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
-
-  dist@file:packages/air-element/dist:
-    resolution: {directory: packages/air-element/dist, type: directory}
 
   dlv@1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
@@ -5314,6 +5323,14 @@ snapshots:
 
   '@adobe/css-tools@4.4.0': {}
 
+  '@air-ui/air-element@file:packages/air-element/dist(vue@3.5.4(typescript@5.6.2))':
+    dependencies:
+      '@element-plus/icons-vue': 2.3.1(vue@3.5.4(typescript@5.6.2))
+      element-plus: 2.8.2(vue@3.5.4(typescript@5.6.2))
+      vue: 3.5.4(typescript@5.6.2)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+
   '@alloc/quick-lru@5.2.0': {}
 
   '@ampproject/remapping@2.3.0':
@@ -7842,6 +7859,12 @@ snapshots:
 
   b4a@1.6.6: {}
 
+  babel-plugin-import@1.13.8:
+    dependencies:
+      '@babel/helper-module-imports': 7.24.7
+    transitivePeerDependencies:
+      - supports-color
+
   babel-plugin-polyfill-corejs2@0.4.11(@babel/core@7.25.2):
     dependencies:
       '@babel/compat-data': 7.25.4
@@ -8277,8 +8300,6 @@ snapshots:
   detect-file@1.0.0: {}
 
   didyoumean@1.2.2: {}
-
-  dist@file:packages/air-element/dist: {}
 
   dlv@1.1.3: {}
 

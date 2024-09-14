@@ -16,6 +16,7 @@
     "license": "MIT",
     "description": "",
     "devDependencies": {
+        "@air-ui/air-element": "file:../air-element/dist",
         "@babel/preset-env": "^7.25.4",
         "@babel/preset-typescript": "^7.24.7",
         "@rollup/plugin-alias": "^5.1.0",
@@ -23,10 +24,8 @@
         "@rollup/plugin-node-resolve": "^15.2.3",
         "@rollup/plugin-terser": "^0.4.4",
         "rollup-plugin-postcss": "^4.0.2",
-        "rollup-plugin-vue": "^6.0.0",
-        "@air-ui/air-element": "file:../air-element/dist"
+        "rollup-plugin-vue": "^6.0.0"
     },
-    "dependencies": {},
     "repository": {
         "type": "git",
         "url": "https://github.com/HelloGGX/air-ui.git"
