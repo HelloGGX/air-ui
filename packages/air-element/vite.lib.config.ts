@@ -32,8 +32,8 @@ const DTS_PLUGIN_OPTION: PluginOptions = {
 };
 const PLUGINS: PluginOption = [
     VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
-    dts(DTS_PLUGIN_OPTION)
-    // ElementPlus({ format: 'cjs' })
+    dts(DTS_PLUGIN_OPTION),
+    ElementPlus({ format: 'cjs' })
 ];
 
 // build.lib
