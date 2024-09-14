@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-primary-400" :style="{ height, width, backgroundColor: backgroundColor ?? '', color: textColor }">
     <div class="flex items-center justify-between">
       <div>
         <span>1</span>
@@ -33,6 +33,10 @@ const props = defineProps({
   height: {
     type: String,
     default: "74px",
+  },
+  width: {
+    type: String,
+    default: "200px"
   },
   backgroundColor: {
     type: String,

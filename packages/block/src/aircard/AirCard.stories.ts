@@ -1,5 +1,6 @@
 import type { Meta, StoryFn } from '@storybook/vue3';
-import AirCard from './AirCard';
+import AirCard from './AirCard.vue';
+import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof AirCard> = {
   title: "BLOCK/Card",
@@ -7,21 +8,56 @@ const meta: Meta<typeof AirCard> = {
   component: AirCard,
   argTypes: {
     num: {
-      control: { type: 'text' },
-      description: '标题222',
+      control: { type: 'number' },
+      description: '旅客序号',
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: '1' }
+        defaultValue: { summary: 'default' }
+      }
+    },
+    name: {
+      control: { type: 'text' },
+      description: "旅客姓名",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: 'default' }
+      }
+    },
+    seatNum: {
+      control: { type: "text" },
+      description: "座位号",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "default" }
+      }
+    },
+    showClose: {
+      control: "boolean",
+      description: "是否显示关闭图标",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" }
+      }
+    },
+    onClose: {
+      action: 'clicked', // 记录事件
+      description: '关闭的点击事件',
+      table: {
+        type: { summary: 'function' }
       }
     }
   },
   args: {
-    num: 1
+    num: 0,
+    name: "default",
+    seatNum: "default",
+    showClose: false,
+    onClose: action("clicked")
   }
 };
 
 const Template: StoryFn = (args) => ({
-  components: {AirCard},
+  components: { AirCard },
   setup() {
     return { args };
   },
