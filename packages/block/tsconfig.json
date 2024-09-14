@@ -7,7 +7,7 @@
         "jsx": "preserve",
         "baseUrl": ".",
         "paths": {
-            "airBlock/*": ["./src/*"],
+            "airBlock/*": ["./src/*"]
         }
     },
     "include": ["**/*.ts", "src/*"],

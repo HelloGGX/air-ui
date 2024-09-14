@@ -63,7 +63,7 @@ const ALIAS_PLUGIN_OPTIONS = {
 };
 
 const POSTCSS_PLUGIN_OPTIONS = {
-    plugins: [postcssImport(), tailwindcss('./tailwind.config.ts'), autoprefixer()],
+    plugins: [postcssImport(), tailwindcss('./tailwind.config.js'), autoprefixer()],
     extract: 'styles.css',
     modules: false,
     minimize: true,
