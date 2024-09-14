@@ -133,6 +133,9 @@ importers:
       '@types/gulp-sass':
         specifier: ^5.0.4
         version: 5.0.4
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
       cssnano:
         specifier: ^7.0.5
         version: 7.0.6(postcss@8.4.45)
@@ -163,13 +166,13 @@ importers:
 
   packages/block:
     dependencies:
-      '@air-ui/air-element':
-        specifier: file:../air-element/dist
-        version: file:packages/air-element/dist(vue@3.5.4(typescript@5.6.2))
       vue:
         specifier: ^3.2.0
         version: 3.5.4(typescript@5.6.2)
     devDependencies:
+      '@air-ui/air-element':
+        specifier: file:../air-element/dist
+        version: dist@file:packages/air-element/dist
       '@babel/preset-env':
         specifier: ^7.25.4
         version: 7.25.4(@babel/core@7.25.2)
@@ -199,12 +202,6 @@ packages:
 
   '@adobe/css-tools@4.4.0':
     resolution: {integrity: sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==}
-
-  '@air-ui/air-element@file:packages/air-element/dist':
-    resolution: {directory: packages/air-element/dist, type: directory}
-    engines: {node: '>=20.0.0'}
-    peerDependencies:
-      vue: ^3.2.0
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -2589,6 +2586,10 @@ packages:
   confbox@0.1.7:
     resolution: {integrity: sha512-uJcB/FKZtBMCJpK8MQji6bJHgu1tixKPxRLeGkNzBoOZzpnZUJm0jm2/sBDWcuBx1dYgxV4JU+g5hmNxCyAmdA==}
 
+  consola@3.2.3:
+    resolution: {integrity: sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==}
+    engines: {node: ^14.18.0 || >=16.10.0}
+
   constantinople@4.0.1:
     resolution: {integrity: sha512-vCrqcSIq4//Gx74TXXCGnHpulY1dskqLTFGDmhrGxzeXL8lF8kvXv6mpNWlJj1uD4DW23D4ljAqbY4RRaaUZIw==}
 
@@ -2774,6 +2775,9 @@ packages:
 
   didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
+
+  dist@file:packages/air-element/dist:
+    resolution: {directory: packages/air-element/dist, type: directory}
 
   dlv@1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
@@ -5309,14 +5313,6 @@ packages:
 snapshots:
 
   '@adobe/css-tools@4.4.0': {}
-
-  '@air-ui/air-element@file:packages/air-element/dist(vue@3.5.4(typescript@5.6.2))':
-    dependencies:
-      '@element-plus/icons-vue': 2.3.1(vue@3.5.4(typescript@5.6.2))
-      element-plus: 2.8.2(vue@3.5.4(typescript@5.6.2))
-      vue: 3.5.4(typescript@5.6.2)
-    transitivePeerDependencies:
-      - '@vue/composition-api'
 
   '@alloc/quick-lru@5.2.0': {}
 
@@ -8065,6 +8061,8 @@ snapshots:
 
   confbox@0.1.7: {}
 
+  consola@3.2.3: {}
+
   constantinople@4.0.1:
     dependencies:
       '@babel/parser': 7.25.6
@@ -8279,6 +8277,8 @@ snapshots:
   detect-file@1.0.0: {}
 
   didyoumean@1.2.2: {}
+
+  dist@file:packages/air-element/dist: {}
 
   dlv@1.1.3: {}
 
