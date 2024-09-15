@@ -62,7 +62,7 @@ export function copyDependencies(inFolder, outFolder, subFolder) {
         if (entry.isDirectory()) {
             copyDependencies(sourcePath, destPath, subFolder);
         } else {
-            if (fileName.endsWith('d.ts') || fileName.endsWith('.vue')) {
+            if (fileName.endsWith('d.ts') || fileName.endsWith('.vue') || fileName.endsWith('.scss')) {
                 if (subFolder && sourcePath.includes(subFolder)) {
                     const subDestPath = path.join(outFolder, fileName.replace(subFolder, ''));
 

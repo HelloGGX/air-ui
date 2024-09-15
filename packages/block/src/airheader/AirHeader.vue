@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { AirButton } from '@air-ui/air-element';
-import "../../theme/index.scss";
+import "../theme/index.scss";
 
 const props = defineProps({
     title: {
