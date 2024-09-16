@@ -1,6 +1,10 @@
 <template>
-    <button :class="['air-btn', buttonSizeClass, buttonTypeClass, { 'air-btn--disabled': isDisabled }]"
-        :style="buttonStyle" @click="handleClick" :disabled="isDisabled">
+    <button
+        :class="['air-btn', buttonSizeClass, buttonTypeClass, { 'air-btn--disabled': isDisabled }]"
+        :style="buttonStyle"
+        @click="handleClick"
+        :disabled="isDisabled"
+    >
         <!-- Loading 图标显示在按钮的右侧 -->
         <span v-if="props.loading" class="air-btn__loading">
             <ElIcon class="air-btn__icon--spin-right">
@@ -20,7 +24,6 @@ defineOptions({ name: 'AirButton' });
 
 const props = defineProps(buttonProps);
 const emit = defineEmits(buttonEmits);
-
 
 const buttonRef = ref<HTMLButtonElement>();
 
