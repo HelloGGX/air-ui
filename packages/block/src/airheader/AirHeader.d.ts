@@ -7,7 +7,7 @@
  * @module AirHeader
  *
  */
-import type { DefineComponent, EmitFn, GlobalComponentConstructor } from '../../core';
+import type { DefineComponent, EmitFn, GlobalComponentConstructor } from '../index';
 import { VNode } from 'vue';
 
 /**

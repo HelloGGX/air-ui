@@ -3,7 +3,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@air-ui/air-element": ["./"]
+            "@air-ui/air-element/*": ["./*"]
         },
         "jsx": "preserve",
         "skipLibCheck": true,

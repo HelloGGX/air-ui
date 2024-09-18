@@ -1,7 +1,11 @@
 <template>
     <header
-        :class="['flex items-center justify-between px-4 bg-primary-400', fixed ? 'fixed top-0 left-0 right-0 z-50' : '']"
-        :style="{ height, backgroundColor: backgroundColor ?? '', color: textColor }">
+        :class="[
+            'flex items-center justify-between px-4 bg-primary-400',
+            fixed ? 'fixed top-0 left-0 right-0 z-50' : ''
+        ]"
+        :style="{ height, backgroundColor: backgroundColor ?? '', color: textColor }"
+    >
         <div class="flex-1">
             <air-button v-if="showBack" @click="handleBack" type="success" class="text-sm font-medium">
                 <i class="el-icon-arrow-left mr-1"></i>
@@ -23,8 +27,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { AirButton } from '@air-ui/air-element';
-import '@air-ui/air-element/theme/button.css';
-import '../../theme/base.css'
+import '../theme/index.scss';
 
 const props = defineProps({
     title: {

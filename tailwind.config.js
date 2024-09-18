@@ -3,5 +3,5 @@ import elementTailwindConfig from './packages/air-element/tailwind.config';
 
 module.exports = {
     ...elementTailwindConfig,
-    content: ["./packages/**/!(node_modules)/*.{vue,js,ts,jsx,tsx}",]
+    content: ['./packages/**/!(node_modules)/*.{vue,js,ts,jsx,tsx}']
 };

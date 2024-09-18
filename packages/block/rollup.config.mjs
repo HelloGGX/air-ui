@@ -63,7 +63,7 @@ const ALIAS_PLUGIN_OPTIONS = {
 };
 
 const POSTCSS_PLUGIN_OPTIONS = {
-    plugins: [postcssImport(), tailwindcss('./tailwind.config.ts'), autoprefixer()],
+    plugins: [postcssImport(), tailwindcss('./tailwind.config.js'), autoprefixer()],
     extract: 'styles.css',
     modules: false,
     minimize: true,
@@ -81,7 +81,7 @@ const TERSER_PLUGIN_OPTIONS = {
     }
 };
 
-const PLUGINS = [vue(), postcss(POSTCSS_PLUGIN_OPTIONS), babel(BABEL_PLUGIN_OPTIONS)];
+const PLUGINS = [vue(), postcss(POSTCSS_PLUGIN_OPTIONS), autoImportStyles(), babel(BABEL_PLUGIN_OPTIONS)];
 
 const ENTRY = {
     entries: [],
@@ -206,6 +206,25 @@ function addLibrary() {
         output: process.env.OUTPUT_DIR + 'umd/airblock',
         minify: false
     });
+}
+function autoImportStyles() {
+    return {
+        name: 'auto-import-styles',
+        renderChunk(code) {
+            const componentImportRegex = /import\s*{([^}]+)}\s*from\s*['"]@air-ui\/air-element['"];?/g;
+            const componentNameRegex = /\s*Air(\w+)\s*/g;
+
+            return code.replace(componentImportRegex, (match, importContent) => {
+                const styleImports = importContent
+                    .split(',')
+                    .map((component) => component.trim().replace(componentNameRegex, (_, name) => name.toLowerCase()))
+                    .filter(Boolean)
+                    .map((componentName) => `import "@air-ui/air-element/es/components/${componentName}/style/css";`)
+                    .join('\n');
+                return `${match}\n${styleImports}`;
+            });
+        }
+    };
 }
 
 addFile();
