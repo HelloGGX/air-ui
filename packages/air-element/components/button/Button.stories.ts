@@ -1,11 +1,15 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn } from '@storybook/vue3';
+import { userEvent, within, expect } from '@storybook/test';
 import AirButton from './Button.vue';
 import type { ButtonProps } from './Button';
 
 const meta: Meta<typeof AirButton> = {
-    title: 'Component/Button',
+    title: 'air-element组件库/Button',
     component: AirButton,
+    parameters: {
+        layout: 'centered'
+    },
     tags: ['autodocs'],
     argTypes: {
         size: {

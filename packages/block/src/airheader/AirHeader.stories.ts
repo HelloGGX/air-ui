@@ -2,9 +2,10 @@ import type { Meta, StoryFn } from '@storybook/vue3';
 import AirHeader from './AirHeader.vue';
 
 const meta: Meta<typeof AirHeader> = {
-    title: 'BLOCK/Header',
+    title: '物料库/Header',
     tags: ['autodocs'],
     component: AirHeader,
+
     argTypes: {
         title: {
             control: { type: 'text' },
