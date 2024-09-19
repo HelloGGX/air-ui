@@ -38,7 +38,7 @@
         "node": ">=20.0.0"
     },
     "exports": {
-        "./airheader": "./src/airheader/AirHeader.vue",
+        "./airseat": "./src/airseat/AirSeat.vue",
         "./*": "./*"
     }
 }
