@@ -2,7 +2,7 @@
  * @module AirCard
  */
 
-import type { DefineComponent, EmitFn, GlobalComponentConstructor } from '../../core';
+import type { DefineComponent, EmitFn, GlobalComponentConstructor } from '../index';
 // import { VNode } from 'vue';
 
 /**
@@ -36,14 +36,6 @@ export interface AirCardProps {
    */
   height?: string | undefined;
   /**
-   * 卡片背景颜色
-   */
-  backgroundColor?: string | undefined;
-  /**
-   * 卡片文字颜色
-   */
-  textColor?: string | undefined;
-  /**
    * 座位号加粗
    */
   seatTextBold?: string| undefined;
@@ -62,6 +54,10 @@ export interface AirCardEmitsOptions {
    * 点击关闭时触发
    */
   close: () => void;
+  /**
+   * 点击卡片时触发
+   */
+  select: () => void;
 }
 
 export declare type AirCardEmits = EmitFn<AirCardEmitsOptions>;

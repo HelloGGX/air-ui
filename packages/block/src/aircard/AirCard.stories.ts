@@ -28,7 +28,7 @@ const meta: Meta<typeof AirCard> = {
       description: "座位号",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: "default" }
+        defaultValue: { summary: "请选座" }
       }
     },
     showClose: {
@@ -36,14 +36,7 @@ const meta: Meta<typeof AirCard> = {
       description: "是否显示关闭图标",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: "false" }
-      }
-    },
-    onClose: {
-      action: 'clicked', // 记录事件
-      description: '关闭的点击事件',
-      table: {
-        type: { summary: 'function' }
+        defaultValue: { summary: "true" }
       }
     }
   },
@@ -51,8 +44,9 @@ const meta: Meta<typeof AirCard> = {
     num: 0,
     name: "default",
     seatNum: "default",
-    showClose: false,
-    onClose: action("clicked")
+    showClose: true,
+    // onClose: action("clicked"),
+    // onSelect: action("clicked")
   }
 };
 
