@@ -1,10 +1,10 @@
 <template>
-  <div v-show="isVisible" :class="[
+  <div data-testid="card-box" v-show="isVisible" :class="[
     'rounded-lg p-3 flex justify-between items-center transition-colors duration-300 ease-in-out',
-    isSelected ? 'bg-primary-500 text-white' : 'bg-white border border-gray-300 '
+    isSelected ? 'bg-primary-500 text-white-800' : 'bg-white border border-gray-300 '
   ]" :style="{ width, height }" @click="selectPsg">
     <div class="flex flex-col">
-      <div :class="[ isSelected ? 'text-white' : 'text-gray-600']">
+      <div :class="[ isSelected ? 'text-white-800' : 'text-gray-600']">
         {{ num }}.{{ name }}
       </div>
       <div :class="['text-xl font-bold', isSelected ? 'text-white-400' : 'text-gray-400']">
@@ -12,7 +12,7 @@
       </div>
     </div>
     <button v-show="showClose" @click.stop="handleClose"
-      :class="['focus:outline-none flex-shrink-0', isSelected ? 'text-primary-500' : 'text-white hover:text-gray-200']"
+      :class="['focus:outline-none flex-shrink-0', isSelected ? 'text-primary-500' : 'text-white-800 hover:text-gray-200']"
       aria-label="Toggle selection">
       <svg v-if="!isSelected" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
