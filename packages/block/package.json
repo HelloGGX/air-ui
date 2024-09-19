@@ -40,6 +40,7 @@
     "exports": {
         "./aircard": "./src/aircard/AirCard.vue",
         "./airseat": "./src/airseat/AirSeat.vue",
+        "./airstep": "./src/airstep/AirStep.vue",
         "./*": "./*"
     }
 }
