@@ -1,7 +1,6 @@
 <template>
-  <div id="airseat">
-    <!-- AirSeat 组件内容 -->
-    AirSeat组件
+  <div id="airseat" @click="handleClick">
+{{ props.title }}
   </div>
 </template>
 
@@ -9,5 +8,24 @@
 import { ref } from 'vue';
 import '../theme/index.scss';
 
-// 添加逻辑
+defineOptions({ name: 'AirSeat' });
+const airseatRef = ref<HTMLElement>();
+
+const props = defineProps({
+  title: {
+    type: String,
+    default: ''
+  }
+});
+const emit = defineEmits({
+  click: (evt: MouseEvent) => evt instanceof MouseEvent
+});
+
+// 处理点击事件
+const handleClick = (event: MouseEvent) => {
+  emit('click', event);
+};
+
+defineExpose({ airseatRef });
+
 </script>
