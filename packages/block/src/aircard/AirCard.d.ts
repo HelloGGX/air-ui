@@ -36,10 +36,6 @@ export interface AirCardProps {
    */
   height?: string | undefined;
   /**
-   * 座位号加粗
-   */
-  seatTextBold?: string| undefined;
-  /**
    * 是否显示关闭图标
    * @defaultValue false
    */
