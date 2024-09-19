@@ -8,7 +8,7 @@ const meta: Meta<typeof AirCard> = {
   tags: ['autodocs'],
   parameters: {
     layout: 'centered'
-},
+  },
   component: AirCard,
   argTypes: {
     num: {
@@ -50,8 +50,7 @@ const meta: Meta<typeof AirCard> = {
     seatNum: "请选座",
     showClose: true,
     // onClose: action("clicked"),
-    onClose: fn(),
-    onSelect: action("clicked")
+    // onSelect: action("clicked")
   }
 };
 
@@ -68,7 +67,7 @@ export const Default = Template.bind({});
 export default meta;
 
 type Story = StoryObj<typeof AirCard>;
- 
+
 export const EmptyForm: Story = {
   render: () => ({
     components: { AirCard },
@@ -82,16 +81,14 @@ export const FilledForm: Story = {
   }),
   play: async ({ args, canvasElement, step }) => {
     const canvas = within(canvasElement);
- 
-    // See https://storybook.js.org/docs/essentials/actions#automatically-matching-args to learn how to setup logging in the Actions panel
-    await step('点击切换效果', async () => {
-      await userEvent.click(canvas.getByTestId('card-box'));
+    const cardBox = canvas.getByTestId('card-box')
+    await step('点击切换效果，校验切换效果', async () => {
+      await userEvent.click(cardBox);
+      await expect(cardBox).toHaveClass("bg-primary-500")
     });
-    await step('点击关闭', async()=>{
+    await step('点击关闭,，校验卡片是否隐藏', async () => {
       await userEvent.click(canvas.getByRole('button'));
-
+      await expect(cardBox).not.toBeVisible();
     })
-    await waitFor(() => expect(args.onClose).toHaveBeenCalled());
-
   },
 };

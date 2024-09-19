@@ -40,11 +40,11 @@ const props = defineProps({
   },
   name: {
     type: String,
-    default: undefined
+    default: 'placeholder'
   },
   seatNum: {
     type: String,
-    default: undefined
+    default: "defalute"
   },
   height: {
     type: String,

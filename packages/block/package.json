@@ -39,7 +39,6 @@
     },
     "exports": {
         "./aircard": "./src/aircard/AirCard.vue",
-        "./airheader": "./src/airheader/AirHeader.vue",
         "./airseat": "./src/airseat/AirSeat.vue",
         "./*": "./*"
     }
