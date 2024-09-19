@@ -111,7 +111,8 @@ const meta: Meta<typeof ${componentName}> = {
         }
     },
     args: {
-        title: '标题'
+        title: '标题',
+        click: action('clicked'),
     }
     
 };
