@@ -38,6 +38,7 @@
         "node": ">=20.0.0"
     },
     "exports": {
+        "./airdemo": "./src/airdemo/AirDemo.vue",
         "./airseat": "./src/airseat/AirSeat.vue",
         "./*": "./*"
     }
