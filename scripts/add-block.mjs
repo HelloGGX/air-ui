@@ -103,8 +103,7 @@ const meta: Meta<typeof ${componentName}> = {
         }
     },
     args: {
-        title: '标题',
-        click: action('clicked'),
+        title: '标题'
     }
     
 };
