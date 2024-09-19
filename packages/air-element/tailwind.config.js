@@ -5,6 +5,16 @@ export default {
     theme: {
         extend: {
             colors: {
+                white: {
+                    800: 'var(--color-white-800)',
+                    700: 'var(--color-white-700)',
+                    600: 'var(--color-white-600)',
+                    500: 'var(--color-white-500)',
+                    400: 'var(--color-white-400)',
+                    300: 'var(--color-white-300)',
+                    200: 'var(--color-white-200)',
+                    100: 'var(--color-white-100)'
+                },
                 gray: {
                     800: 'var(--color-gray-800)',
                     700: 'var(--color-gray-700)',

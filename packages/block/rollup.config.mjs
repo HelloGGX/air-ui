@@ -67,7 +67,16 @@ const POSTCSS_PLUGIN_OPTIONS = {
     extract: 'styles.css',
     modules: false,
     minimize: true,
-    sourceMap: false
+    sourceMap: false,
+    // 添加以下 preprocessor 选项
+    use: [
+        [
+            'sass',
+            {
+                includePaths: ['node_modules']
+            }
+        ]
+    ]
 };
 
 const TERSER_PLUGIN_OPTIONS = {
