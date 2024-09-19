@@ -1,0 +1,8 @@
+{
+    "main": "./AirSeat.vue",
+    "types": "./AirSeat.d.ts",
+    "module": "./AirSeat.vue",
+    "sideEffects": [
+        "*.vue"
+    ]
+}
