@@ -86,7 +86,6 @@ declare module 'vue' {
 export default ${componentName};
 `,
     stories: `import type { Meta, StoryFn } from '@storybook/vue3';
-import { action } from '@storybook/addon-actions';
 import ${componentName} from './${componentName}.vue';
 
 const meta: Meta<typeof ${componentName}> = {
@@ -100,13 +99,6 @@ const meta: Meta<typeof ${componentName}> = {
             table: {
                 type: { summary: 'string' },
                 defaultValue: { summary: '' }
-            }
-        },
-        click: {
-            action: 'clicked',
-            description: '点击事件',
-            table: {
-                type: { summary: 'function' }
             }
         }
     },
