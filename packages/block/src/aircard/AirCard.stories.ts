@@ -3,8 +3,11 @@ import AirCard from './AirCard.vue';
 import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof AirCard> = {
-  title: "BLOCK/Card",
+  title: "物料库/Card",
   tags: ['autodocs'],
+  parameters: {
+    layout: 'centered'
+},
   component: AirCard,
   argTypes: {
     num: {
@@ -12,7 +15,7 @@ const meta: Meta<typeof AirCard> = {
       description: '旅客序号',
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: 'default' }
+        defaultValue: { summary: '0' }
       }
     },
     name: {
@@ -20,7 +23,7 @@ const meta: Meta<typeof AirCard> = {
       description: "旅客姓名",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: 'default' }
+        defaultValue: { summary: 'placeholder' }
       }
     },
     seatNum: {
@@ -41,9 +44,9 @@ const meta: Meta<typeof AirCard> = {
     }
   },
   args: {
-    num: 0,
-    name: "default",
-    seatNum: "default",
+    num: 1,
+    name: "placeholder",
+    seatNum: "请选座",
     showClose: true,
     // onClose: action("clicked"),
     // onSelect: action("clicked")
