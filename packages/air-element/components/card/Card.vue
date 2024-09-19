@@ -33,11 +33,11 @@ const buttonClasses = computed(() => {
     const baseClasses = 'card-primary px-4 py-2 rounded transition-colors duration-300';
     const typeClasses = {
         default: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
-        primary: 'bg-blue-500 text-white hover:bg-blue-700',
-        success: 'bg-green-500 text-white hover:bg-green-700',
-        warning: 'bg-yellow-500 text-white hover:bg-yellow-700',
-        info: 'bg-teal-500 text-white hover:bg-teal-700',
-        danger: 'bg-red-500 text-white hover:bg-red-700'
+        primary: 'bg-blue-500 text-white-800 hover:bg-blue-700',
+        success: 'bg-green-500 text-white-800 hover:bg-green-700',
+        warning: 'bg-yellow-500 text-white-800 hover:bg-yellow-700',
+        info: 'bg-teal-500 text-white-800 hover:bg-teal-700',
+        danger: 'bg-red-500 text-white-800 hover:bg-red-700'
     };
     const sizeClasses = {
         small: 'text-sm',
