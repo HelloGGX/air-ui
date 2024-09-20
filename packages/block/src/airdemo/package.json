@@ -1,0 +1,6 @@
+{
+    "main": "./AirDemo.vue",
+    "types": "./AirDemo.d.ts",
+    "module": "./AirDemo.vue",
+    "sideEffects": ["*.vue"]
+}

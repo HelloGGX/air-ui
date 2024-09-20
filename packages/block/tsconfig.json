@@ -10,6 +10,6 @@
             "block/*": ["./src/*"]
         }
     },
-    "include": ["**/*.ts", "src/*"],
+    "include": ["**/*.ts", "src/*", "**/*.vue"],
     "exclude": ["node_modules", "dist"]
 }

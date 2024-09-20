@@ -32,6 +32,7 @@ const ALIAS_ENTRIES = [
         customResolver(source, importer) {
             const basedir = path.dirname(importer);
             const folderPath = path.resolve(basedir, source);
+
             const folderName = path.basename(folderPath);
 
             const fName = folderName;
@@ -41,7 +42,6 @@ const ALIAS_ENTRIES = [
 
                 return ['.vue', '.js'].includes(ext) && path.basename(file, ext).toLowerCase() === fName.toLowerCase();
             });
-
             return targetFile ? path.join(folderPath, targetFile) : null;
         }
     }
@@ -129,7 +129,7 @@ const ENTRY = {
             ENTRY.entries.push({
                 onwarn: ENTRY.onwarn,
                 input,
-                plugins: [...PLUGINS, minify && terser(TERSER_PLUGIN_OPTIONS)],
+                plugins: [alias(ALIAS_PLUGIN_OPTIONS), resolve(), ...PLUGINS, minify && terser(TERSER_PLUGIN_OPTIONS)],
                 external: EXTERNALS,
                 inlineDynamicImports: true,
                 output: [
