@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { userEvent, within, expect, waitFor, fn } from '@storybook/test';
 
 const meta: Meta<typeof AirCard> = {
-  title: "物料库/Card",
+  title: "物料库/AirCard",
   tags: ['autodocs'],
   parameters: {
     layout: 'centered'
