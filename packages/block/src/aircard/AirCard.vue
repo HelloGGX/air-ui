@@ -1,10 +1,10 @@
 <template>
   <div data-testid="card-box" v-show="isVisible" :class="[
-    'rounded-lg p-3 flex justify-between items-center transition-colors duration-300 ease-in-out',
+    'rounded-lg p-3 flex justify-between items-start transition-colors duration-300 ease-in-out w-48 ',
     isSelected ? 'bg-primary-500 text-white-800' : 'bg-white border border-gray-300 '
-  ]" :style="{ width, height }" @click="selectPsg">
-    <div class="flex flex-col">
-      <div :class="[ isSelected ? 'text-white-800' : 'text-gray-600']">
+  ]" @click="selectPsg">
+    <div class="flex flex-col flex-1 w-5/6 ">
+      <div class="w-5/6 overflow-hidden text-ellipsis" :class="[ isSelected ? 'text-white-800' : 'text-gray-600']" :title="name">
         {{ num }}.{{ name }}
       </div>
       <div :class="['text-xl font-bold', isSelected ? 'text-white-400' : 'text-gray-400']">
@@ -32,6 +32,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import '../theme/index.scss';
+import { title } from 'process';
 
 const props = defineProps({
   num: {
