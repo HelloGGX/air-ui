@@ -21,19 +21,19 @@ export interface AirflightinfoProps {
     /**
      * 日期
      */
-    flightDate?: string | undefined;
+    date?: string | undefined;
     /**
      * 航班标签
      */
-    flightTag?: string | undefined;
+    tag?: string | undefined;
     /**
      * 起飞航站
      */
-    depFlight?: string | undefined;
+    depart?: string | undefined;
     /**
      * 降落航站
      */
-    arrFlight?: string | undefined;
+    arrive?: string | undefined;
 
 }
 export interface AirflightinfoSlots { default(): VNode[]; }

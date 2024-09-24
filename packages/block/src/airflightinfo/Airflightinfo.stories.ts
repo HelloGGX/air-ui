@@ -22,7 +22,7 @@ const meta: Meta<typeof Airflightinfo> = {
                 defaultValue: { summary: '' }
             }
         },
-        flightDate: {
+        date: {
             control: { type: "text"},
             description: '日期',
             table: {
@@ -30,7 +30,7 @@ const meta: Meta<typeof Airflightinfo> = {
                 defaultValue: { summary: '' }
             }
         },
-        flightTag: {
+        tag: {
             control: { type: "text"},
             description: '航班标签',
             table: {
@@ -38,17 +38,17 @@ const meta: Meta<typeof Airflightinfo> = {
                 defaultValue: { summary: '' }
             }
         },
-        depFlight: {
+        depart: {
             control: { type: "text"},
-            description: '起飞航站',
+            description: '离港航站',
             table: {
                 type: { summary: 'string' },
                 defaultValue: { summary: '' }
             }
         },
-        arrFlight: {
+        arrive: {
             control: { type: "text"},
-            description: '降落航站',
+            description: '进港航站',
             table: {
                 type: { summary: 'string' },
                 defaultValue: { summary: '' }
@@ -58,10 +58,10 @@ const meta: Meta<typeof Airflightinfo> = {
     args: {
         flightNum: 'MU12345',
         carriageFlightNum: 'CA23456',
-        flightDate: '2024-01-01',
-        flightTag: '备份航班',
-        depFlight: '北京首都',
-        arrFlight: '上海虹桥',
+        date: '2024-01-01',
+        tag: '备份航班',
+        depart: '北京首都',
+        arrive: '上海虹桥',
     }
     
 };
