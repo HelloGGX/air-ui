@@ -4,11 +4,13 @@
     isSelected ? 'bg-primary-500 text-white-800' : 'bg-white border border-gray-300 '
   ]" @click="selectPsg">
     <div class="flex flex-col flex-1 w-5/6 ">
-      <div class="w-5/6 overflow-hidden text-ellipsis" :class="[ isSelected ? 'text-white-800' : 'text-gray-600']" :title="name">
+      <div class="w-5/6 overflow-hidden text-ellipsis whitespace-nowrap" :class="[isSelected ? 'text-white-800' : 'text-gray-600']"
+        :title="name">
         {{ num }}.{{ name }}
       </div>
-      <div :class="['text-xl font-bold', isSelected ? 'text-white-400' : 'text-gray-400']">
-        {{ seatNum }}
+      <div
+        :class="['text-xl font-bold', isSelected ? seatNum ? 'text-white-800' : 'text-white-400' : seatNum ? 'text-gray-600' : 'text-gray-400']">
+        {{ seatNum ? seatNum : "请选择" }}
       </div>
     </div>
     <button v-show="showClose" @click.stop="handleClose"
@@ -41,11 +43,11 @@ const props = defineProps({
   },
   name: {
     type: String,
-    default: 'placeholder'
+    default: ''
   },
   seatNum: {
     type: String,
-    default: "defalute"
+    default: ""
   },
   height: {
     type: String,

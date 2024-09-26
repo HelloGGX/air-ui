@@ -32,7 +32,7 @@ const meta: Meta<typeof AirCard> = {
       description: "座位号",
       table: {
         type: { summary: "string" },
-        defaultValue: { summary: "请选座" }
+        defaultValue: { summary: "" }
       }
     },
     showClose: {
@@ -47,7 +47,7 @@ const meta: Meta<typeof AirCard> = {
   args: {
     num: 1,
     name: "placeholder",
-    seatNum: "请选座",
+    seatNum: "",
     showClose: true,
     // onClose: action("clicked"),
     // onSelect: action("clicked")

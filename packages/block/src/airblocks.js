@@ -14,3 +14,7 @@ export { default as AirDemo } from './airdemo/AirDemo.vue';
 //airflightinfo ------------------------------
 export * from './airflightinfo/Airflightinfo.vue';
 export { default as Airflightinfo } from './airflightinfo/Airflightinfo.vue';
+
+//airstep ------------------------------
+export * from './airstep/Airstep.vue';
+export { default as Airstep } from './airstep/Airstep.vue';
