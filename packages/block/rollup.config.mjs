@@ -7,6 +7,7 @@ import vue from 'rollup-plugin-vue';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 import postcssImport from 'postcss-import';
+import { createFilter } from 'rollup-pluginutils';
 
 import fs from 'fs-extra';
 import path, { dirname } from 'path';
@@ -90,7 +91,13 @@ const TERSER_PLUGIN_OPTIONS = {
     }
 };
 
-const PLUGINS = [vue(), postcss(POSTCSS_PLUGIN_OPTIONS), autoImportStyles(), babel(BABEL_PLUGIN_OPTIONS)];
+const PLUGINS = [
+    vue(),
+    autoImportBlockTheme(),
+    postcss(POSTCSS_PLUGIN_OPTIONS),
+    autoImportAirElementStyles(),
+    babel(BABEL_PLUGIN_OPTIONS)
+];
 
 const ENTRY = {
     entries: [],
@@ -216,9 +223,28 @@ function addLibrary() {
         minify: false
     });
 }
-function autoImportStyles() {
+
+// 打包时会使用自定义插件auto-import-block-theme自动引入到每个vue物料，方便后面postcss生成对应样式
+function autoImportBlockTheme() {
+    const filter = createFilter(['**/*.vue']);
     return {
-        name: 'auto-import-styles',
+        name: 'auto-import-block-theme',
+        transform(code, id) {
+            if (filter(id)) {
+                // 在每个 Vue 文件的开头插入样式导入
+                return {
+                    code: `import '../theme/index.scss';\n${code}`,
+                    map: null
+                };
+            }
+            return null;
+        }
+    };
+}
+// 如果有air-element使用，在打包后自动引入其样式
+function autoImportAirElementStyles() {
+    return {
+        name: 'auto-import-air-element-styles',
         renderChunk(code) {
             const componentImportRegex = /import\s*{([^}]+)}\s*from\s*['"]@air-ui\/air-element['"];?/g;
             const componentNameRegex = /\s*Air(\w+)\s*/g;

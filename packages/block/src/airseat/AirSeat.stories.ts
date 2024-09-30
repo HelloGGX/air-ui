@@ -6,26 +6,36 @@ const meta: Meta<typeof AirSeat> = {
     component: AirSeat,
     tags: ['autodocs'],
     argTypes: {
-        title: {
-            control: { type: 'text' },
-            description: '标题',
+        status: {
+            control: { type: 'select' },
+            options: ['available', 'selected', 'unavailable', 'emergency-left', 'emergency-right'],
+            description: '座位状态 (available | selected | unavailable | emergency-left | emergency-right)',
             table: {
                 type: { summary: 'string' },
-                defaultValue: { summary: '' }
+                defaultValue: { summary: 'available' }
+            }
+        },
+        seatNumber: {
+            control: {
+                type: 'number'
             }
         }
     },
     args: {
-        title: '标题'
+        status: 'available',
+        seatNumber: 1
     }
 };
 
 const Template: StoryFn = (args) => ({
     components: { AirSeat },
     setup() {
-        return { args };
+        const handleClick = (evt: { status: typeof args.status; seatNumber: number }) => {
+            console.log(evt);
+        };
+        return { args, handleClick };
     },
-    template: '<AirSeat v-bind="args">{{ args.default }}</AirSeat>'
+    template: '<AirSeat v-bind="args" @click="handleClick">{{ args.seatNumber }}</AirSeat>'
 });
 
 export const Default = Template.bind({});

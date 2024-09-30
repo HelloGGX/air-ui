@@ -39,8 +39,12 @@
     },
     "exports": {
         "./aircard": "./src/aircard/AirCard.vue",
-        "./airdemo": "./src/airdemo/AirDemo.vue",
+        "./airflightinfo": "./src/airflightinfo/Airflightinfo.vue",
+        "./airlayout": "./src/airlayout/Airlayout.vue",
         "./airseat": "./src/airseat/AirSeat.vue",
         "./*": "./*"
+    },
+    "dependencies": {
+        "@element-plus/icons-vue": "^2.3.1"
     }
 }

@@ -2,6 +2,7 @@ import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn } from '@storybook/vue3';
 import AirButton from './Button.vue';
 import type { ButtonProps } from './Button';
+import { User } from '@element-plus/icons-vue';
 
 const meta: Meta<typeof AirButton> = {
     title: 'air-element组件库/Button',
@@ -37,6 +38,14 @@ const meta: Meta<typeof AirButton> = {
                 defaultValue: { summary: 'false' }
             }
         },
+        plain: {
+            control: 'boolean',
+            description: '是否为朴素按钮',
+            table: {
+                type: { summary: 'boolean' },
+                defaultValue: { summary: 'false' }
+            }
+        },
         round: {
             control: 'boolean',
             description: '按钮是否为圆角',
@@ -61,6 +70,22 @@ const meta: Meta<typeof AirButton> = {
                 defaultValue: { summary: 'Loading' }
             }
         },
+        leftIcon: {
+            control: 'text',
+            description: '自定义左侧图标',
+            table: {
+                type: { summary: 'string | Component' },
+                defaultValue: { summary: '' }
+            }
+        },
+        rightIcon: {
+            control: 'text',
+            description: '自定义右侧图标',
+            table: {
+                type: { summary: 'string | Component' },
+                defaultValue: { summary: '' }
+            }
+        },
         color: {
             control: 'color',
             description: '按钮的自定义颜色',
@@ -82,6 +107,7 @@ const meta: Meta<typeof AirButton> = {
         size: 'default',
         type: 'default',
         disabled: false,
+        plain: false,
         round: true,
         loading: false,
         color: '',
@@ -141,4 +167,20 @@ Loading.args = {
     size: 'default',
     loading: true,
     default: 'Loading Button'
+};
+
+export const WithLeftIcon = Template.bind({});
+WithLeftIcon.args = {
+    type: 'default',
+    size: 'default',
+    leftIcon: User, // 替换为实际的左侧图标组件
+    default: 'Button with Left Icon'
+};
+
+export const WithRightIcon = Template.bind({});
+WithRightIcon.args = {
+    type: 'default',
+    size: 'default',
+    rightIcon: User, // 替换为实际的右侧图标组件
+    default: 'Button with Right Icon'
 };
