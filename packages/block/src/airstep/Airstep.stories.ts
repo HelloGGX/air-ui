@@ -22,24 +22,42 @@ const meta: Meta<typeof Airstep> = {
                 defaultValue: { summary: 'false' }
             }
         },
+        isHorizontal: {
+            control: "boolean",
+            description: "是否水平展示",
+            table: {
+                type: { summary: "boolean" },
+                defaultValue: { summary: "true" },
+            }
+        },
+        icon: {
+            control: 'text',
+            description: '自定义 loading 图标',
+            table: {
+                type: { summary: 'string | Component' },
+                defaultValue: { summary: 'Check' }
+            }
+        },
         steps: {
             control: "object",
             description: '步骤',
             table: {
                 type: { summary: "array" }
             }
-        }
+        },
 
     },
     args: {
         active: 3,
         isCenter: false,
         steps: [
-            { label: '旅客提取',  },
-            { label: '行程选择',  },
-            { label: '座位选择',  },
-            { label: '信息完成', }
-        ]
+            { label: '旅客提取', description: '123' },
+            { label: '行程选择', description: '123' },
+            { label: '座位选择', description: '123' },
+            { label: '信息完成', description: '123' }
+        ],
+        isHorizontal: true,
+        icon: 'Check'
     }
 
 };
