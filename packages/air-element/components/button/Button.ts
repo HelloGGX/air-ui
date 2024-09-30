@@ -46,11 +46,32 @@ export const buttonProps = buildProps({
         default: () => Loading
     },
     /**
+     * @description 按钮左边的图标
+     */
+    leftIcon: {
+        type: iconPropType,
+        default: () => ''
+    },
+    /**
+     * @description 按钮右边的图标
+     */
+    rightIcon: {
+        type: iconPropType,
+        default: () => ''
+    },
+    /**
      * @description 自定义按钮颜色
      */
     color: {
         type: String,
         default: ''
+    },
+    /**
+     * @description 是否为朴素按钮
+     */
+    plain: {
+        type: Boolean,
+        default: false
     }
 } as const);
 

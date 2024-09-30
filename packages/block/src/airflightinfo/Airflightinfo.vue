@@ -2,13 +2,13 @@
   <div class="bg-white rounded-lg border border-gray-300 p-4 flex items-center justify-between max-w-4xl mx-auto">
     <div class="flex items-center ">
       <div>
-        <p class="font-normal text-gray-600">{{ flightNum }} | <span v-if="carriageFlightNum" class="text-gray-500">承运{{ carriageFlightNum
-            }}</span>
+        <p class="font-normal text-gray-600">{{ flightNum }} | <span v-if="carriageFlightNum" class="text-gray-500">承运{{
+          carriageFlightNum
+        }}</span>
           <span class=" px-4">{{ flightDate }}</span>
         </p>
       </div>
-      <div
-        v-if="flightTag"
+      <div v-if="flightTag"
         class="bg-orange-400 text-white-800 text-xs font-medium px-2.5 py-0.5 rounded flex items-center justify-between leading-6">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -28,13 +28,13 @@
       </svg>
       <div class="border-t border-dashed border-gray-300 w-1/3"></div>
       <span class="text-gray-600 text-nowrap font-bold text-xl">{{ arrFlight }}</span>
+
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import '../theme/index.scss';
 
 defineOptions({ name: 'Airflightinfo' });
 const airflightinfoRef = ref<HTMLElement>();

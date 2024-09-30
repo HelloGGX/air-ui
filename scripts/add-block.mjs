@@ -35,7 +35,6 @@ const templates = {
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import '../theme/index.scss';
 
 defineOptions({ name: '${componentName}' });
 const ${componentName.toLowerCase()}Ref = ref<HTMLElement>();

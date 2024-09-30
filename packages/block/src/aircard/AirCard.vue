@@ -4,7 +4,7 @@
     isSelected ? 'bg-primary-500 text-white-800' : 'bg-white border border-gray-300 '
   ]" :style="{ width, height }" @click="selectPsg">
     <div class="flex flex-col">
-      <div :class="[ isSelected ? 'text-white-800' : 'text-gray-600']">
+      <div :class="[isSelected ? 'text-white-800' : 'text-gray-600']">
         {{ num }}.{{ name }}
       </div>
       <div :class="['text-xl font-bold', isSelected ? 'text-white-400' : 'text-gray-400']">
@@ -31,7 +31,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import '../theme/index.scss';
 
 const props = defineProps({
   num: {
