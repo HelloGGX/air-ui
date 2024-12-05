@@ -51,10 +51,10 @@ const meta: Meta<typeof Airstep> = {
         active: 3,
         isCenter: false,
         steps: [
-            { label: '旅客提取', description: '123' },
-            { label: '行程选择', description: '123' },
-            { label: '座位选择', description: '123' },
-            { label: '信息完成', description: '123' }
+            { label: '旅客提取', description: '' },
+            { label: '行程选择', description: '' },
+            { label: '座位选择', description: '' },
+            { label: '信息完成', description: '' }
         ],
         isHorizontal: true,
         icon: 'Check'
