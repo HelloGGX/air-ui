@@ -1,7 +1,15 @@
 <template>
     <button
-        :class="['air-btn', buttonSizeClass, buttonTypeClass, { 'is-disabled': isDisabled, 'is-plain': isPlain, 'is-round': isRound }]"
-        @click="handleClick" :disabled="isDisabled" :style="buttonStyle">
+        :class="[
+            'air-btn',
+            buttonSizeClass,
+            buttonTypeClass,
+            { 'is-disabled': isDisabled, 'is-plain': isPlain, 'is-round': isRound }
+        ]"
+        @click="handleClick"
+        :disabled="isDisabled"
+        :style="buttonStyle"
+    >
         <!-- 左侧图标 -->
         <span v-if="props.leftIcon" class="air-btn__icon--left">
             <ElIcon class="air-btn__icon">
@@ -11,7 +19,7 @@
         <!-- Loading 图标显示在按钮的右侧 -->
         <span v-if="props.loading" class="air-btn__icon--left air-btn__icon--spin">
             <ElIcon class="air-btn__icon">
-                <component :is=" props.loadingIcon" />
+                <component :is="props.loadingIcon" />
             </ElIcon>
         </span>
         <slot />
@@ -29,7 +37,6 @@ import { ref, computed } from 'vue';
 import { buttonProps, buttonEmits } from './Button';
 import { ElIcon } from 'element-plus';
 import { useButtonCustomStyle } from './button-custom';
-
 
 defineOptions({ name: 'AirButton' });
 
@@ -51,7 +58,7 @@ const buttonTypes = {
     danger: 'air-btn--danger',
     warning: 'air-btn--warning',
     info: 'air-btn--info',
-    default: 'air-btn--default',
+    default: 'air-btn--default'
 };
 
 const buttonSizes = {

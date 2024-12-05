@@ -21,23 +21,24 @@ export interface AirflightinfoProps {
     /**
      * 日期
      */
-    date?: string | undefined;
+    flightDate?: string | undefined;
     /**
      * 航班标签
      */
-    tag?: string | undefined;
+    flightTag?: string | undefined;
     /**
      * 起飞航站
      */
-    depart?: string | undefined;
+    depFlight?: string | undefined;
     /**
      * 降落航站
      */
-    arrive?: string | undefined;
-
+    arrFlight?: string | undefined;
 }
-export interface AirflightinfoSlots { default(): VNode[]; }
-export interface AirflightinfoEmitsOptions { }
+export interface AirflightinfoSlots {
+    default(): VNode[];
+}
+export interface AirflightinfoEmitsOptions {}
 export declare type AirflightinfoEmits = EmitFn<AirflightinfoEmitsOptions>;
 
 declare const Airflightinfo: DefineComponent<AirflightinfoProps, AirflightinfoSlots, AirflightinfoEmits>;
@@ -47,6 +48,5 @@ declare module 'vue' {
         Airflightinfo: GlobalComponentConstructor<AirflightinfoProps, AirflightinfoSlots, AirflightinfoEmits>;
     }
 }
-
 
 export default Airflightinfo;

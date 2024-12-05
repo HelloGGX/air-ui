@@ -15,14 +15,14 @@ const meta: Meta<typeof Airflightinfo> = {
             }
         },
         carriageFlightNum: {
-            control: { type: "text"},
+            control: { type: 'text' },
             description: '承运航班',
             table: {
                 type: { summary: 'string' },
                 defaultValue: { summary: '' }
             }
         },
-        date: {
+        flightDate: {
             control: { type: "text"},
             description: '日期',
             table: {
@@ -30,7 +30,7 @@ const meta: Meta<typeof Airflightinfo> = {
                 defaultValue: { summary: '' }
             }
         },
-        tag: {
+        flightTag: {
             control: { type: "text"},
             description: '航班标签',
             table: {
@@ -38,7 +38,7 @@ const meta: Meta<typeof Airflightinfo> = {
                 defaultValue: { summary: '' }
             }
         },
-        depart: {
+        depFlight: {
             control: { type: "text"},
             description: '离港航站',
             table: {
@@ -46,29 +46,30 @@ const meta: Meta<typeof Airflightinfo> = {
                 defaultValue: { summary: '' }
             }
         },
-        arrive: {
-            control: { type: "text"},
-            description: '进港航站',
+        arrFlight: {
+            control: { type: 'text' },
+            description: '降落航站',
             table: {
                 type: { summary: 'string' },
                 defaultValue: { summary: '' }
             }
-        },
+        }
     },
     args: {
         flightNum: 'MU12345',
         carriageFlightNum: 'CA23456',
-        date: '2024-01-01',
-        tag: '备份航班',
-        depart: '北京首都',
-        arrive: '上海虹桥',
+        flightDate: '2024-01-01',
+        flightTag: '备份航班',
+        depFlight: '北京首都',
+        arrFlight: '上海虹桥',
     }
-    
 };
 
 const Template: StoryFn = (args) => ({
     components: { Airflightinfo },
-    setup() { return { args }; },
+    setup() {
+        return { args };
+    },
     template: '<Airflightinfo v-bind="args">{{ args.default }}</Airflightinfo>'
 });
 
