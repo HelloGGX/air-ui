@@ -1,2 +1,2 @@
 // 打包时会使用自定义插件auto-import-block-theme自动引入到每个vue，然后被postcss处理
-@use '@air-ui/air-element/theme/src/base.scss';
+@use '@air-ui/theme/src/index.scss';

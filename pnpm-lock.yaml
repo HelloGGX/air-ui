@@ -216,6 +216,12 @@ importers:
         specifier: ^3.4.6
         version: 3.4.16
 
+  packages/theme:
+    dependencies:
+      tailwindcss:
+        specifier: ^3.4.6
+        version: 3.4.16
+
 packages:
 
   '@adobe/css-tools@4.4.1':

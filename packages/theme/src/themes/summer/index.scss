@@ -1,0 +1,8 @@
+[data-theme='summer'] {
+  --air-color-primary-base: #4caf50;
+  --air-color-primary-light: #81c784;
+  --air-color-primary-dark: #388e3c;
+  .air-btn--primary {
+      @apply bg-[url('./btn-bg.png')]  ;
+  }
+}

@@ -1,4 +1,4 @@
 packages:
-  - 'packages/block'
-  - 'packages/air-element'
-  - 'packages/page/*'
+    - 'packages/block'
+    - 'packages/air-element'
+    - 'packages/theme'
