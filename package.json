@@ -58,7 +58,7 @@
         "typescript": "^5.5.4",
         "typescript-eslint": "^8.0.1",
         "unplugin-vue-macros": "^2.10.0",
-        "vite-plugin-dts": "^4.0.0"
+        "vite-plugin-dts": "^4.3.0"
     },
     "publishConfig": {
         "access": "public"

@@ -15,7 +15,7 @@ const meta: Meta<typeof Airflightinfo> = {
             }
         },
         carriageFlightNum: {
-            control: { type: "text"},
+            control: { type: 'text' },
             description: '承运航班',
             table: {
                 type: { summary: 'string' },
@@ -23,7 +23,7 @@ const meta: Meta<typeof Airflightinfo> = {
             }
         },
         flightDate: {
-            control: { type: "text"},
+            control: { type: 'text' },
             description: '日期',
             table: {
                 type: { summary: 'string' },
@@ -31,7 +31,7 @@ const meta: Meta<typeof Airflightinfo> = {
             }
         },
         flightTag: {
-            control: { type: "text"},
+            control: { type: 'text' },
             description: '航班标签',
             table: {
                 type: { summary: 'string' },
@@ -39,7 +39,7 @@ const meta: Meta<typeof Airflightinfo> = {
             }
         },
         depFlight: {
-            control: { type: "text"},
+            control: { type: 'text' },
             description: '起飞航站',
             table: {
                 type: { summary: 'string' },
@@ -47,13 +47,13 @@ const meta: Meta<typeof Airflightinfo> = {
             }
         },
         arrFlight: {
-            control: { type: "text"},
+            control: { type: 'text' },
             description: '降落航站',
             table: {
                 type: { summary: 'string' },
                 defaultValue: { summary: '' }
             }
-        },
+        }
     },
     args: {
         flightNum: 'MU12345',
@@ -61,14 +61,15 @@ const meta: Meta<typeof Airflightinfo> = {
         flightDate: '2024-01-01',
         flightTag: '备份航班',
         depFlight: '北京首都',
-        arrFlight: '上海虹桥',
+        arrFlight: '上海虹桥'
     }
-    
 };
 
 const Template: StoryFn = (args) => ({
     components: { Airflightinfo },
-    setup() { return { args }; },
+    setup() {
+        return { args };
+    },
     template: '<Airflightinfo v-bind="args">{{ args.default }}</Airflightinfo>'
 });
 
