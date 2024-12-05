@@ -1,4 +1,6 @@
 // Mixins
+@use "sass:map";
+
 @mixin button-variant($type) {
     --air-btn-bg-color: var(--air-btn-bg-#{$type});
     --air-btn-text-color: var(--air-btn-text-light);
@@ -71,9 +73,9 @@ $btn-types: (primary, success, danger, warning, info);
 
 .air-btn {
     // 基础样式变量
-    --air-btn-font-size: #{map-get(map-get($btn-sizes, default), font-size)};
-    --air-btn-padding-x: #{map-get(map-get($btn-sizes, default), padding-x)};
-    --air-btn-padding-y: #{map-get(map-get($btn-sizes, default), padding-y)};
+    --air-btn-font-size: #{map.get(map.get($btn-sizes, default), font-size)};
+    --air-btn-padding-x: #{map.get(map.get($btn-sizes, default), padding-x)};
+    --air-btn-padding-y: #{map.get(map.get($btn-sizes, default), padding-y)};
     --air-btn-border-radius: 0.375rem;
     --air-btn-loading-left: 1.5rem;
 
@@ -128,7 +130,7 @@ $btn-types: (primary, success, danger, warning, info);
     @each $size, $values in $btn-sizes {
         @if $size != default {
             &--#{$size} {
-                --air-btn-font-size: #{map-get($values, font-size)};
+                --air-btn-font-size: #{map.get($values, font-size)};
             }
         }
     }
