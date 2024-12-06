@@ -2,3 +2,7 @@
 @use './spacing';
 @use './typography';
 @use './radius.scss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
