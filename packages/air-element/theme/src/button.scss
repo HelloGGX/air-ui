@@ -137,7 +137,7 @@ $btn-types: (primary, success, danger, warning, info);
 
     /* 圆角按钮 */
     &.is-round {
-        border-radius: var(--radius-full);
+        border-radius: var(--air-radius-full);
     }
 
     // 类型变体

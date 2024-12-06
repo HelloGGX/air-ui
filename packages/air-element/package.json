@@ -44,6 +44,7 @@
         "element-plus": "^2.7.8"
     },
     "devDependencies": {
+        "@air-ui/theme": "file:../theme/src",
         "@esbuild-kit/cjs-loader": "^2.4.4",
         "@types/color": "^3.0.6",
         "@types/fs-extra": "^11.0.4",

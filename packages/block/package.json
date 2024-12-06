@@ -30,6 +30,10 @@
         "rollup-plugin-vue": "^6.0.0",
         "tailwindcss": "^3.4.6"
     },
+    "dependencies": {
+        "@air-ui/theme": "file:../theme/src",
+        "@element-plus/icons-vue": "^2.3.1"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/HelloGGX/air-ui.git"
@@ -46,8 +50,5 @@
         "./airseat": "./src/airseat/AirSeat.vue",
         "./airstep": "./src/airstep/Airstep.vue",
         "./*": "./*"
-    },
-    "dependencies": {
-        "@element-plus/icons-vue": "^2.3.1"
     }
 }
