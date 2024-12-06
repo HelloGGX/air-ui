@@ -67,10 +67,9 @@
         "node": ">=20.0.0"
     },
     "workspaces": [
-        "packages/block/*",
+        "packages/block",
         "packages/air-element",
-        "packages/page/*",
-        "packages/scaffold/*"
+        "packages/theme"
     ],
     "dependencies": {
         "vue": "^3.2.31"
