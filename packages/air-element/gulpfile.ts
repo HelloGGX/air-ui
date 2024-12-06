@@ -65,7 +65,7 @@ function compressWithCssnano() {
 function buildThemeChalk() {
     const sass = gulpSass(dartSass);
     return src(path.resolve(__dirname, 'theme/src/*.scss'))
-        .pipe(sass.sync())
+        .pipe(sass.sync({ includePaths: [path.resolve(__dirname, 'node_modules')] })) // 添加 includePaths
         .pipe(gulpPostCss([tailwindcss('./tailwind.config.js')]))
         .pipe(autoprefixer({ cascade: false }))
         .pipe(compressWithCssnano())

@@ -1,5 +1,4 @@
 // 导入所有token
-@import './tokens';
-
+@use './tokens';
 // 导入主题变体
-@import './themes/default';
+@use './themes/default';
