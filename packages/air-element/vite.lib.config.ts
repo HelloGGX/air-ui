@@ -13,7 +13,7 @@ const { resolvePath } = require('../../scripts/build-helper.mjs');
 const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 const outDir = `${OUTPUT_DIR}lib`;
 // externals
-const GLOBAL_EXTERNALS = ['vue', /element-plus\/.*/, '@element-plus/icons-vue', 'element-plus'];
+const GLOBAL_EXTERNALS = ['vue', /element-plus\/.*/, '@element-plus/icons-vue', 'element-plus', '@air-ui/theme'];
 const SCSS_EXTERNALS = [/\.css$/, /\.scss$/];
 const EXTERNALS = [...GLOBAL_EXTERNALS, ...SCSS_EXTERNALS];
 

@@ -12,6 +12,16 @@ const outputpkg = path.resolve(__dirname, `../${OUTPUT_DIR}/package.json`);
 // package.json
 const pkgJson = JSON.parse(fs.readFileSync(outputpkg, { encoding: 'utf8', flag: 'r' }));
 
+// 读取 theme 包的 package.json 获取版本号
+const themePkgPath = path.resolve(__workspace, 'packages/theme/package.json');
+const themePkg = JSON.parse(fs.readFileSync(themePkgPath, { encoding: 'utf8', flag: 'r' }));
+const themeVersion = themePkg.version;
+
+// 更新 dependencies 中的 @air-ui/theme 版本
+if (pkgJson.peerDependencies && pkgJson.peerDependencies['@air-ui/theme']) {
+    pkgJson.peerDependencies['@air-ui/theme'] = `^${themeVersion}`;
+}
+
 pkgJson.main = 'lib/index.js';
 pkgJson.module = 'es/index.mjs';
 pkgJson.types = 'es/index.d.ts';
