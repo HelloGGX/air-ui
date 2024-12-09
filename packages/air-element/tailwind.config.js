@@ -60,15 +60,6 @@ export default {
                     100: 'var(--air-color-orange-100)'
                 }
             },
-            spacing: {
-                4: 'var(--air-spacing-4)',
-                8: 'var(--air-spacing-8)',
-                12: 'var(--air-spacing-12)',
-                16: 'var(--air-spacing-16)',
-                24: 'var(--air-spacing-24)',
-                40: 'var(--air-spacing-40)',
-                80: 'var(--air-spacing-80)'
-            },
             fontSize: {
                 56: 'var(--air-font-size-56)',
                 48: 'var(--air-font-size-48)',
@@ -90,6 +81,15 @@ export default {
                 md: 'var(--air-radius-base)', // 中等圆角 (保持与默认相同)
                 lg: 'var(--air-radius-lg)', // 大圆角
                 full: 'var(--air-radius-full)' // 完全圆角
+            },
+            space: {
+                4: 'var(--air-spacing-4)',
+                8: 'var(--air-spacing-8)',
+                12: 'var(--air-spacing-12)',
+                16: 'var(--air-spacing-16)',
+                24: 'var(--air-spacing-24)',
+                40: 'var(--air-spacing-40)',
+                80: 'var(--air-spacing-80)'
             }
         }
     }

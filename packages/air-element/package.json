@@ -36,16 +36,15 @@
         "theme/*"
     ],
     "peerDependencies": {
-        "vue": "^3.2.0"
+        "vue": "^3.2.0",
+        "@air-ui/theme": "file:../theme/src"
     },
     "dependencies": {
         "@element-plus/icons-vue": "^2.3.1",
         "color": "^4.2.3",
-        "element-plus": "^2.7.8",
-        "@air-ui/theme": "0.0.0"
+        "element-plus": "^2.7.8"
     },
     "devDependencies": {
-        "@air-ui/theme": "file:../theme/src",
         "@esbuild-kit/cjs-loader": "^2.4.4",
         "@types/color": "^3.0.6",
         "@types/fs-extra": "^11.0.4",

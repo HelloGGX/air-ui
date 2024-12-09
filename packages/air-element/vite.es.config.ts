@@ -13,7 +13,7 @@ const { resolvePath } = require('../../scripts/build-helper.mjs');
 const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 const outDir = `${OUTPUT_DIR}es`;
 // externals
-const GLOBAL_EXTERNALS = ['vue', /element-plus\/.*/, '@element-plus/icons-vue', 'element-plus'];
+const GLOBAL_EXTERNALS = ['vue', /element-plus\/.*/, '@element-plus/icons-vue', 'element-plus', '@air-ui/theme'];
 const SCSS_EXTERNALS = [/\.css$/, /\.scss$/];
 const EXTERNALS = [...GLOBAL_EXTERNALS, ...SCSS_EXTERNALS];
 
@@ -79,8 +79,16 @@ export default defineConfig({
         outDir,
         lib: LIB_OPTIONS,
         rollupOptions: ROLLUP_OPTIONS,
-        minify: false,
+        minify: 'esbuild',
         cssCodeSplit: true,
-        sourcemap: true
+        sourcemap: true,
+        commonjsOptions: {
+            include: [/node_modules/],
+            extensions: ['.js', '.cjs']
+        }
+    },
+    optimizeDeps: {
+        include: ['vue', 'element-plus'],
+        exclude: ['@air-ui/theme']
     }
 });
