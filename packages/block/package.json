@@ -14,8 +14,9 @@
     "keywords": [],
     "author": "玄子",
     "license": "MIT",
-    "description": "",
+    "description": "区块",
     "devDependencies": {
+        "@air-ui/theme": "file:../theme/src",
         "@air-ui/air-element": "file:../air-element/dist",
         "@babel/preset-env": "^7.25.4",
         "@babel/preset-typescript": "^7.24.7",
@@ -30,7 +31,6 @@
         "tailwindcss": "^3.4.6"
     },
     "dependencies": {
-        "@air-ui/theme": "file:../theme/src",
         "@element-plus/icons-vue": "^2.3.1"
     },
     "repository": {
