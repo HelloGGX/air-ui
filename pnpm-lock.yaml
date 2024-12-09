@@ -105,9 +105,6 @@ importers:
 
   packages/air-element:
     dependencies:
-      '@air-ui/theme':
-        specifier: file:../theme/src
-        version: src@file:packages/theme/src
       '@element-plus/icons-vue':
         specifier: ^2.3.1
         version: 2.3.1(vue@3.5.13(typescript@5.7.2))
@@ -121,6 +118,9 @@ importers:
         specifier: ^3.2.0
         version: 3.5.13(typescript@5.7.2)
     devDependencies:
+      '@air-ui/theme':
+        specifier: file:../theme/src
+        version: src@file:packages/theme/src
       '@esbuild-kit/cjs-loader':
         specifier: ^2.4.4
         version: 2.4.4

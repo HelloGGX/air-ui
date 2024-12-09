@@ -51,7 +51,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import '../theme/index.scss';
-import { title } from 'process';
 
 const props = defineProps({
     num: {
