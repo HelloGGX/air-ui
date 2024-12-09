@@ -88,7 +88,6 @@ export default defineConfig({
         }
     },
     optimizeDeps: {
-        include: ['vue', 'element-plus'],
-        exclude: ['@air-ui/theme']
+        include: ['element-plus']
     }
 });
