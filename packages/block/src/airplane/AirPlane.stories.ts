@@ -6,17 +6,29 @@ const meta: Meta<typeof AirPlane> = {
     component: AirPlane,
     tags: ['autodocs'],
     argTypes: {
-        title: {
-            control: { type: 'text' },
-            description: '标题',
+        airSeats: {
+            // control: { type: '' },
+            description: '座位图列表',
             table: {
-                type: { summary: 'string' },
-                defaultValue: { summary: '' }
+                type: { summary: '[{seatNumber: xx, status: xxxx(同airSeats状态)}]' },
+                // defaultValue: [{
+                //     id: 1,
+                //     status: 'selected'
+                // }]
             }
         }
     },
     args: {
-        title: '标题'
+        airSeats: [{
+            seatNumber: 1,
+            status: 'available'
+        }, {
+            seatNumber: 2,
+            status: 'selected'
+        }, {
+            seatNumber: 3,
+            status: 'unavailable'
+        }],
     }
     
 };

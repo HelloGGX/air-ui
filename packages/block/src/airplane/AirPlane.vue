@@ -25,20 +25,8 @@
       <!-- 座位分布 -->
       <div class="px-7 text-gray-500 mt-2 h-4/5 overflow-y-scroll">
         <div class="flex items-center justify-center">
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-        </div>
-        <div class="flex items-center justify-center">
-          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" v-for="(item, index) in airSeats" :key="item.seatNumber" v-bind="item"  @click="handleSeats"/>
+          <!-- <AirSeat class="px-2" status="selected" />
           <AirSeat class="px-2" status="selected" />
           <AirSeat class="px-2" status="selected" />
           <span class="px-2">31</span>
@@ -48,98 +36,7 @@
           <span class="px-2">31</span>
           <AirSeat class="px-2" status="selected" />
           <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-        </div>
-        <div class="flex items-center justify-center">
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-        </div>
-        <div class="flex items-center justify-center">
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-        </div>
-        <div class="flex items-center justify-center">
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-        </div>
-        <div class="flex items-center justify-center">
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-        </div>
-        <div class="flex items-center justify-center">
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-        </div>
-        <div class="flex items-center justify-center">
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-        </div>
-        <div class="flex items-center justify-center">
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <span class="px-2">31</span>
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" /> -->
         </div>
       </div>
     </div>
@@ -229,24 +126,35 @@
 import { ref } from 'vue';
 import AirSeat from 'block/airseat/AirSeat.vue';
 
+interface IAirSeats {
+  seatNumber: number,
+  status: 'available' | 'selected' | 'unavailable' | 'emergency-left' | 'emergency-right',
+}
+
 defineOptions({ name: 'AirPlane' });
 const airplaneRef = ref<HTMLElement>();
 
+const choosedSeats = ref([]); // 存取选中的座位
+
 const props = defineProps({
-  title: {
-    type: String,
-    default: ''
+  airSeats: {
+    type: Array<IAirSeats>,
+    default: () => []
   }
 });
-const emit = defineEmits({
-  click: (evt: MouseEvent) => evt instanceof MouseEvent
-});
+const emit = defineEmits<{
+    (e: 'chooseSeat'): void;
+}>();
 
+const handleSeats = (evt: any) => {
+  console.log(evt.status)
+  console.log(evt.seatNumber)
+} 
 // 处理点击事件
-const handleClick = (event: MouseEvent) => {
-  emit('click', event);
-};
+// const handleClick = (event: MouseEvent) => {
+//   emit('click', event);
+// };
 
-defineExpose({ airplaneRef });
+defineExpose({ airplaneRef, choosedSeats });
 
 </script>

@@ -23,7 +23,8 @@ const meta: Meta<typeof AirSeat> = {
     },
     args: {
         status: 'available',
-        seatNumber: 1
+        seatNumber: 1,
+        seatOwnerIndex: 1
     }
 };
 
@@ -35,7 +36,7 @@ const Template: StoryFn = (args) => ({
         };
         return { args, handleClick };
     },
-    template: '<AirSeat v-bind="args" @click="handleClick">{{ args.seatNumber }}</AirSeat>'
+    template: '<AirSeat v-bind="args" @click="handleClick">{{ args.seatOwnerIndex }}</AirSeat>'
 });
 
 export const Default = Template.bind({});
