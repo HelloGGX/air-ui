@@ -2,7 +2,7 @@
     "name": "@air-ui/theme",
     "version": "0.0.0",
     "private": true,
-    "main": "src/index.scss",
+    "main": "index.ts",
     "files": [
         "src"
     ],

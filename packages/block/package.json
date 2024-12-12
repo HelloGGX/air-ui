@@ -16,7 +16,7 @@
     "license": "MIT",
     "description": "区块",
     "devDependencies": {
-        "@air-ui/theme": "file:../theme/src",
+        "@air-ui/theme": "file:../theme",
         "@air-ui/air-element": "file:../air-element/dist",
         "@babel/preset-env": "^7.25.4",
         "@babel/preset-typescript": "^7.24.7",
