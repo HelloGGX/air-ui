@@ -273,6 +273,9 @@ const scrollBoxRef = ref();
 const scrollContainerRef = ref();
 const planeSeatRef = ref();
 let isTouchScrollBox = false;
+// 监听滚动条位置，控制右侧上下按钮样式
+const upActive = ref(false);
+const downActive = ref(true);
 
 const props = defineProps({
   airSeats: {
@@ -295,10 +298,6 @@ const handleSeats = (evt: any) => {
     choosedSeats.value.splice(index, 1);
   }
 } 
-// 处理点击事件
-// const handleClick = (event: MouseEvent) => {
-//   emit('click', event);
-// };
 
 // 右侧机身滑动框
 let startX: any, startY: any, touchStartY: any;
@@ -334,7 +333,6 @@ const updateSeatBoxH = (h: any) => {
 // 左侧滚动事件监听
 const handleSeatScroll = (e: any) => {
   const newTop = (planeSeatRef.value.scrollTop / planeSeatRef.value.offsetHeight) * (scrollPlaneRef.value.offsetHeight + scrollBoxRef.value.offsetHeight);
-  console.log(isTouchScrollBox)
   if(!isTouchScrollBox) {
     console.log('update---')
     scrollBoxRef.value.style.top = `${newTop}px`;
