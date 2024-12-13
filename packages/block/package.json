@@ -45,6 +45,7 @@
         "./airflightinfo": "./src/airflightinfo/Airflightinfo.vue",
         "./airheader": "./src/airheader/Airheader.vue",
         "./airlayout": "./src/airlayout/Airlayout.vue",
+        "./airplane": "./src/airplane/AirPlane.vue",
         "./airseat": "./src/airseat/AirSeat.vue",
         "./*": "./*"
     }
