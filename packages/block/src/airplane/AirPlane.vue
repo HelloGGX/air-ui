@@ -198,7 +198,7 @@
                 </div>
                 <div ref="scrollBoxContainer" class="top-7 relative">
                     <div
-                        class="absolute left-1 right-1 h-10 border-2 border-pink-500 rounded-sm scroll-smooth"
+                        class="absolute left-1 right-1 h-10 border-2 border-white-800 rounded-sm scroll-smooth"
                         ref="scrollBoxRef"
                     ></div>
                 </div>
