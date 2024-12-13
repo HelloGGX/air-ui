@@ -2,8 +2,8 @@
     <div class="air-seat flex flex-col items-center cursor-pointer" @click="handleClick">
         <svg
             v-if="status === 'available'"
-            width="40"
-            height="40"
+            width="100%"
+            height="auto"
             viewBox="0 0 40 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -16,8 +16,8 @@
         </svg>
         <svg
             v-else-if="status === 'selected'"
-            width="40"
-            height="40"
+            width="100%"
+            height="auto"
             viewBox="0 0 40 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +42,8 @@
         </svg>
         <svg
             v-else-if="status === 'unavailable'"
-            width="40"
-            height="40"
+            width="100%"
+            height="auto"
             viewBox="0 0 40 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -60,8 +60,8 @@
         </svg>
         <svg
             v-else-if="status === 'emergency-left'"
-            width="28"
-            height="40"
+            width="100%"
+            height="auto"
             viewBox="0 0 28 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -102,8 +102,8 @@
         </svg>
         <svg
             v-else-if="status === 'emergency-right'"
-            width="28"
-            height="40"
+            width="100%"
+            height="auto"
             viewBox="0 0 28 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

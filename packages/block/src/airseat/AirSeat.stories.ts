@@ -35,7 +35,7 @@ const Template: StoryFn = (args) => ({
         };
         return { args, handleClick };
     },
-    template: '<AirSeat v-bind="args" @click="handleClick">{{ args.seatNumber }}</AirSeat>'
+    template: '<div class="w-10"><AirSeat v-bind="args" @click="handleClick">{{ args.seatNumber }}</AirSeat></div>'
 });
 
 export const Default = Template.bind({});
