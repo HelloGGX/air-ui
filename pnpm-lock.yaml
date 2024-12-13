@@ -106,8 +106,8 @@ importers:
   packages/air-element:
     dependencies:
       '@air-ui/theme':
-        specifier: file:../theme/src
-        version: src@file:packages/theme/src
+        specifier: file:../theme
+        version: link:../theme
       '@element-plus/icons-vue':
         specifier: ^2.3.1
         version: 2.3.1(vue@3.5.13(typescript@5.7.2))
@@ -184,10 +184,17 @@ importers:
     devDependencies:
       '@air-ui/air-element':
         specifier: file:../air-element/dist
+<<<<<<< HEAD
         version: file:packages/air-element/dist(src@file:packages/theme/src)(vue@3.5.13(typescript@5.7.2))
       '@air-ui/theme':
         specifier: file:../theme/src
         version: src@file:packages/theme/src
+=======
+        version: file:packages/air-element/dist(@air-ui/theme@file:packages/theme(tailwindcss@3.4.16))(vue@3.5.13(typescript@5.7.2))
+      '@air-ui/theme':
+        specifier: file:../theme
+        version: link:../theme
+>>>>>>> main
       '@babel/preset-env':
         specifier: ^7.25.4
         version: 7.26.0(@babel/core@7.26.0)
@@ -239,6 +246,11 @@ packages:
     peerDependencies:
       '@air-ui/theme': ^0.0.0
       vue: ^3.2.0
+
+  '@air-ui/theme@file:packages/theme':
+    resolution: {directory: packages/theme, type: directory}
+    peerDependencies:
+      tailwindcss: ^3.4.6
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -4783,9 +4795,6 @@ packages:
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
 
-  src@file:packages/theme/src:
-    resolution: {directory: packages/theme/src, type: directory}
-
   stable@0.1.8:
     resolution: {integrity: sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==}
     deprecated: 'Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility'
@@ -5318,15 +5327,19 @@ snapshots:
 
   '@adobe/css-tools@4.4.1': {}
 
-  '@air-ui/air-element@file:packages/air-element/dist(src@file:packages/theme/src)(vue@3.5.13(typescript@5.7.2))':
+  '@air-ui/air-element@file:packages/air-element/dist(@air-ui/theme@file:packages/theme(tailwindcss@3.4.16))(vue@3.5.13(typescript@5.7.2))':
     dependencies:
-      '@air-ui/theme': src@file:packages/theme/src
+      '@air-ui/theme': file:packages/theme(tailwindcss@3.4.16)
       '@element-plus/icons-vue': 2.3.1(vue@3.5.13(typescript@5.7.2))
       color: 4.2.3
       element-plus: 2.9.0(vue@3.5.13(typescript@5.7.2))
       vue: 3.5.13(typescript@5.7.2)
     transitivePeerDependencies:
       - '@vue/composition-api'
+
+  '@air-ui/theme@file:packages/theme(tailwindcss@3.4.16)':
+    dependencies:
+      tailwindcss: 3.4.16
 
   '@alloc/quick-lru@5.2.0': {}
 
@@ -10157,8 +10170,6 @@ snapshots:
   sparkles@2.1.0: {}
 
   sprintf-js@1.0.3: {}
-
-  src@file:packages/theme/src: {}
 
   stable@0.1.8: {}
 

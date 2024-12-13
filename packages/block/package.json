@@ -8,7 +8,8 @@
         "build:postbuild": "node ./scripts/postbuild.mjs"
     },
     "peerDependencies": {
-        "@air-ui/air-element": "^0.0.0",
+        "@air-ui/theme": "file:../theme",
+        "@air-ui/air-element": "file:../air-element/dist",
         "vue": "^3.2.0"
     },
     "keywords": [],
@@ -16,8 +17,6 @@
     "license": "MIT",
     "description": "区块",
     "devDependencies": {
-        "@air-ui/theme": "file:../theme/src",
-        "@air-ui/air-element": "file:../air-element/dist",
         "@babel/preset-env": "^7.25.4",
         "@babel/preset-typescript": "^7.24.7",
         "@rollup/plugin-alias": "^5.1.0",

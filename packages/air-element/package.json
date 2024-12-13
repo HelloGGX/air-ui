@@ -37,7 +37,7 @@
     ],
     "peerDependencies": {
         "vue": "^3.2.0",
-        "@air-ui/theme": "file:../theme/src"
+        "@air-ui/theme": "file:../theme"
     },
     "dependencies": {
         "@element-plus/icons-vue": "^2.3.1",
