@@ -1,7 +1,8 @@
 <template>
     <div class="bg-white rounded-lg p-4 flex items-center justify-between max-w-4xl mx-auto h-96">
+        <!-- 左侧座位显示区 -->
         <div class="flex-1 h-full mr-3 rounded-sm border border-gray-300 p-1">
-            <!-- 顶部座位状态介绍 -->
+            <!-- 座位状态介绍 -->
             <div class="h-9 flex justify-center items-center py-1 text-sm text-gray-500">
                 <div
                     v-for="(statusInfo, idx) in seatStatusList"
@@ -13,9 +14,9 @@
                 </div>
             </div>
 
-            <!-- 座位选择列表 -->
+            <!-- 座位选择区域 -->
             <div class="px-7 text-gray-500 mt-2 h-4/5 overflow-y-scroll scroll-smooth" ref="planeSeatRef">
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center flex-wrap">
                     <AirSeat
                         v-for="(item, index) in airSeats"
                         :key="item.seatNumber"
@@ -36,15 +37,15 @@
                     upActive ? 'bg-primary-500' : 'bg-primary-200'
                 ]"
             >
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
                     <path d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414-4.95-4.95z" fill="white" />
                 </svg>
             </button>
 
-            <!-- 滑动机身显示区域 -->
+            <!-- 可拖动机身图标 -->
             <div class="rounded-lg bg-primary-100 my-4 w-20 h-48 relative" ref="scrollContainerRef">
                 <div class="absolute bottom-0" ref="scrollPlaneRef">
-                    <!-- 此处为飞机图标等元素 -->
+                    <!-- 这里是飞机示意图的SVG -->
                     <svg class="w-20 h-44" viewBox="0 0 80 172" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M65.8488 107.131H63.4834V109.809L64.74 111.854L65.8488 109.809V107.131Z"
@@ -196,9 +197,9 @@
                         </defs>
                     </svg>
                 </div>
-                <div ref="scrollBoxContainer" class="top-7 relative">
+                <div class="top-7 relative" ref="scrollBoxContainer">
                     <div
-                        class="absolute left-1 right-1 h-10 border-2 border-white-800 rounded-sm scroll-smooth"
+                        class="absolute left-1 right-1 h-10 border-2 border-pink-500 rounded-sm scroll-smooth"
                         ref="scrollBoxRef"
                     ></div>
                 </div>
@@ -211,7 +212,7 @@
                     downActive ? 'bg-primary-500' : 'bg-primary-200'
                 ]"
             >
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
                     <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16l-6.364-6.364 1.414-1.414 4.95 4.95z" fill="white" />
                 </svg>
             </button>
@@ -220,27 +221,38 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import AirSeat from '@air-ui/block/airseat';
 import type { AirSeatProps } from '@air-ui/block/airseat';
 
 defineOptions({ name: 'AirPlane' });
 
-const props = defineProps<{
-    airSeats: AirSeatProps[];
-}>();
+const props = defineProps<{ airSeats: AirSeatProps[] }>();
+
+// 模拟多个座位
+const airSeats = computed<AirSeatProps[]>(() => {
+    const seats: AirSeatProps[] = [];
+    for (let i = 0; i < 100; i++) {
+        const seatNumber = Math.floor(Math.random() * 5) + 1; // 随机座位号 1-5
+        const statusOptions = ['available', 'selected', 'unavailable'] as const;
+        const status = statusOptions[Math.floor(Math.random() * statusOptions.length)];
+        seats.push({ seatNumber, status, seatOwnerIndex: Math.floor(Math.random() * 2) });
+    }
+    return seats;
+});
 
 const emit = defineEmits(['chooseSeat']);
 
 const choosedSeats = ref<AirSeatProps[]>([]);
+const upActive = ref(false);
+const downActive = ref(true);
+let isTouchScrollBox = false;
+
+// DOM refs
+const planeSeatRef = ref<HTMLElement | null>(null);
 const scrollPlaneRef = ref<HTMLElement | null>(null);
 const scrollBoxRef = ref<HTMLElement | null>(null);
 const scrollContainerRef = ref<HTMLElement | null>(null);
-const planeSeatRef = ref<HTMLElement | null>(null);
-
-let isTouchScrollBox = false;
-const upActive = ref(false);
-const downActive = ref(true);
 
 const seatStatusList = [
     { status: 'unavailable', label: '不可选' },
@@ -258,19 +270,19 @@ function handleSeatClick(seat: AirSeatProps) {
     emit('chooseSeat');
 }
 
-// 触摸滚动相关变量
+// 触摸事件相关变量
 let startY = 0;
 let initialBoxTop = 0;
 
-// 计算可移动范围并同步到座位滚动条
+// 更新左侧座位滚动位置
 function updateSeatScroll(newTop: number) {
     if (!planeSeatRef.value || !scrollPlaneRef.value || !scrollBoxRef.value) return;
-    const ratio = newTop / scrollPlaneRef.value.offsetHeight;
+    const ratio = newTop / (scrollPlaneRef.value.offsetHeight || 1);
     const scrollTop = ratio * planeSeatRef.value.scrollHeight;
     planeSeatRef.value.scrollTo({ top: scrollTop, behavior: 'smooth' });
 }
 
-// 滚动框触摸事件
+// 右侧滚动条触摸事件
 function handleTouchStart(e: TouchEvent) {
     e.preventDefault();
     if (!scrollBoxRef.value) return;
@@ -284,13 +296,10 @@ function handleTouchMove(e: TouchEvent) {
     if (!scrollBoxRef.value || !scrollPlaneRef.value) return;
 
     const touchMoveY = e.touches[0].clientY - startY;
-    const newTop = initialBoxTop + touchMoveY;
-
     const maxTop = scrollPlaneRef.value.offsetHeight - scrollBoxRef.value.offsetHeight;
-    if (newTop >= 0 && newTop <= maxTop) {
-        scrollBoxRef.value.style.top = `${newTop}px`;
-        updateSeatScroll(newTop);
-    }
+    const newTop = Math.min(Math.max(initialBoxTop + touchMoveY, 0), maxTop);
+    scrollBoxRef.value.style.top = `${newTop}px`;
+    updateSeatScroll(newTop);
 }
 
 // 左侧座位滚动事件
@@ -303,7 +312,11 @@ function handleSeatScroll() {
     const newTop = ratio * maxTop;
     scrollBoxRef.value.style.top = `${newTop}px`;
 
-    // 更新上下按钮状态
+    updateButtonState(newTop);
+}
+
+function updateButtonState(newTop: number) {
+    if (!scrollPlaneRef.value || !scrollBoxRef.value) return;
     const scrollEndThreshold = 6;
     const bottomPos =
         scrollBoxRef.value.getBoundingClientRect().bottom - scrollPlaneRef.value.getBoundingClientRect().top;
@@ -312,24 +325,23 @@ function handleSeatScroll() {
     downActive.value = scrollPlaneRef.value.clientHeight - bottomPos > scrollEndThreshold;
 }
 
-// 初始化事件监听
 onMounted(() => {
-    const planeSeatEl = planeSeatRef.value;
-    const scrollPlaneEl = scrollPlaneRef.value;
     const containerEl = scrollContainerRef.value;
+    const planeEl = scrollPlaneRef.value;
+    const seatEl = planeSeatRef.value;
 
-    if (containerEl && scrollPlaneEl) {
-        // 动态设置可拖动块的父容器高度
-        const height = containerEl.offsetHeight - scrollPlaneEl.offsetTop;
-        scrollPlaneEl.style.height = `${height}px`;
+    if (containerEl && planeEl) {
+        // 动态设置机身图高度
+        const height = containerEl.offsetHeight - planeEl.offsetTop;
+        planeEl.style.height = `${height}px`;
 
-        scrollPlaneEl.addEventListener('touchstart', handleTouchStart, { passive: false });
-        scrollPlaneEl.addEventListener('touchmove', handleTouchMove, { passive: false });
+        planeEl.addEventListener('touchstart', handleTouchStart, { passive: false });
+        planeEl.addEventListener('touchmove', handleTouchMove, { passive: false });
     }
 
-    if (planeSeatEl) {
-        planeSeatEl.addEventListener('scroll', handleSeatScroll, { passive: true });
-        planeSeatEl.addEventListener(
+    if (seatEl) {
+        seatEl.addEventListener('scroll', handleSeatScroll, { passive: true });
+        seatEl.addEventListener(
             'touchstart',
             () => {
                 isTouchScrollBox = false;
@@ -339,17 +351,17 @@ onMounted(() => {
     }
 });
 
-// 移除事件监听
 onUnmounted(() => {
-    const scrollPlaneEl = scrollPlaneRef.value;
-    const planeSeatEl = planeSeatRef.value;
-    if (scrollPlaneEl) {
-        scrollPlaneEl.removeEventListener('touchstart', handleTouchStart);
-        scrollPlaneEl.removeEventListener('touchmove', handleTouchMove);
+    const planeEl = scrollPlaneRef.value;
+    const seatEl = planeSeatRef.value;
+
+    if (planeEl) {
+        planeEl.removeEventListener('touchstart', handleTouchStart);
+        planeEl.removeEventListener('touchmove', handleTouchMove);
     }
-    if (planeSeatEl) {
-        planeSeatEl.removeEventListener('scroll', handleSeatScroll);
-        planeSeatEl.removeEventListener('touchstart', () => {});
+    if (seatEl) {
+        seatEl.removeEventListener('scroll', handleSeatScroll);
+        seatEl.removeEventListener('touchstart', () => {});
     }
 });
 
