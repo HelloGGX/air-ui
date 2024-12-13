@@ -8,26 +8,19 @@ import { space } from './src/tokens/space';
 function createCSSVars(
     prefix: string,
     obj: Record<string, any>,
-    transformer?: (value: any) => string
+    transformer: (value: any) => string = (val) => `${val}`
 ): Record<string, string> {
-    const defaultTransformer = (val: any) => `${val}`;
-    const transform = transformer || defaultTransformer;
-
-    return Object.entries(obj).reduce(
-        (vars, [key, value]) => {
-            if (typeof value === 'object') {
-                // 处理嵌套对象（如颜色）
-                Object.entries(value).forEach(([subKey, subValue]) => {
-                    vars[`--air-${prefix}-${key}-${subKey}`] = transform(subValue);
-                });
-            } else {
-                // 处理普通对象
-                vars[`--air-${prefix}-${key}`] = transform(value);
+    return Object.entries(obj)
+        .flatMap(([key, value]) => {
+            if (typeof value === 'object' && !Array.isArray(value)) {
+                return Object.entries(value).map(([subKey, subValue]) => [
+                    `--air-${prefix}-${key}-${subKey}`,
+                    transformer(subValue)
+                ]);
             }
-            return vars;
-        },
-        {} as Record<string, string>
-    );
+            return [[`--air-${prefix}-${key}`, transformer(value)]];
+        })
+        .reduce((vars, [key, val]) => ({ ...vars, [key]: val }), {});
 }
 
 export const airTheme = plugin(
@@ -41,10 +34,7 @@ export const airTheme = plugin(
                 ...createCSSVars('font-size', typography.fontSize),
 
                 // 字体族变量（使用特殊转换器）
-                ...createCSSVars('font-family', typography.fontFamily, (fonts) => {
-                    // 确保 fonts 是数组，如果不是，则转换为数组
-                    return Array.isArray(fonts) ? fonts.join(', ') : fonts;
-                }),
+                ...createCSSVars('font-family', typography.fontFamily),
 
                 // 圆角变量
                 ...createCSSVars('radius', radius),
@@ -125,7 +115,7 @@ export const airTheme = plugin(
                     14: 'var(--air-font-size-14)'
                 },
                 fontFamily: {
-                    sans: ['var(--air-font-family-sans)', 'sans-serif'],
+                    sans: ['var(--air-font-family-sans)'],
                     mome: ['var(--air-font-family-mome)']
                 },
                 borderRadius: {
