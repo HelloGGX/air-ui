@@ -23,10 +23,23 @@
       <!-- 字母标志 -->
       <div></div>
       <!-- 座位分布 -->
-      <div class="px-7 text-gray-500 mt-2 h-4/5 overflow-y-scroll">
+      <div class="px-7 text-gray-500 mt-2 h-4/5 overflow-y-scroll scroll-smooth" ref="planeSeatRef">
         <div class="flex items-center justify-center">
-          <AirSeat class="px-2" v-for="(item, index) in airSeats" :key="item.seatNumber" v-bind="item"  @click="handleSeats"/>
-          <!-- <AirSeat class="px-2" status="selected" />
+          <!-- <AirSeat class="px-2" v-for="(item, index) in airSeats" :key="item.seatNumber" v-bind="item"  @click="handleSeats" /> -->
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+        </div>
+        <div class="flex items-center justify-center">
+          <AirSeat class="px-2" status="selected" />
           <AirSeat class="px-2" status="selected" />
           <AirSeat class="px-2" status="selected" />
           <span class="px-2">31</span>
@@ -36,7 +49,124 @@
           <span class="px-2">31</span>
           <AirSeat class="px-2" status="selected" />
           <AirSeat class="px-2" status="selected" />
-          <AirSeat class="px-2" status="selected" /> -->
+          <AirSeat class="px-2" status="selected" />
+        </div>
+        <div class="flex items-center justify-center">
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+        </div>
+        <div class="flex items-center justify-center">
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+        </div>
+        <div class="flex items-center justify-center">
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+        </div>
+        <div class="flex items-center justify-center">
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+        </div>
+        <div class="flex items-center justify-center">
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+        </div>
+        <div class="flex items-center justify-center">
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+        </div>
+        <div class="flex items-center justify-center">
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+        </div>
+        <div class="flex items-center justify-center">
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+        </div>
+        <div class="flex items-center justify-center">
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <span class="px-2">31</span>
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
+          <AirSeat class="px-2" status="selected" />
         </div>
       </div>
     </div>
@@ -54,7 +184,7 @@
           </defs>
         </svg>
       </button>
-      <div class="rounded-lg bg-primary-100 my-4 w-20 h-48 relative">
+      <div class="rounded-lg bg-primary-100 my-4 w-20 h-48 relative" ref="scrollContainerRef">
         <div class="absolute bottom-0">        
           <svg class="w-20 h-44" viewBox="0 0 80 172" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M65.8488 107.131H63.4834V109.809L64.74 111.854L65.8488 109.809V107.131Z" fill="white" stroke="#2C5DE5" stroke-width="0.25" stroke-linecap="round" stroke-linejoin="round"/>
@@ -104,7 +234,9 @@
           </defs>
           </svg>
         </div>
-        <div class="absolute left-1 right-1 top-7 h-10 border-2 border-slate-50 rounded-sm"></div>
+        <div ref="scrollPlaneRef" class="top-7 relative">
+          <div class="absolute left-1 right-1 h-10 border-2 border-pink-500 rounded-sm scroll-smooth" ref="scrollBoxRef"></div>
+        </div>
       </div>
       <button class="w-12 h-12 rounded-full bg-primary-500 flex justify-center content-center flex-wrap">
         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -123,18 +255,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import AirSeat from 'block/airseat/AirSeat.vue';
 
 interface IAirSeats {
   seatNumber: number,
   status: 'available' | 'selected' | 'unavailable' | 'emergency-left' | 'emergency-right',
+  seatOwnerIndex: number
 }
 
 defineOptions({ name: 'AirPlane' });
 const airplaneRef = ref<HTMLElement>();
 
-const choosedSeats = ref([]); // 存取选中的座位
+const choosedSeats = ref<any>([]); // 存取选中的座位
+const scrollPlaneRef = ref();
+const scrollBoxRef = ref();
+const scrollContainerRef = ref();
+const planeSeatRef = ref();
+let isTouchScrollBox = false;
 
 const props = defineProps({
   airSeats: {
@@ -147,14 +285,104 @@ const emit = defineEmits<{
 }>();
 
 const handleSeats = (evt: any) => {
-  console.log(evt.status)
-  console.log(evt.seatNumber)
+  if(evt.status === 'selected') {
+    // 选中座位
+    choosedSeats.value.push(evt);
+  }else {
+    const index = choosedSeats.value.find((item: IAirSeats) => {
+      return item.seatNumber === evt.seatNumber
+    });
+    choosedSeats.value.splice(index, 1);
+  }
 } 
 // 处理点击事件
 // const handleClick = (event: MouseEvent) => {
 //   emit('click', event);
 // };
 
-defineExpose({ airplaneRef, choosedSeats });
+// 右侧机身滑动框
+let startX: any, startY: any, touchStartY: any;
+const handleTouchStart = (e: any) => {
+  e.preventDefault();
+  const scrollBoxEl = scrollBoxRef.value;
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+  touchStartY = scrollBoxEl.offsetTop;
+}
+
+const handleTouchMove = (e: any) => {
+  isTouchScrollBox = true;
+  e.preventDefault();
+  const touchMoveY = e.touches[0].clientY - startY;
+
+  const newTop = touchStartY + touchMoveY;
+  if (newTop >= 0 && newTop <= scrollPlaneRef.value.offsetHeight - scrollBoxRef.value.offsetHeight) {
+      scrollBoxRef.value.style.top = `${newTop}px`;
+      updateSeatBoxH(newTop);
+  }
+}
+
+// 右侧滚动框与左侧座位滚动联动
+const updateSeatBoxH = (h: any) => {
+  const newTop = (h / scrollPlaneRef.value.offsetHeight) * (planeSeatRef.value.offsetHeight);
+  planeSeatRef.value.scrollTo({
+    top: newTop,
+    behavior: 'smooth'
+  })
+}
+
+// 左侧滚动事件监听
+const handleSeatScroll = (e: any) => {
+  const newTop = (planeSeatRef.value.scrollTop / planeSeatRef.value.offsetHeight) * (scrollPlaneRef.value.offsetHeight + scrollBoxRef.value.offsetHeight);
+  console.log(isTouchScrollBox)
+  if(!isTouchScrollBox) {
+    console.log('update---')
+    scrollBoxRef.value.style.top = `${newTop}px`;
+  }
+}
+
+
+onMounted(() => {
+  const scrollPlaneEl = scrollPlaneRef.value;
+  const planeSeatEl = planeSeatRef.value;
+  // 手动设置可拖动div框父元素高度
+  const height = parseInt(scrollContainerRef.value.offsetHeight) - (scrollPlaneEl.offsetTop)
+  scrollPlaneEl.style.height = `${height}px`;
+  // 监听右侧飞机拖动框
+  if(scrollPlaneEl) {
+    scrollPlaneEl.addEventListener('touchstart', handleTouchStart, {
+      passive: false
+    });
+    scrollPlaneEl.addEventListener('touchmove', handleTouchMove, {
+      passive: false
+    });
+  }
+  // 监听左侧座位滚动事件
+  if(planeSeatEl) {
+    planeSeatEl.addEventListener('scroll', (e: any) => {
+      handleSeatScroll(e);
+    })
+    planeSeatEl.addEventListener('touchstart', (e: any) => {
+      isTouchScrollBox = false;
+    })
+  //  planeSeatEl.addEventListener('mouseenter', handleMouseEnter)
+  }
+})
+
+onUnmounted(() => {
+  const scrollPlaneEl = scrollPlaneRef.value;
+  const planeSeatEl = planeSeatRef.value;
+  if(scrollPlaneEl) {
+    scrollPlaneEl.removeEventListener('touchstart', handleTouchStart);
+    scrollPlaneEl.removeEventListener('touchmove', handleTouchMove);
+  }
+   // 监听左侧座位滚动事件
+   if(planeSeatEl) {
+    planeSeatEl.removeEventListener('scroll', handleSeatScroll)
+    planeSeatEl.removeEventListener('touchstart')
+  }
+})
+
+defineExpose({ choosedSeats });
 
 </script>

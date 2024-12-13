@@ -1,4 +1,5 @@
 import type { Meta, StoryFn } from '@storybook/vue3';
+import { ref } from 'vue';
 import AirPlane from './AirPlane.vue';
 
 const meta: Meta<typeof AirPlane> = {
@@ -21,13 +22,16 @@ const meta: Meta<typeof AirPlane> = {
     args: {
         airSeats: [{
             seatNumber: 1,
-            status: 'available'
+            status: 'available',
+            seatOwnerIndex: 1,
         }, {
             seatNumber: 2,
-            status: 'selected'
+            status: 'available',
+            seatOwnerIndex: 4,
         }, {
             seatNumber: 3,
-            status: 'unavailable'
+            status: 'unavailable',
+            seatOwnerIndex: 3
         }],
     }
     
@@ -35,8 +39,11 @@ const meta: Meta<typeof AirPlane> = {
 
 const Template: StoryFn = (args) => ({
     components: { AirPlane },
-    setup() { return { args }; },
-    template: '<AirPlane v-bind="args">{{ args.default }}</AirPlane>'
+    setup() {
+        const airPlaneRef = ref()
+        return { args, airPlaneRef }; 
+    },
+    template: '<AirPlane ref="airPlaneRef" v-bind="args">{{ args.default }}</AirPlane>'
 });
 
 export const Default = Template.bind({});

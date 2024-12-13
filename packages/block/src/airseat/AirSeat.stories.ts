@@ -31,7 +31,7 @@ const meta: Meta<typeof AirSeat> = {
 const Template: StoryFn = (args) => ({
     components: { AirSeat },
     setup() {
-        const handleClick = (evt: { status: typeof args.status; seatNumber: number }) => {
+        const handleClick = (evt: { status: typeof args.status; seatNumber: number; seatOwnerIndex: number }) => {
             console.log(evt);
         };
         return { args, handleClick };

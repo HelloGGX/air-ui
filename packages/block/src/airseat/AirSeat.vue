@@ -53,7 +53,7 @@
                 text-anchor="middle"
                 dominant-baseline="middle"
             >
-                {{ seatNumber }}
+                {{ seatOwnerIndex }}
             </text>
         </svg>
         <svg
@@ -190,14 +190,10 @@ const props = defineProps({
 });
 
 // 初始化座位状态
-const seatStatus = ref(props.status)
-
-// const emit = defineEmits<{
-//     (e: 'click', { status, seatNumber }: { status: typeof props.status; seatNumber?: number }): void;
-// }>();
+const seatStatus  = ref<typeof props.status>(props.status)
 
 const emit = defineEmits<{
-    (e: 'click', {stauts, seatNumber, seatOwnerIndex}: {  status: typeof props.status; seatNumber?: number, seatOwnerIndex?: number}): void;
+    (e: 'click', {status, seatNumber, seatOwnerIndex}: {  status: typeof props.status; seatNumber?: number, seatOwnerIndex?: number}): void;
 }>();
 
 // 处理点击事件
@@ -207,6 +203,7 @@ const handleClick = () => {
     // if (props.status === 'selected') {
     //     payload.seatNumber = props.seatNumber;
     // }
+    if(seatStatus.value === 'unavailable' || seatStatus.value === 'emergency-left' || seatStatus.value === 'emergency-right') return;
     // 切换座位状态
     seatStatus.value = seatStatus.value === 'available' ? 'selected' : 'available';
     const payload = {
