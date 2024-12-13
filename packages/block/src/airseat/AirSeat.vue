@@ -1,5 +1,5 @@
 <template>
-    <div class="air-seat flex flex-col items-center cursor-pointer" :class="props.customW ? [props.customW]: 'w-10'" @click="handleClick">
+    <div class="air-seat flex flex-col items-center cursor-pointer max-w-10" @click="handleClick">
         <svg
             v-if="seatStatus === 'available'"
             width="100%"
@@ -165,10 +165,6 @@ const props = defineProps({
         type: Number,
         default: '1'
     },
-    customW: {
-        type: String,
-        default: 'w-10'
-    }
 });
 
 // 初始化座位状态
