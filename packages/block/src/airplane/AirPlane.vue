@@ -116,7 +116,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import AirSeat from 'block/airseat/AirSeat.vue';
-
+// todo: 自动获取AirSeat props类型，不用单独定义interface
 interface IAirSeats {
   seatNumber: number,
   status: 'available' | 'selected' | 'unavailable' | 'emergency-left' | 'emergency-right',
@@ -124,7 +124,7 @@ interface IAirSeats {
 }
 
 defineOptions({ name: 'AirPlane' });
-const airplaneRef = ref<HTMLElement>();
+// 加注释详细一点
 
 const choosedSeats = ref<any>([]); // 存取选中的座位
 const scrollPlaneRef = ref();
