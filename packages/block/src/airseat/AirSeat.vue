@@ -1,48 +1,32 @@
 <template>
-    <div class="air-seat flex flex-col items-center cursor-pointer" @click="handleClick">
+    <div class="air-seat flex flex-col items-center cursor-pointer" :class="props.customW ? [props.customW]: 'w-10'" @click="handleClick">
         <svg
             v-if="seatStatus === 'available'"
-            width="40"
-            height="40"
+            width="100%"
+            height="auto"
             viewBox="0 0 40 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="stroke-primary-300 fill-primary-100"
         >
-            <rect x="6.5" y="5.49935" width="27" height="27" rx="3.5" fill="#EDF4FF" stroke="#ABCAFF" />
-            <rect x="31" y="9.99935" width="6" height="20.908" rx="3" fill="white" stroke="#ABCAFF" />
-            <rect x="3" y="9.99935" width="6" height="20.908" rx="3" fill="white" stroke="#ABCAFF" />
-            <rect
-                x="34.5"
-                y="35.4994"
-                width="29"
-                height="6"
-                rx="3"
-                transform="rotate(180 34.5 35.4994)"
-                fill="white"
-                stroke="#ABCAFF"
-            />
+            <rect x="6.5" y="5.49935" width="27" height="27" rx="3.5" />
+            <rect x="31" y="9.99935" width="6" height="20.908" rx="3" fill="white" />
+            <rect x="3" y="9.99935" width="6" height="20.908" rx="3" fill="white" />
+            <rect x="34.5" y="35.4994" width="29" height="6" rx="3" transform="rotate(180 34.5 35.4994)" fill="white" />
         </svg>
         <svg
             v-else-if="seatStatus === 'selected'"
-            width="40"
-            height="40"
+            width="100%"
+            height="auto"
             viewBox="0 0 40 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="stroke-primary-300 fill-primary-400"
         >
-            <rect x="6.5" y="5.49935" width="27" height="27" rx="3.5" fill="#5584F2" stroke="#ABCAFF" />
-            <rect x="31" y="9.99935" width="6" height="20.7224" rx="3" fill="#5584F2" stroke="#ABCAFF" />
-            <rect x="3" y="9.99935" width="6" height="20.7224" rx="3" fill="#5584F2" stroke="#ABCAFF" />
-            <rect
-                x="34.5"
-                y="35.4994"
-                width="29"
-                height="6"
-                rx="3"
-                transform="rotate(180 34.5 35.4994)"
-                fill="#5584F2"
-                stroke="#ABCAFF"
-            />
+            <rect x="6.5" y="5.49935" width="27" height="27" rx="3.5" />
+            <rect x="31" y="9.99935" width="6" height="20.7224" rx="3" />
+            <rect x="3" y="9.99935" width="6" height="20.7224" rx="3" />
+            <rect x="34.5" y="35.4994" width="29" height="6" rx="3" transform="rotate(180 34.5 35.4994)" />
 
             <text
                 x="50%"
@@ -58,37 +42,30 @@
         </svg>
         <svg
             v-else-if="seatStatus === 'unavailable'"
-            width="40"
-            height="40"
+            width="100%"
+            height="auto"
             viewBox="0 0 40 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="stroke-gray-300 fill-gray-400"
         >
             <g opacity="0.7">
-                <rect x="6.5" y="5.49935" width="27" height="27" rx="3.5" fill="#CCCDD3" stroke="#838791" />
-                <path d="M25 12.9994L15 22.9994" stroke="#50545E" stroke-width="1.5" stroke-linecap="round" />
-                <path d="M15.0002 12.9994L25.0002 22.9994" stroke="#50545E" stroke-width="1.5" stroke-linecap="round" />
-                <rect x="31" y="9.99935" width="6" height="20.9078" rx="3" fill="#CCCDD3" stroke="#838791" />
-                <rect x="3" y="9.99935" width="6" height="20.9078" rx="3" fill="#CCCDD3" stroke="#838791" />
-                <rect
-                    x="34.5"
-                    y="35.4994"
-                    width="29"
-                    height="6"
-                    rx="3"
-                    transform="rotate(180 34.5 35.4994)"
-                    fill="#CCCDD3"
-                    stroke="#838791"
-                />
+                <rect x="6.5" y="5.49935" width="27" height="27" rx="3.5" />
+                <path d="M25 12.9994L15 22.9994" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M15.0002 12.9994L25.0002 22.9994" stroke-width="1.5" stroke-linecap="round" />
+                <rect x="31" y="9.99935" width="6" height="20.9078" rx="3" />
+                <rect x="3" y="9.99935" width="6" height="20.9078" rx="3" />
+                <rect x="34.5" y="35.4994" width="29" height="6" rx="3" transform="rotate(180 34.5 35.4994)" />
             </g>
         </svg>
         <svg
             v-else-if="seatStatus === 'emergency-left'"
-            width="28"
-            height="40"
+            width="100%"
+            height="auto"
             viewBox="0 0 28 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="stroke-green-300 fill-green-400"
         >
             <g clip-path="url(#clip0_1_2315)">
                 <path d="M0 4C2.20914 4 4 5.79086 4 8V32C4 34.2091 2.20914 36 0 36V4Z" fill="#33BB53" />
@@ -125,11 +102,12 @@
         </svg>
         <svg
             v-else-if="seatStatus === 'emergency-right'"
-            width="28"
-            height="40"
+            width="100%"
+            height="auto"
             viewBox="0 0 28 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            class="stroke-green-300 fill-green-400"
         >
             <g clip-path="url(#clip0_1_2321)">
                 <path d="M24 8C24 5.79086 25.7909 4 28 4V36C25.7909 36 24 34.2091 24 32V8Z" fill="#33BB53" />
@@ -168,7 +146,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toValue } from 'vue';
+import { ref } from 'vue';
 defineOptions({ name: 'AirSeat' });
 
 const props = defineProps({
@@ -186,6 +164,10 @@ const props = defineProps({
     seatOwnerIndex: {
         type: Number,
         default: '1'
+    },
+    customW: {
+        type: String,
+        default: 'w-10'
     }
 });
 
