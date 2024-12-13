@@ -13,8 +13,7 @@ const outputpkg = path.resolve(__dirname, `../${OUTPUT_DIR}/package.json`);
 const pkgJson = JSON.parse(fs.readFileSync(outputpkg, { encoding: 'utf8', flag: 'r' }));
 
 // 读取 theme 包的 package.json 获取版本号
-const themePkgPath = path.resolve(__workspace, 'packages/theme/package.json');
-updatePeerDependency(pkgJson, '@air-ui/theme', themePkgPath);
+updatePeerDependency(pkgJson, path.resolve(__workspace, 'packages/theme/package.json'));
 
 pkgJson.main = 'lib/index.js';
 pkgJson.module = 'es/index.mjs';
