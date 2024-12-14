@@ -240,6 +240,7 @@ function onTouchMove(e: TouchEvent) {
         const ratio = parseFloat((newTop / maxTop).toFixed(6)); // 舍入到 6 位小数
         const totalScroll = planeSeatRef.value.scrollHeight - planeSeatRef.value.clientHeight;
         planeSeatRef.value.scrollTo({ top: ratio * totalScroll, behavior: 'smooth' });
+        updateButtonState(newTop)
     });
 }
 
