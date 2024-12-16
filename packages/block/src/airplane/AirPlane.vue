@@ -12,7 +12,7 @@
             </div>
 
             <!-- 座位选择区域 -->
-            <div class="px-7 text-gray-500 mt-2 h-4/5 overflow-y-scroll scroll-smooth" ref="planeSeatRef">
+            <div class="px-7 text-gray-500 mt-2 h-4/5 overflow-y-scroll scroll-smooth" ref="planeSeatRef" @touchstart="startSeatScroll">
                 <div class="flex items-center justify-center flex-wrap">
                     <AirSeat v-for="(item, index) in airSeats" :key="item.seatNumber" class="mx-2" v-bind="item"
                         @click="handleSeatClick(item)" />
@@ -107,8 +107,8 @@
                     </svg>
                 </div>
                 <div class="top-4 relative" ref="scrollBoxContainer">
-                    <div class="absolute left-1 right-1 h-10 border-2 border-pink-500 rounded-sm scroll-smooth"
-                        ref="scrollBoxRef" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd">
+                    <div class="absolute left-1 right-1 h-10 border-2 border-white-800 rounded-sm scroll-smooth"
+                        ref="scrollBoxRef" @touchstart="onTouchStart" @touchmove="onTouchMove">
                     </div>
                 </div>
             </div>
@@ -185,9 +185,9 @@ function handleSeatClick(seat: AirSeatProps) {
 }
 
 /**
- * 同步红框位置
+ * 同步飞机白框位置
  */
-function syncRedBox() {
+function syncWhiteBox() {
     if (isTouching.value) return; // 如果正在触摸滑动红框，跳过同步
     if (!planeSeatRef.value || !scrollPlaneRef.value || !scrollBoxRef.value) return;
 
@@ -216,6 +216,7 @@ function updateButtonState(newTop: number) {
  * 红框触摸开始
  */
 function onTouchStart(e: TouchEvent) {
+    e.preventDefault();
     if (!scrollBoxRef.value) return;
     startTouchY = e.touches[0].clientY;
     initialTop = scrollBoxRef.value.offsetTop || 0;
@@ -226,6 +227,7 @@ function onTouchStart(e: TouchEvent) {
  * 红框触摸移动
  */
 function onTouchMove(e: TouchEvent) {
+    e.preventDefault();
     if (animationFrameId) return; // 如果已有触发，跳过本次
     animationFrameId = requestAnimationFrame(() => {
         animationFrameId = null; // 重置触发状态
@@ -245,9 +247,9 @@ function onTouchMove(e: TouchEvent) {
 }
 
 /**
- * 红框触摸结束
+ * 解决div框和座位框滚动互相牵制
  */
-function onTouchEnd() {
+function startSeatScroll() {
     isTouching.value = false;
 }
 
@@ -258,7 +260,7 @@ function smoothScroll(direction: 'up' | 'down') {
     if (!planeSeatRef.value) return;
     const scrollAmount = 40;
     planeSeatRef.value.scrollTop += direction === 'up' ? -scrollAmount : scrollAmount;
-    syncRedBox();
+    syncWhiteBox();
 
     if (isScrolling.value) {
         requestAnimationFrame(() => smoothScroll(direction));
@@ -277,14 +279,14 @@ function stopScroll() {
 // Lifecycle Hooks
 onMounted(() => {
     const planeEl = scrollPlaneRef.value;
-    if (planeSeatRef.value) planeSeatRef.value.addEventListener('scroll', syncRedBox);
+    if (planeSeatRef.value) planeSeatRef.value.addEventListener('scroll', syncWhiteBox);
     if (planeEl) {
         planeEl.addEventListener('touchstart', (e: TouchEvent) => e.preventDefault(), { passive: false });
     }
 });
 
 onUnmounted(() => {
-    if (planeSeatRef.value) planeSeatRef.value.removeEventListener('scroll', syncRedBox);
+    if (planeSeatRef.value) planeSeatRef.value.removeEventListener('scroll', syncWhiteBox);
 });
 
 defineExpose({ choosedSeats });
