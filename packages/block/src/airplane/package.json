@@ -1,0 +1,6 @@
+{
+    "main": "./AirPlane.vue",
+    "types": "./AirPlane.d.ts",
+    "module": "./AirPlane.vue",
+    "sideEffects": ["*.vue"]
+}

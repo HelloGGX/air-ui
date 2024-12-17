@@ -7,6 +7,7 @@
         "jsx": "preserve",
         "baseUrl": ".",
         "paths": {
+            "@air-ui/block/*": ["./src/*"],
             "block/*": ["./src/*"]
         }
     },

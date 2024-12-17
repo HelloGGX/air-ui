@@ -1,7 +1,7 @@
 <template>
-    <div class="air-seat flex flex-col items-center cursor-pointer" @click="handleClick">
+    <div class="air-seat flex flex-col items-center cursor-pointer max-w-10" @click="handleClick">
         <svg
-            v-if="status === 'available'"
+            v-if="seatStatus === 'available'"
             width="100%"
             height="auto"
             viewBox="0 0 40 40"
@@ -15,7 +15,7 @@
             <rect x="34.5" y="35.4994" width="29" height="6" rx="3" transform="rotate(180 34.5 35.4994)" fill="white" />
         </svg>
         <svg
-            v-else-if="status === 'selected'"
+            v-else-if="seatStatus === 'selected'"
             width="100%"
             height="auto"
             viewBox="0 0 40 40"
@@ -37,11 +37,11 @@
                 text-anchor="middle"
                 dominant-baseline="middle"
             >
-                {{ seatNumber }}
+                {{ seatOwnerIndex }}
             </text>
         </svg>
         <svg
-            v-else-if="status === 'unavailable'"
+            v-else-if="seatStatus === 'unavailable'"
             width="100%"
             height="auto"
             viewBox="0 0 40 40"
@@ -59,7 +59,7 @@
             </g>
         </svg>
         <svg
-            v-else-if="status === 'emergency-left'"
+            v-else-if="seatStatus === 'emergency-left'"
             width="100%"
             height="auto"
             viewBox="0 0 28 40"
@@ -101,7 +101,7 @@
             </defs>
         </svg>
         <svg
-            v-else-if="status === 'emergency-right'"
+            v-else-if="seatStatus === 'emergency-right'"
             width="100%"
             height="auto"
             viewBox="0 0 28 40"
@@ -146,29 +146,48 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 defineOptions({ name: 'AirSeat' });
 
 const props = defineProps({
+    // 座位状态
     status: {
         type: String as () => 'available' | 'selected' | 'unavailable' | 'emergency-left' | 'emergency-right',
         default: 'available'
     },
+    // 座位号
     seatNumber: {
         type: Number,
         default: '1'
-    }
+    },
+    // 座位所选人
+    seatOwnerIndex: {
+        type: Number,
+        default: '1'
+    },
 });
 
+// 初始化座位状态
+const seatStatus  = ref<typeof props.status>(props.status)
+
 const emit = defineEmits<{
-    (e: 'click', { status, seatNumber }: { status: typeof props.status; seatNumber?: number }): void;
+    (e: 'click', {status, seatNumber, seatOwnerIndex}: {  status: typeof props.status; seatNumber?: number, seatOwnerIndex?: number}): void;
 }>();
 
 // 处理点击事件
 const handleClick = () => {
     // 只有在 selected 状态下才传递 seatNumber
-    const payload = { status: props.status } as { status: typeof props.status; seatNumber?: number };
-    if (props.status === 'selected') {
-        payload.seatNumber = props.seatNumber;
+    // const payload = { status: props.status } as { status: typeof props.status; seatNumber?: number };
+    // if (props.status === 'selected') {
+    //     payload.seatNumber = props.seatNumber;
+    // }
+    if(seatStatus.value === 'unavailable' || seatStatus.value === 'emergency-left' || seatStatus.value === 'emergency-right') return;
+    // 切换座位状态
+    seatStatus.value = seatStatus.value === 'available' ? 'selected' : 'available';
+    const payload = {
+        status: seatStatus.value,
+        seatNumber: props.seatNumber,
+        seatOwnerIndex: props.seatOwnerIndex
     }
     emit('click', payload);
 };

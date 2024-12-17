@@ -20,3 +20,7 @@ export { default as Airlayout } from './airlayout/Airlayout.vue';
 //airheader ------------------------------
 export * from './airheader/Airheader.vue';
 export { default as Airheader } from './airheader/Airheader.vue';
+
+//airplane ------------------------------
+export * from './airplane/AirPlane.vue';
+export { default as AirPlane } from './airplane/AirPlane.vue';
