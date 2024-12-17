@@ -175,6 +175,12 @@ importers:
 
   packages/block:
     dependencies:
+      '@air-ui/air-element':
+        specifier: file:../air-element/dist
+        version: file:packages/air-element/dist(@air-ui/theme@file:packages/theme(tailwindcss@3.4.16))(vue@3.5.13(typescript@5.7.2))
+      '@air-ui/theme':
+        specifier: file:../theme
+        version: link:../theme
       '@element-plus/icons-vue':
         specifier: ^2.3.1
         version: 2.3.1(vue@3.5.13(typescript@5.7.2))
@@ -182,19 +188,6 @@ importers:
         specifier: ^3.2.0
         version: 3.5.13(typescript@5.7.2)
     devDependencies:
-      '@air-ui/air-element':
-        specifier: file:../air-element/dist
-<<<<<<< HEAD
-        version: file:packages/air-element/dist(src@file:packages/theme/src)(vue@3.5.13(typescript@5.7.2))
-      '@air-ui/theme':
-        specifier: file:../theme/src
-        version: src@file:packages/theme/src
-=======
-        version: file:packages/air-element/dist(@air-ui/theme@file:packages/theme(tailwindcss@3.4.16))(vue@3.5.13(typescript@5.7.2))
-      '@air-ui/theme':
-        specifier: file:../theme
-        version: link:../theme
->>>>>>> main
       '@babel/preset-env':
         specifier: ^7.25.4
         version: 7.26.0(@babel/core@7.26.0)
