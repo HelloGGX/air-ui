@@ -2,20 +2,23 @@
     <div class="bg-white rounded-lg p-4 flex items-center justify-between max-w-4xl mx-auto h-96">
         <!-- 左侧座位显示区 -->
         <div class="flex-1 h-full mr-3 rounded-sm border border-gray-300 p-1">
-            <!-- 座位状态介绍 -->
-            <div class="h-9 flex justify-center items-center py-1 text-sm text-gray-500">
-                <div v-for="(statusInfo, idx) in seatStatusList" :key="idx"
-                    class="flex items-center justify-center text-sm mr-4">
-                    <AirSeat :status="statusInfo.status" />
-                    <span class="ml-1">{{ statusInfo.label }}</span>
+            <!-- 座位图标记 -->
+            <div class="px-7 text-gray-500">
+                <div class="flex justify-center items-center">
+                    <div class="text-gray-400 w-14 text-center" v-for="(item, index) in refSeatHeader" :key="index">{{ item.seatCol }}</div>
                 </div>
             </div>
-
             <!-- 座位选择区域 -->
             <div class="px-7 text-gray-500 mt-2 h-4/5 overflow-y-scroll scroll-smooth" ref="planeSeatRef" @touchstart="startSeatScroll">
-                <div class="flex items-center justify-center flex-wrap">
-                    <AirSeat v-for="(item, index) in airSeats" :key="item.seatNumber" class="mx-2" v-bind="item"
-                        @click="handleSeatClick(item)" />
+                <!-- 座位图分布 -->
+                <div class="flex justify-center items-center" v-for="(item, index) in refSeatMap" :key="index">
+                    <template v-for="(seat, seatIndex) in item" :key="seatIndex">
+                        <div v-if="seat.seatCol">
+                            <AirSeat class="mx-2" v-bind="seat"
+                                @click="handleSeatClick(item)" />
+                        </div>
+                        <div v-else class="text-gray-400 w-14 text-center">{{ item[0].seatRow }}</div>
+                    </template>
                 </div>
             </div>
         </div>
@@ -130,12 +133,12 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from 'vue';
 import AirSeat from '@air-ui/block/airseat';
-import type { AirSeatProps } from '@air-ui/block/airseat';
+import type { AirSeatProps, ISeat } from '@air-ui/block/airseat';
 
 defineOptions({ name: 'AirPlane' });
 
 // Props
-const props = defineProps<{ airSeats: AirSeatProps[] }>();
+const props = defineProps<{ seatData: {[key: string]: any} }>();
 const emit = defineEmits(['chooseSeat']);
 
 // Refs
@@ -149,30 +152,113 @@ const isScrolling = ref(false);
 const isTouching = ref(false);
 const upActive = ref(false);
 const downActive = ref(true);
+const hasLower = ref(false); // 是否下舱
+const hasUpper = ref(false); // 是否上舱
+const refSeatMap = ref(); // 座位图数据
+const refSeatHeader = ref(); // 座位图标记座位号
 let startTouchY = 0;
 let initialTop = 0;
 let animationFrameId: number | null = null;
 
-// Helper Functions
-// 模拟多个座位
-const airSeats = computed<AirSeatProps[]>(() => {
-    const seats: AirSeatProps[] = [];
-    for (let i = 0; i < 200; i++) {
-        const seatNumber = Math.floor(Math.random() * 5) + 1; // 随机座位号 1-5
-        const statusOptions = ['available', 'selected', 'unavailable'] as const;
-        const status = statusOptions[Math.floor(Math.random() * statusOptions.length)];
-        seats.push({ seatNumber, status, seatOwnerIndex: Math.floor(Math.random() * 2) });
+/**
+ * 处理座位图数据
+ */
+const getSeatData = () => {
+    const { seatData } = props;
+    hasLower.value = Boolean(seatData.lower);
+    hasUpper.value = Boolean(seatData.upper);
+    // 原逻辑有levelChange函数，处理点击上下舱展示，后续处理
+    let level = 'lower';
+    // 处理后端传回的座位图数据
+    const { seatMap, seatHeader } = doTransfromSeatData(
+        seatData[level],
+        seatData.openSymbol || ''
+    );
+    refSeatMap.value = seatMap;
+    refSeatHeader.value = seatHeader;
+    console.log(seatMap)
+}
+
+/**
+ * 处理座位图数据：处理行列、过道序号，紧急出入口
+ */
+const doTransfromSeatData = (originSeatData: ISeat[][], openSymbol: string) => {
+    if(!originSeatData) {
+        return {
+            seatMap: [],
+            seatHeader: [],
+        }
     }
-    return seats;
-});
+    const avaliableSeatData: any = originSeatData.filter((item) => item.length > 0);
+    const zipSeatData = zip(...avaliableSeatData);
+    const symbols: string[] = openSymbol.split(',');
+    // 循环遍历处理座位数据
+    const nZipData = zipSeatData.map(rows => {
+        const nRows = rows.filter((_: ISeat, index: number) => {
+            // 处理过道号数据，去重
+            if(index > 0) {
+                const seat = rows[index - 1];
+                if(!seat.seatRow && !seat?.seatCol && !rows[index]?.seatRow && !rows[index]?.seatRow) {
+                    return false;
+                }
+            }
+            return true;
+        }).map(item => {
+            const isAvaliable = symbols.includes(item?.symbol);
+            // 回显预选座
+            const seatNo = [item?.seatRow, item?.seatCol].join('');
+            const isPre = false; // 这里暂时写死
+            return {
+                ...item,
+                isAvaliable,
+                owner: '', // 与isPre关联，这里暂时写死
+                status: isAvaliable ? 'available' : 'unavailable',
+            }
+        });
+        // 判断紧急出口
+        if(nRows.some(item => item.symbol === 'E')) {
+            let newRows = [{
+                ...nRows[0],
+                isExit: true,
+                side: 'left',
+                status: 'emergency-left'
+            }, ...nRows, {
+                ...nRows[0],
+                isExit: true,
+                side: 'right',
+                status: 'emergency-right'
+            }]
+            return newRows;
+        }
+        return nRows;
+    })
+    // 座位图顶部-座位标号
+    const head = nZipData[0].map(rows => {
+        return {
+            ...rows,
+            isHeader: true,
+            isAvailable: false,
+        }
+    })
+    return {
+        seatMap: nZipData,
+        seatHeader: head,
+    }
+}
 
+/**
+ * zip函数：与loadsh.zip功能一致,将数组元素按照对应位置组合成一个数组，实现座位图按行分组
+ */
+const zip = <T extends ISeat[]>(...arrays: T[]) => {
+    // 获取最短数组的长度
+    const minLength = Math.min(...arrays.map((arr: ISeat[]) => arr.length));
 
-const seatStatusList = [
-    { status: 'unavailable', label: '不可选' },
-    { status: 'available', label: '可选' },
-    { status: 'selected', label: '已选' },
-    { status: 'emergency-left', label: '紧急出口' },
-];
+    // 创建一个新的数组，其长度为最短输入数组的长度
+    return Array.from({ length: minLength }, (_, index) =>
+        // 对应索引位置的元素组合成新数组
+        arrays.map((array: ISeat[]) => array[index])
+    );
+}
 
 /**
  * 选择座位事件
@@ -283,6 +369,7 @@ onMounted(() => {
     if (planeEl) {
         planeEl.addEventListener('touchstart', (e: TouchEvent) => e.preventDefault(), { passive: false });
     }
+    getSeatData();
 });
 
 onUnmounted(() => {
