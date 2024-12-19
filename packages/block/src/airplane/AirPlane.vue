@@ -176,7 +176,6 @@ const getSeatData = () => {
     );
     refSeatMap.value = seatMap;
     refSeatHeader.value = seatHeader;
-    console.log(seatMap)
 }
 
 /**
