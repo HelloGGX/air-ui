@@ -7,32 +7,1328 @@ const meta: Meta<typeof AirPlane> = {
     component: AirPlane,
     tags: ['autodocs'],
     argTypes: {
-        airSeats: {
-            // control: { type: '' },
-            description: '座位图列表',
-            table: {
-                type: { summary: '[{seatNumber: xx, status: xxxx(同airSeats状态)}]' },
-                // defaultValue: [{
-                //     id: 1,
-                //     status: 'selected'
-                // }]
-            }
-        }
+        seatData: Object
     },
     args: {
-        airSeats: [{
-            seatNumber: 1,
-            status: 'available',
-            seatOwnerIndex: 1,
-        }, {
-            seatNumber: 2,
-            status: 'available',
-            seatOwnerIndex: 4,
-        }, {
-            seatNumber: 3,
-            status: 'unavailable',
-            seatOwnerIndex: 3
-        }],
+        seatData: {
+            "openSymbol": "*",
+            "defaultShowLevel": "Down",
+            "lower": [
+                [
+                    {
+                        "seatCol": "A",
+                        "seatRow": "11",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "12",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "13",
+                        "symbol": ".",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "14",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "15",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "16",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "17",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "18",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "19",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "20",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "21",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "22",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "23",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "24",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "25",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "26",
+                        "symbol": "P",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "27",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "28",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "29",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "30",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "31",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "32",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "33",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "34",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "35",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "36",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "A",
+                        "seatRow": "37",
+                        "symbol": " ",
+                        "wing": null
+                    }
+                ],
+                [
+                    {
+                        "seatCol": "B",
+                        "seatRow": "11",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "12",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "13",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "14",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "15",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "16",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "17",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "18",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "19",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "20",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "21",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "22",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "23",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "24",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "25",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "26",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "27",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "28",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "29",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "30",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "31",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "32",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "33",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "34",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "35",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "36",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "B",
+                        "seatRow": "37",
+                        "symbol": " ",
+                        "wing": null
+                    }
+                ],
+                [
+                    {
+                        "seatCol": "C",
+                        "seatRow": "11",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "12",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "13",
+                        "symbol": ".",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "14",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "15",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "16",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "17",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "18",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "19",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "20",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "21",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "22",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "23",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "24",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "25",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "26",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "27",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "28",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "29",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "30",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "31",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "32",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "33",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "34",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "35",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "36",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "C",
+                        "seatRow": "37",
+                        "symbol": " ",
+                        "wing": null
+                    }
+                ],
+                [
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "I",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "E",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "E",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    }
+                ],
+                [
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "I",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "E",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "E",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": null,
+                        "seatRow": null,
+                        "symbol": "=",
+                        "wing": null
+                    }
+                ],
+                [
+                    {
+                        "seatCol": "J",
+                        "seatRow": "11",
+                        "symbol": "X",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "12",
+                        "symbol": "X",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "13",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "14",
+                        "symbol": ".",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "15",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "16",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "17",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "18",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "19",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "20",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "21",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "22",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "23",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "24",
+                        "symbol": "C",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "25",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "26",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "27",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "28",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "29",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "30",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "31",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "32",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "33",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "34",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "35",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "36",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "J",
+                        "seatRow": "37",
+                        "symbol": "*",
+                        "wing": null
+                    }
+                ],
+                [
+                    {
+                        "seatCol": "K",
+                        "seatRow": "11",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "12",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "13",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "14",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "15",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "16",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "17",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "18",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "19",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "20",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "21",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "22",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "23",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "24",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "25",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "26",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "27",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "28",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "29",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "30",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "31",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "32",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "33",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "34",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "35",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "36",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "K",
+                        "seatRow": "37",
+                        "symbol": "*",
+                        "wing": null
+                    }
+                ],
+                [
+                    {
+                        "seatCol": "L",
+                        "seatRow": "11",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "12",
+                        "symbol": "C",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "13",
+                        "symbol": ".",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "14",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "15",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "16",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "17",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "18",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "19",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "20",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "21",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "22",
+                        "symbol": ".",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "23",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "24",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "25",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "26",
+                        "symbol": "*",
+                        "wing": "1"
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "27",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "28",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "29",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "30",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "31",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "32",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "33",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "34",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "35",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "36",
+                        "symbol": "*",
+                        "wing": null
+                    },
+                    {
+                        "seatCol": "L",
+                        "seatRow": "37",
+                        "symbol": ".",
+                        "wing": null
+                    }
+                ]
+            ],
+            "upper": null
+        }
     }
     
 };
