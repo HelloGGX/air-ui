@@ -13,6 +13,17 @@ export interface AirSeatProps {
     seatNumber: number;
     seatOwnerIndex: number;
 }
+export interface ISeat {
+    seatRow: string | null;
+    seatCol: string | null;
+    symbol: string;
+    wing: string | null;
+    isAvailable?: boolean | undefined;
+    owner?: number;
+    isHeader?: boolean;
+    isExit?: boolean;
+    side?: string;
+}
 export interface AirSeatSlots {
     default(): VNode[];
 }
