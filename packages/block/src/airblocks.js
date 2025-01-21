@@ -10,6 +10,9 @@ export { default as AirSeat } from './airseat/AirSeat.vue';
 export * from './airflightinfo/Airflightinfo.vue';
 export { default as Airflightinfo } from './airflightinfo/Airflightinfo.vue';
 
+//airstep ------------------------------
+export * from './airstep/Airstep.vue';
+export { default as Airstep } from './airstep/Airstep.vue';
 //airlayout ------------------------------
 export * from './airlayout/Airlayout.vue';
 export { default as Airlayout } from './airlayout/Airlayout.vue';

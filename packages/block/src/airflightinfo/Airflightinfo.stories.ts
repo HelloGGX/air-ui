@@ -23,7 +23,7 @@ const meta: Meta<typeof Airflightinfo> = {
             }
         },
         flightDate: {
-            control: { type: 'text' },
+            control: { type: "text"},
             description: '日期',
             table: {
                 type: { summary: 'string' },
@@ -31,7 +31,7 @@ const meta: Meta<typeof Airflightinfo> = {
             }
         },
         flightTag: {
-            control: { type: 'text' },
+            control: { type: "text"},
             description: '航班标签',
             table: {
                 type: { summary: 'string' },
@@ -39,8 +39,8 @@ const meta: Meta<typeof Airflightinfo> = {
             }
         },
         depFlight: {
-            control: { type: 'text' },
-            description: '起飞航站',
+            control: { type: "text"},
+            description: '离港航站',
             table: {
                 type: { summary: 'string' },
                 defaultValue: { summary: '' }
@@ -61,7 +61,7 @@ const meta: Meta<typeof Airflightinfo> = {
         flightDate: '2024-01-01',
         flightTag: '备份航班',
         depFlight: '北京首都',
-        arrFlight: '上海虹桥'
+        arrFlight: '上海虹桥',
     }
 };
 

@@ -50,6 +50,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import '../theme/index.scss';
 
 defineProps({
     num: {
