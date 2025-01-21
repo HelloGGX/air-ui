@@ -38,7 +38,8 @@ import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
 import { AirButton } from '@air-ui/air-element';
 import { SwitchButton } from '@element-plus/icons-vue';
 
-defineOptions({ name: 'Airheader' });
+defineOptions({ name: 'AirHeader' });
+
 const airheaderRef = ref<HTMLElement>();
 const currentTime = ref(new Date());
 let intervalId: ReturnType<typeof setInterval>;

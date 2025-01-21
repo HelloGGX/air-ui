@@ -158,20 +158,27 @@ const props = defineProps({
     // 座位号
     seatNumber: {
         type: Number,
-        default: '1'
+        default: 1
     },
     // 座位所选人
     seatOwnerIndex: {
         type: Number,
-        default: '1'
-    },
+        default: 1
+    }
 });
 
 // 初始化座位状态
-const seatStatus  = ref<typeof props.status>(props.status)
+const seatStatus = ref<typeof props.status>(props.status);
 
 const emit = defineEmits<{
-    (e: 'click', {status, seatNumber, seatOwnerIndex}: {  status: typeof props.status; seatNumber?: number, seatOwnerIndex?: number}): void;
+    (
+        e: 'click',
+        {
+            status,
+            seatNumber,
+            seatOwnerIndex
+        }: { status: typeof props.status; seatNumber?: number; seatOwnerIndex?: number }
+    ): void;
 }>();
 
 // 处理点击事件
@@ -181,14 +188,19 @@ const handleClick = () => {
     // if (props.status === 'selected') {
     //     payload.seatNumber = props.seatNumber;
     // }
-    if(seatStatus.value === 'unavailable' || seatStatus.value === 'emergency-left' || seatStatus.value === 'emergency-right') return;
+    if (
+        seatStatus.value === 'unavailable' ||
+        seatStatus.value === 'emergency-left' ||
+        seatStatus.value === 'emergency-right'
+    )
+        return;
     // 切换座位状态
     seatStatus.value = seatStatus.value === 'available' ? 'selected' : 'available';
     const payload = {
         status: seatStatus.value,
         seatNumber: props.seatNumber,
         seatOwnerIndex: props.seatOwnerIndex
-    }
+    };
     emit('click', payload);
 };
 </script>

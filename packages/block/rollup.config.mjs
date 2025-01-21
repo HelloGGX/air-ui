@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import alias from '@rollup/plugin-alias';
 import { babel } from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
@@ -177,23 +178,21 @@ const ENTRY = {
     },
     update: {
         packageJson({ input, output, options }) {
-            try {
-                const inputDir = path.resolve(__dirname, path.dirname(input));
-                const outputDir = path.resolve(__dirname, path.dirname(output));
-                const packageJson = path.resolve(outputDir, 'package.json');
+            const inputDir = path.resolve(__dirname, path.dirname(input));
+            const outputDir = path.resolve(__dirname, path.dirname(output));
+            const packageJson = path.resolve(outputDir, 'package.json');
 
-                !fs.existsSync(packageJson) && fs.copySync(path.resolve(inputDir, './package.json'), packageJson);
+            !fs.existsSync(packageJson) && fs.copySync(path.resolve(inputDir, './package.json'), packageJson);
 
-                const pkg = JSON.parse(fs.readFileSync(packageJson, { encoding: 'utf8', flag: 'r' }));
+            const pkg = JSON.parse(fs.readFileSync(packageJson, { encoding: 'utf8', flag: 'r' }));
 
-                !pkg?.main?.includes('.cjs') &&
-                    (pkg.main = path.basename(options?.main) ? `./${path.basename(options.main)}` : pkg.main);
-                pkg.module = path.basename(options?.module) ? `./${path.basename(options.module)}` : packageJson.module;
-                pkg.types && (pkg.types = './index.d.ts');
-                pkg.style = './style.css'; // 添加这行
+            !pkg?.main?.includes('.cjs') &&
+                (pkg.main = path.basename(options?.main) ? `./${path.basename(options.main)}` : pkg.main);
+            pkg.module = path.basename(options?.module) ? `./${path.basename(options.module)}` : packageJson.module;
+            pkg.types && (pkg.types = './index.d.ts');
+            pkg.style = './style.css'; // 添加这行
 
-                fs.writeFileSync(packageJson, JSON.stringify(pkg, null, 4));
-            } catch {}
+            fs.writeFileSync(packageJson, JSON.stringify(pkg, null, 4));
         }
     }
 };

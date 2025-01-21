@@ -16,7 +16,7 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(react@18.3.1)(storybook@8.5.0(prettier@3.3.3))
       '@eslint/js':
-        specifier: ^9.8.0
+        specifier: ^9.16.0
         version: 9.16.0
       '@storybook/addon-essentials':
         specifier: ^8.5.0
@@ -48,6 +48,9 @@ importers:
       '@types/node':
         specifier: ^20.14.14
         version: 20.17.10
+      '@types/postcss-import':
+        specifier: ^14.0.3
+        version: 14.0.3
       '@vitejs/plugin-vue':
         specifier: ^5.1.0
         version: 5.2.1(vite@6.0.3(@types/node@20.17.10)(jiti@2.4.1)(sass@1.83.0)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))
@@ -67,16 +70,16 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
       eslint:
-        specifier: ^9.8.0
+        specifier: ^9.16.0
         version: 9.16.0(jiti@2.4.1)
       eslint-plugin-vue:
-        specifier: ^9.27.0
+        specifier: ^9.32.0
         version: 9.32.0(eslint@9.16.0(jiti@2.4.1))
       glob:
         specifier: ^11.0.0
         version: 11.0.0
       globals:
-        specifier: ^15.9.0
+        specifier: ^15.13.0
         version: 15.13.0
       postcss:
         specifier: ^8.4.40
@@ -94,7 +97,7 @@ importers:
         specifier: ^5.5.4
         version: 5.7.2
       typescript-eslint:
-        specifier: ^8.0.1
+        specifier: ^8.18.0
         version: 8.18.0(eslint@9.16.0(jiti@2.4.1))(typescript@5.7.2)
       unplugin-vue-macros:
         specifier: ^2.10.0
@@ -1930,6 +1933,9 @@ packages:
 
   '@types/picomatch@3.0.1':
     resolution: {integrity: sha512-1MRgzpzY0hOp9pW/kLRxeQhUWwil6gnrUYd3oEpeYBqp/FexhaCPv3F8LsYr47gtUU45fO2cm1dbwkSrHEo8Uw==}
+
+  '@types/postcss-import@14.0.3':
+    resolution: {integrity: sha512-raZhRVTf6Vw5+QbmQ7LOHSDML71A5rj4+EqDzAbrZPfxfoGzFxMHRCq16VlddGIZpHELw0BG4G0YE2ANkdZiIQ==}
 
   '@types/react@19.0.1':
     resolution: {integrity: sha512-YW6614BDhqbpR5KtUYzTA+zlA7nayzJRA9ljz9CQoxthR0sDisYZLuvSMsil36t4EH/uAt8T52Xb4sVw17G+SQ==}
@@ -6881,6 +6887,10 @@ snapshots:
       undici-types: 6.19.8
 
   '@types/picomatch@3.0.1': {}
+
+  '@types/postcss-import@14.0.3':
+    dependencies:
+      postcss: 8.4.49
 
   '@types/react@19.0.1':
     dependencies:

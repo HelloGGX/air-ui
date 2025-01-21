@@ -17,7 +17,9 @@
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineOptions({ name: 'AirLayout' });
+</script>
 
 <style scoped>
 /* 如有需要，可添加额外样式 */

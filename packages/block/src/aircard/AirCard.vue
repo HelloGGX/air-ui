@@ -51,7 +51,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const props = defineProps({
+defineProps({
     num: {
         type: Number,
         default: 1
@@ -83,7 +83,6 @@ const emit = defineEmits<{
     (e: 'select'): void;
 }>();
 
-const id = ref(`air-card-${Date.now()}`);
 const isVisible = ref(true);
 const isSelected = ref(false);
 

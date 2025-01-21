@@ -39,10 +39,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-defineOptions({ name: 'Airflightinfo' });
+defineOptions({ name: 'AirFlightInfo' });
 const airflightinfoRef = ref<HTMLElement>();
 
-const props = defineProps({
+defineProps({
     flightNum: {
         type: String,
         default: ''

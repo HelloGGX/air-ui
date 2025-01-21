@@ -7,12 +7,12 @@ import { space } from './src/tokens/space';
 
 function createCSSVars(
     prefix: string,
-    obj: Record<string, any>,
-    transformer: (value: any) => string = (val) => `${val}`
+    obj: Record<string, unknown>,
+    transformer: (value: unknown) => string = (val) => `${val}`
 ): Record<string, string> {
     return Object.entries(obj)
         .flatMap(([key, value]) => {
-            if (typeof value === 'object' && !Array.isArray(value)) {
+            if (value && typeof value === 'object' && !Array.isArray(value)) {
                 return Object.entries(value).map(([subKey, subValue]) => [
                     `--air-${prefix}-${key}-${subKey}`,
                     transformer(subValue)

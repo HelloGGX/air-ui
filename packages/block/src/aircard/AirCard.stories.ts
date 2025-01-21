@@ -1,7 +1,6 @@
 import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
 import AirCard from './AirCard.vue';
-import { action } from '@storybook/addon-actions';
-import { userEvent, within, expect, waitFor, fn } from '@storybook/test';
+import { userEvent, within, expect } from '@storybook/test';
 
 const meta: Meta<typeof AirCard> = {
     title: '物料库/AirCard',
@@ -79,7 +78,7 @@ export const FilledForm: Story = {
         components: { AirCard },
         template: `<AirCard />`
     }),
-    play: async ({ args, canvasElement, step }) => {
+    play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
         const cardBox = canvas.getByTestId('card-box');
         await step('点击切换效果，校验切换效果', async () => {
