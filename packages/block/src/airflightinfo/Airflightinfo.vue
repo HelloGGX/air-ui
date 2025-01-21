@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-lg border border-gray-300 p-4 flex items-center justify-between max-w-4xl mx-auto">
+    <div class="bg-white rounded-lg border border-gray-300 p-4 flex items-center justify-between  mx-auto">
         <div class="flex items-center">
             <div>
                 <p class="font-normal text-gray-600">
@@ -21,16 +21,16 @@
                 {{ flightTag }}
             </div>
         </div>
-        <div class="flex items-center flex-1 pl-16">
+        <div class="flex items-center flex-1 pl-16 justify-between">
             <span class="text-gray-600 text-nowrap font-bold text-xl">{{ depFlight }}</span>
-            <div class="border-t border-dashed border-gray-300 w-1/3"></div>
-            <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="border-t border-dashed border-gray-300 w-full"></div>
+            <svg width="40" height="30" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M13.053 11L8 19H6L8.526 11L3.166 11L1.5 14H0L1 9.5L0 5H1.5L3.167 8L8.527 8L6 0L8 0L13.053 8H18.5C18.8978 8 19.2794 8.15804 19.5607 8.43934C19.842 8.72064 20 9.10218 20 9.5C20 9.89782 19.842 10.2794 19.5607 10.5607C19.2794 10.842 18.8978 11 18.5 11H13.053Z"
                     fill="#50545E"
                 />
             </svg>
-            <div class="border-t border-dashed border-gray-300 w-1/3"></div>
+            <div class="border-t border-dashed border-gray-300 w-full"></div>
             <span class="text-gray-600 text-nowrap font-bold text-xl">{{ arrFlight }}</span>
         </div>
     </div>

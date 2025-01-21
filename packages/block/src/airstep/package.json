@@ -1,0 +1,6 @@
+{
+    "main": "./Airstep.vue",
+    "types": "./Airstep.d.ts",
+    "module": "./Airstep.vue",
+    "sideEffects": ["*.vue"]
+}
