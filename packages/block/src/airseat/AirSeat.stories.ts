@@ -1,5 +1,6 @@
 import type { Meta, StoryFn } from '@storybook/vue3';
 import AirSeat from './AirSeat.vue';
+import type { AirSeatProps } from './AirSeat';
 
 const meta: Meta<typeof AirSeat> = {
     title: '物料库/AirSeat',
@@ -28,15 +29,12 @@ const meta: Meta<typeof AirSeat> = {
     }
 };
 
-const Template: StoryFn = (args) => ({
+const Template: StoryFn<AirSeatProps> = (args) => ({
     components: { AirSeat },
     setup() {
-        const handleClick = (evt: { status: typeof args.status; seatNumber: number; seatOwnerIndex: number }) => {
-            console.log(evt);
-        };
-        return { args, handleClick };
+        return { args };
     },
-    template: '<AirSeat v-bind="args" @click="handleClick">{{ args.seatOwnerIndex }}</AirSeat>'
+    template: '<AirSeat v-bind="args">{{ args.seatOwnerIndex }}</AirSeat>'
 });
 
 export const Default = Template.bind({});

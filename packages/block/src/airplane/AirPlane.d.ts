@@ -5,7 +5,7 @@
  * @module AirPlane
  *
  */
-import type { ISeat } from '../airseat/AirSeat';
+import type { ISeat } from '../airseat';
 import type { DefineComponent, EmitFn, GlobalComponentConstructor } from '../index';
 import { VNode } from 'vue';
 

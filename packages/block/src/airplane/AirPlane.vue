@@ -268,6 +268,7 @@ let animationFrameId: number | null = null;
  */
 const getSeatData = () => {
     const { seatData } = props;
+
     hasLower.value = Boolean(seatData.lower);
     hasUpper.value = Boolean(seatData.upper);
     // 原逻辑有levelChange函数，处理点击上下舱展示，后续处理

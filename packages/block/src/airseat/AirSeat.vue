@@ -3,7 +3,6 @@
         <svg
             v-if="seatStatus === 'available'"
             width="100%"
-            height="auto"
             viewBox="0 0 40 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +16,6 @@
         <svg
             v-else-if="seatStatus === 'selected'"
             width="100%"
-            height="auto"
             viewBox="0 0 40 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +41,6 @@
         <svg
             v-else-if="seatStatus === 'unavailable'"
             width="100%"
-            height="auto"
             viewBox="0 0 40 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +58,6 @@
         <svg
             v-else-if="seatStatus === 'emergency-left'"
             width="100%"
-            height="auto"
             viewBox="0 0 28 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +99,6 @@
         <svg
             v-else-if="seatStatus === 'emergency-right'"
             width="100%"
-            height="auto"
             viewBox="0 0 28 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +141,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 defineOptions({ name: 'AirSeat' });
 
 const props = defineProps({
@@ -168,7 +163,7 @@ const props = defineProps({
 });
 
 // 初始化座位状态
-const seatStatus = ref<typeof props.status>(props.status);
+const seatStatus = computed(() => props.status);
 
 const emit = defineEmits<{
     (
@@ -184,10 +179,6 @@ const emit = defineEmits<{
 // 处理点击事件
 const handleClick = () => {
     // 只有在 selected 状态下才传递 seatNumber
-    // const payload = { status: props.status } as { status: typeof props.status; seatNumber?: number };
-    // if (props.status === 'selected') {
-    //     payload.seatNumber = props.seatNumber;
-    // }
     if (
         seatStatus.value === 'unavailable' ||
         seatStatus.value === 'emergency-left' ||
