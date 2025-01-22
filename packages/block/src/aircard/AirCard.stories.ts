@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryFn } from '@storybook/vue3';
 import AirCard from './AirCard.vue';
 import { userEvent, within, expect } from '@storybook/test';
 
@@ -66,31 +66,19 @@ const Template: StoryFn = (args) => ({
 
 export const Default = Template.bind({});
 
+Default.play = async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const cardBox = canvas.getByTestId('card-box');
+
+    await step('点击切换效果，校验切换效果', async () => {
+        await userEvent.click(cardBox);
+        await expect(cardBox).toHaveClass('bg-primary-500');
+    });
+
+    await step('点击关闭，校验卡片是否隐藏', async () => {
+        await userEvent.click(canvas.getByRole('button'));
+        await expect(cardBox).not.toBeVisible();
+    });
+};
+
 export default meta;
-
-type Story = StoryObj<typeof AirCard>;
-
-export const EmptyForm: Story = {
-    render: () => ({
-        components: { AirCard },
-        template: `<AirCard />`
-    })
-};
-export const FilledForm: Story = {
-    render: () => ({
-        components: { AirCard },
-        template: `<AirCard  />`
-    }),
-    play: async ({ canvasElement, step }) => {
-        const canvas = within(canvasElement);
-        const cardBox = canvas.getByTestId('card-box');
-        await step('点击切换效果，校验切换效果', async () => {
-            await userEvent.click(cardBox);
-            await expect(cardBox).toHaveClass('bg-primary-500');
-        });
-        await step('点击关闭,，校验卡片是否隐藏', async () => {
-            await userEvent.click(canvas.getByRole('button'));
-            await expect(cardBox).not.toBeVisible();
-        });
-    }
-};

@@ -1,6 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/vue3';
 import AirSeat from './AirSeat.vue';
 import type { AirSeatProps } from './AirSeat';
+import { expect, userEvent, within } from '@storybook/test';
 
 const meta: Meta<typeof AirSeat> = {
     title: '物料库/AirSeat',
@@ -46,4 +47,21 @@ const Template: StoryFn<AirSeatProps> = (args) => ({
 });
 
 export const Default = Template.bind({});
+
+Default.play = async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const airseatRef = canvas.getByTestId('airseat-ref');
+
+    step('测试默认可用状态', async () => {
+        expect(airseatRef).toHaveAttribute('data-status', 'available');
+    });
+
+    step('组件切换状态应该在选中和可用来回切换', async () => {
+        await userEvent.click(airseatRef);
+        expect(airseatRef).toHaveAttribute('data-status', 'selected');
+        await userEvent.click(airseatRef);
+        expect(airseatRef).toHaveAttribute('data-status', 'available');
+    });
+};
+
 export default meta;

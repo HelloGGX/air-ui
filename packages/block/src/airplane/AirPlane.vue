@@ -1,5 +1,8 @@
 <template>
-    <div class="bg-white rounded-lg p-4 flex items-center justify-between max-w-4xl mx-auto h-96">
+    <div
+        data-testid="airplane-ref"
+        class="bg-white rounded-lg p-4 flex items-center justify-between max-w-4xl mx-auto h-96"
+    >
         <!-- 左侧座位显示区 -->
         <div class="flex-1 h-full mr-3 rounded-sm border border-gray-300 p-1">
             <!-- 座位图标记 -->
@@ -12,6 +15,7 @@
             </div>
             <!-- 座位选择区域 -->
             <div
+                data-testid="airplane-left"
                 class="px-7 text-gray-500 mt-2 h-4/5 overflow-y-scroll scroll-smooth"
                 ref="planeSeatRef"
                 @touchstart="startSeatScroll"
@@ -32,6 +36,8 @@
         <div class="flex flex-col justify-center items-center">
             <!-- 向上按钮 -->
             <button
+                :disabled="!upActive"
+                data-testid="up"
                 @mousedown="startScroll('up')"
                 @mouseup="stopScroll"
                 @mouseleave="stopScroll"
@@ -214,6 +220,8 @@
 
             <!-- 向下按钮 -->
             <button
+                :disabled="!downActive"
+                data-testid="down"
                 @mousedown="startScroll('down')"
                 @mouseup="stopScroll"
                 @mouseleave="stopScroll"

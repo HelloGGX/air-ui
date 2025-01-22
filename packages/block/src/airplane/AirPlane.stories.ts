@@ -1,6 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
 import AirPlane from './AirPlane.vue';
+import { expect, userEvent, within } from '@storybook/test';
 
 const meta: Meta<typeof AirPlane> = {
     title: '物料库/AirPlane',
@@ -1350,4 +1351,37 @@ const Template: StoryFn = (args) => ({
 });
 
 export const Default = Template.bind({});
+
+Default.play = async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const airplaneLeft = canvas.getByTestId('airplane-left');
+
+    // 模拟滑动操作
+    const upButton = canvas.getByTestId('up');
+    const downButton = canvas.getByTestId('down');
+
+    // 模拟向上滑动
+    await step('按钮的初始化状态应该是上面是置灰不可用，下面点击', async () => {
+        // 检查按钮状态变化
+        expect(upButton).toBeDisabled();
+        expect(downButton).toBeEnabled();
+    });
+
+    await step('点击一次向下按钮，两个按钮多应该可用', async () => {
+        await userEvent.click(downButton);
+        await new Promise((resolve) => setTimeout(resolve, 100)); // 等待状态更新
+        // 检查按钮状态变化
+        expect(upButton).toBeEnabled();
+        expect(downButton).toBeEnabled();
+    });
+
+    await step('滚动到最底部，向下按钮置灰不可用', async () => {
+        await airplaneLeft.scrollTo({ top: 1000 });
+        await new Promise((resolve) => setTimeout(resolve, 900)); // 等待状态更新
+        // 检查按钮状态变化
+        expect(upButton).toBeEnabled();
+        expect(downButton).toBeDisabled(); // 向下按钮应置灰不可用
+    });
+};
+
 export default meta;

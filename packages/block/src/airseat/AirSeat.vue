@@ -1,5 +1,10 @@
 <template>
-    <div class="air-seat flex flex-col items-center cursor-pointer max-w-10" @click="handleClick">
+    <div
+        data-testid="airseat-ref"
+        :data-status="seatStatus"
+        class="air-seat flex flex-col items-center cursor-pointer max-w-10"
+        @click="handleClick"
+    >
         <svg
             v-if="seatStatus === 'available'"
             width="100%"
