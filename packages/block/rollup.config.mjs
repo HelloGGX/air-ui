@@ -4,7 +4,7 @@ import { babel } from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import postcss from 'rollup-plugin-postcss';
-import vue from 'rollup-plugin-vue';
+import vue from '@vitejs/plugin-vue';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 import postcssImport from 'postcss-import';
