@@ -10,7 +10,7 @@ import { VNode } from 'vue';
 import { iconPropType } from 'element-plus/es/utils/vue/icon';
 
 interface stepObj {
-    label?: string | undefined
+    label?: string | undefined;
 }
 export interface AirstepProps {
     /**
@@ -34,8 +34,10 @@ export interface AirstepProps {
      */
     icon?: typeof iconPropType | undefined;
 }
-export interface AirstepSlots { default(): VNode[]; }
-export interface AirstepEmitsOptions { click: (evt: MouseEvent) => void; }
+export interface AirstepSlots {
+    default(): VNode[];
+}
+export interface AirstepEmitsOptions {}
 export declare type AirstepEmits = EmitFn<AirstepEmitsOptions>;
 
 declare const Airstep: DefineComponent<AirstepProps, AirstepSlots, AirstepEmits>;
@@ -45,6 +47,5 @@ declare module 'vue' {
         Airstep: GlobalComponentConstructor<AirstepProps, AirstepSlots, AirstepEmits>;
     }
 }
-
 
 export default Airstep;
