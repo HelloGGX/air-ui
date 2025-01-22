@@ -1376,7 +1376,7 @@ Default.play = async ({ canvasElement, step }) => {
     });
 
     await step('滚动到最底部，向下按钮置灰不可用', async () => {
-        await airplaneLeft.scrollTo({ top: 1000 });
+        airplaneLeft.scrollTo({ top: 1000 });
         await new Promise((resolve) => setTimeout(resolve, 900)); // 等待状态更新
         // 检查按钮状态变化
         expect(upButton).toBeEnabled();
