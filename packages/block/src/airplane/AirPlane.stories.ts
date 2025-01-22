@@ -6,6 +6,14 @@ const meta: Meta<typeof AirPlane> = {
     title: '物料库/AirPlane',
     component: AirPlane,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered',
+        docs: {
+            description: {
+                component: 'AirPlane 用于航班选择座位'
+            }
+        }
+    },
     argTypes: {
         seatData: Object
     },

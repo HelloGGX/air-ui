@@ -5,6 +5,13 @@ const meta: Meta<typeof Airstep> = {
     title: '物料库/AirStep',
     component: Airstep,
     tags: ['autodocs'],
+    parameters: {
+        docs: {
+            description: {
+                component: 'AirStep 用于顶部步骤条的展示'
+            }
+        }
+    },
     argTypes: {
         active: {
             control: { type: 'number' },

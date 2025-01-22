@@ -6,6 +6,14 @@ const meta: Meta<typeof AirSeat> = {
     title: '物料库/AirSeat',
     component: AirSeat,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered',
+        docs: {
+            description: {
+                component: 'AirSeat 用于机舱座位选择中座位的展示'
+            }
+        }
+    },
     argTypes: {
         status: {
             control: { type: 'select' },

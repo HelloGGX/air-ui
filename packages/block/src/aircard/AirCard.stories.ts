@@ -6,7 +6,12 @@ const meta: Meta<typeof AirCard> = {
     title: '物料库/AirCard',
     tags: ['autodocs'],
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
+        docs: {
+            description: {
+                component: 'AirCard 组件用于展示旅客信息，包括旅客序号、姓名和座位号，并提供关闭功能。'
+            }
+        }
     },
     component: AirCard,
     argTypes: {
@@ -48,8 +53,6 @@ const meta: Meta<typeof AirCard> = {
         name: 'placeholder',
         seatNum: '请选座',
         showClose: true
-        // onClose: action("clicked"),
-        // onSelect: action("clicked")
     }
 };
 
@@ -76,7 +79,7 @@ export const EmptyForm: Story = {
 export const FilledForm: Story = {
     render: () => ({
         components: { AirCard },
-        template: `<AirCard />`
+        template: `<AirCard  />`
     }),
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);

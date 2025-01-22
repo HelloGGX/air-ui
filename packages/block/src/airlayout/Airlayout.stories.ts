@@ -4,6 +4,14 @@ import Airlayout from './AirLayout.vue';
 const meta: Meta<typeof Airlayout> = {
     title: '物料库/AirLayout',
     component: Airlayout,
+    parameters: {
+        layout: 'centered',
+        docs: {
+            description: {
+                component: 'AirLayout 组件上中下结构的组织结构组件'
+            }
+        }
+    },
     tags: ['autodocs']
 };
 

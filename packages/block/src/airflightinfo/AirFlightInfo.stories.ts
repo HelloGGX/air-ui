@@ -5,6 +5,14 @@ const meta: Meta<typeof Airflightinfo> = {
     title: '物料库/AirFlightInfo',
     component: Airflightinfo,
     tags: ['autodocs'],
+    parameters: {
+        layout: 'centered',
+        docs: {
+            description: {
+                component: 'AirFlightInfo 组件用于展示往返信息'
+            }
+        }
+    },
     argTypes: {
         flightNum: {
             control: { type: 'text' },

@@ -5,7 +5,12 @@ const meta: Meta<typeof AirHeader> = {
     title: '物料库/AirHeader',
     component: AirHeader,
     parameters: {
-        layout: 'centered'
+        layout: 'centered',
+        docs: {
+            description: {
+                component: 'AirHeader 组件用于展示顶部head的通用组件'
+            }
+        }
     },
     tags: ['autodocs'],
     argTypes: {

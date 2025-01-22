@@ -141,7 +141,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { ref, watch } from 'vue';
 defineOptions({ name: 'AirSeat' });
 
 const props = defineProps({
@@ -163,7 +163,15 @@ const props = defineProps({
 });
 
 // 初始化座位状态
-const seatStatus = computed(() => props.status);
+const seatStatus = ref(props.status);
+
+// 监听 props.status 的变化
+watch(
+    () => props.status,
+    (newStatus) => {
+        seatStatus.value = newStatus;
+    }
+);
 
 const emit = defineEmits<{
     (
