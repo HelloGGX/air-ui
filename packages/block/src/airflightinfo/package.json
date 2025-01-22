@@ -1,6 +1,8 @@
 {
-    "main": "./Airflightinfo.vue",
-    "types": "./Airflightinfo.d.ts",
-    "module": "./Airflightinfo.vue",
-    "sideEffects": ["*.vue"]
+    "main": "./AirFlightInfo.vue",
+    "types": "./AirFlightInfo.d.ts",
+    "module": "./AirFlightInfo.vue",
+    "sideEffects": [
+        "*.vue"
+    ]
 }

@@ -7,19 +7,19 @@ export * from './airseat/AirSeat.vue';
 export { default as AirSeat } from './airseat/AirSeat.vue';
 
 //airflightinfo ------------------------------
-export * from './airflightinfo/Airflightinfo.vue';
-export { default as Airflightinfo } from './airflightinfo/Airflightinfo.vue';
+export * from './airflightinfo/AirFlightInfo.vue';
+export { default as Airflightinfo } from './airflightinfo/AirFlightInfo.vue';
 
 //airstep ------------------------------
-export * from './airstep/Airstep.vue';
-export { default as Airstep } from './airstep/Airstep.vue';
+export * from './airstep/AirStep.vue';
+export { default as Airstep } from './airstep/AirStep.vue';
 //airlayout ------------------------------
-export * from './airlayout/Airlayout.vue';
-export { default as Airlayout } from './airlayout/Airlayout.vue';
+export * from './airlayout/AirLayout.vue';
+export { default as Airlayout } from './airlayout/AirLayout.vue';
 
 //airheader ------------------------------
-export * from './airheader/Airheader.vue';
-export { default as Airheader } from './airheader/Airheader.vue';
+export * from './airheader/AirHeader.vue';
+export { default as Airheader } from './airheader/AirHeader.vue';
 
 //airplane ------------------------------
 export * from './airplane/AirPlane.vue';
