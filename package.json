@@ -26,11 +26,9 @@
         "format": "prettier --write \"**/*.{vue,js,mjs,ts,d.ts}\" --cache",
         "format:check": "prettier --check \"**/*.{vue,js,mjs,ts,d.ts}\"",
         "lint": "eslint --cache",
-        "lint:fix": "eslint --fix",
-        "test": "vitest"
+        "lint:fix": "eslint --fix"
     },
     "devDependencies": {
-        "@chromatic-com/storybook": "^3.2.4",
         "@eslint/js": "^9.16.0",
         "@storybook/addon-essentials": "^8.5.0",
         "@storybook/addon-links": "^8.5.0",
