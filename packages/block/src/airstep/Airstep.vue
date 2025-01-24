@@ -74,7 +74,6 @@
 import { ref } from 'vue';
 import { iconPropType } from 'element-plus/es/utils/vue/icon';
 import { Check } from '@element-plus/icons-vue';
-import '../theme/index.scss';
 
 defineOptions({ name: 'AirStep' });
 const airstepRef = ref<HTMLElement>();
