@@ -7,10 +7,7 @@
         },
         "jsx": "preserve",
         "skipLibCheck": true,
-        "types": ["unplugin-vue-macros/macros-global", "element-plus/global"]
+        "types": ["element-plus/global"]
     },
-    "include": ["components/**/*.ts", "components/**/*.vue", "./*.ts"],
-    "vueCompilerOptions": {
-        "plugins": ["unplugin-vue-macros/volar"]
-    }
+    "include": ["components/**/*.ts", "components/**/*.vue", "./*.ts"]
 }

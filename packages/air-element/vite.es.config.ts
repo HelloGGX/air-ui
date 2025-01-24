@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import type { PluginOption, LibraryOptions } from 'vite';
 import type { RollupOptions, OutputOptions, InputOption } from 'rollup';
-import VueMacros from 'unplugin-vue-macros';
 import vue from '@vitejs/plugin-vue';
 import dts, { type PluginOptions } from 'vite-plugin-dts';
 import { fileURLToPath, URL } from 'url';
@@ -18,11 +17,6 @@ const SCSS_EXTERNALS = [/\.css$/, /\.scss$/];
 const EXTERNALS = [...GLOBAL_EXTERNALS, ...SCSS_EXTERNALS];
 
 // plugins
-const VUEMACROS_PLUGIN_OPTION = {
-    plugins: {
-        vue: vue()
-    }
-};
 const DTS_PLUGIN_OPTION: PluginOptions = {
     tsconfigPath: './tsconfig.json',
     include: [`${INPUT_DIR}**/*.ts`, `${INPUT_DIR}**/*.vue`, `index.ts`, 'component.ts', 'default.ts'],
@@ -30,11 +24,7 @@ const DTS_PLUGIN_OPTION: PluginOptions = {
     outDir,
     clearPureImport: false
 };
-const PLUGINS: PluginOption = [
-    VueMacros.vite(VUEMACROS_PLUGIN_OPTION),
-    dts(DTS_PLUGIN_OPTION),
-    ElementPlus({ format: 'esm' })
-];
+const PLUGINS: PluginOption = [vue(), dts(DTS_PLUGIN_OPTION), ElementPlus({ format: 'esm' })];
 
 // build.lib
 const INPUT_OPTION: InputOption = {
