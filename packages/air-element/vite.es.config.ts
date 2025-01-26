@@ -50,8 +50,7 @@ const ROLLUP_OUTPUT_OPTION: OutputOptions = {
         'element-plus': 'ElementPlus'
     },
     entryFileNames: '[name].mjs',
-    exports: 'named',
-    assetFileNames: 'theme/[name][extname]'
+    exports: 'named'
 };
 const ROLLUP_OPTIONS: RollupOptions = {
     external: EXTERNALS,
