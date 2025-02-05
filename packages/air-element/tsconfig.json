@@ -5,7 +5,6 @@
         "paths": {
             "@air-ui/air-element/*": ["./*"]
         },
-        "jsx": "preserve",
         "skipLibCheck": true,
         "types": ["element-plus/global"]
     },

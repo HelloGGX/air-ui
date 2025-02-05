@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import path from 'path';
-import { clearPackageJson, resolvePath, updatePeerDependency } from '../../../scripts/build-helper.mjs';
+import { clearPackageJson, resolvePath, updatePeerDependency } from '../../../scripts/build-helper';
 
 const { __dirname, __workspace, OUTPUT_DIR } = resolvePath(import.meta.url);
 

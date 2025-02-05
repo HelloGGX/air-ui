@@ -7,7 +7,7 @@ import { fileURLToPath, URL } from 'url';
 import { extname, resolve } from 'path';
 import { globSync } from 'glob';
 import ElementPlus from 'unplugin-element-plus/vite';
-import { resolvePath } from '../../scripts/build-helper.mjs';
+import { resolvePath } from '../../scripts/build-helper';
 
 const { INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 const outDir = `${OUTPUT_DIR}lib`;

@@ -6,13 +6,15 @@ import {
     resolvePath,
     copyDependencies,
     updatePeerDependency
-} from '../../../scripts/build-helper.mjs';
+} from '../../../scripts/build-helper';
 
 const { __dirname, __workspace, INPUT_DIR, OUTPUT_DIR } = resolvePath(import.meta.url);
 
 fs.copySync(path.resolve(__dirname, '../package.json'), `${OUTPUT_DIR}/package.json`);
-copyDependencies(INPUT_DIR, OUTPUT_DIR);
-renameDTSFile(OUTPUT_DIR, 'index');
+if (INPUT_DIR && OUTPUT_DIR) {
+    copyDependencies(INPUT_DIR, OUTPUT_DIR);
+    renameDTSFile(OUTPUT_DIR, 'index');
+}
 
 const outputpkg = path.resolve(__dirname, `../${OUTPUT_DIR}/package.json`);
 // package.json

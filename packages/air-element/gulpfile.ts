@@ -11,7 +11,7 @@ import consola from 'consola';
 import chalk from 'chalk';
 import gulpPostCss from 'gulp-postcss';
 import tailwindcss from 'tailwindcss';
-import { resolvePath } from '../../scripts/build-helper.mjs';
+import { resolvePath } from '../../scripts/build-helper';
 
 const { OUTPUT_PATH } = resolvePath(import.meta.url);
 const distFolder = path.resolve(__dirname, 'theme/dist');
