@@ -35,8 +35,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
-import { AirButton } from '@air-ui/air-element';
-import { SwitchButton } from '@element-plus/icons-vue';
 
 defineOptions({ name: 'AirHeader' });
 

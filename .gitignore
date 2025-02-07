@@ -2,4 +2,6 @@ node_modules
 dist
 packages/**/**/dist
 coverage/**
+auto-imports.d.ts
+components.d.ts
 

@@ -1,5 +1,5 @@
 /** @type { import('@storybook/vue3').Preview } */
-import '../theme/index.scss';
+import '../theme/index.css';
 
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
