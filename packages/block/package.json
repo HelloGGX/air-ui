@@ -23,9 +23,11 @@
         "@rollup/plugin-node-resolve": "^15.2.3",
         "@rollup/plugin-terser": "^0.4.4",
         "@tailwindcss/postcss": "^4.0.3",
+        "@types/postcss-import": "^14.0.3",
         "@vitejs/plugin-vue": "^5.1.0",
         "autoprefixer": "^10.4.19",
         "postcss": "^8.5.1",
+        "postcss-import": "^16.1.0",
         "rollup-plugin-postcss": "^4.0.2",
         "sass": "^1.84.0",
         "tailwindcss": "^4.0.4"

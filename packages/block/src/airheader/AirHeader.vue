@@ -28,13 +28,14 @@
                 <span class="text-primary-600 text-3xl">{{ props.countdownNumber }}</span
                 ><span class="text-primary-600 text-xl">s</span>
             </div>
-            <AirButton plain round type="primary" :right-icon="SwitchButton">退出</AirButton>
+            <!-- <AirButton plain round type="primary" :right-icon="SwitchButton">退出</AirButton> -->
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
+// import { SwitchButton } from '@element-plus/icons-vue';
 
 defineOptions({ name: 'AirHeader' });
 

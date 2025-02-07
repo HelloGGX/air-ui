@@ -2,6 +2,7 @@
     "name": "air-ui",
     "version": "0.0.0",
     "author": "玄子",
+    "type": "module",
     "repository": {
         "type": "git",
         "url": "https://github.com/HelloGGX/air-ui.git"
@@ -25,7 +26,9 @@
         "format": "prettier --write \"**/*.{vue,js,mjs,ts,d.ts}\" --cache",
         "format:check": "prettier --check \"**/*.{vue,js,mjs,ts,d.ts}\"",
         "lint": "eslint --cache",
-        "lint:fix": "eslint --fix"
+        "lint:fix": "eslint --fix",
+        "test": "vitest",
+        "test-storybook": "vitest --project=storybook"
     },
     "devDependencies": {
         "@eslint/js": "^9.18.0",
@@ -38,7 +41,6 @@
         "@storybook/test": "^8.5.1",
         "@storybook/vue3": "^8.5.1",
         "@storybook/vue3-vite": "^8.5.1",
-        "@tailwindcss/postcss": "^4.0.3",
         "@tailwindcss/vite": "^4.0.4",
         "@types/node": "^20.17.16",
         "@vitejs/plugin-vue": "^5.2.1",
