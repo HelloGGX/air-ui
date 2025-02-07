@@ -66,16 +66,7 @@ const POSTCSS_PLUGIN_OPTIONS = {
     plugins: [tailwindcss()],
     extract: 'style.css',
     modules: false,
-    minimize: true,
-    sourceMap: true,
-    use: [
-        [
-            'sass',
-            {
-                includePaths: ['node_modules']
-            }
-        ]
-    ]
+    minimize: false,
 };
 
 const TERSER_PLUGIN_OPTIONS = {
@@ -83,6 +74,9 @@ const TERSER_PLUGIN_OPTIONS = {
         keep_infinity: true, // 保持 Infinity 值不被压缩或替换，确保在代码中 Infinity 的使用不会被改变。
         pure_getters: true, // 假设 getter 函数是纯粹的（没有副作用），允许更好的优化，可能会移除未使用的 getter。
         reduce_funcs: true // 尝试减少函数的数量，优化代码体积，可能会合并相似的函数。
+    },
+    mangle: {
+        reserved: ['theme', 'css']
     }
 };
 

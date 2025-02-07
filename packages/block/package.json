@@ -28,6 +28,7 @@
         "autoprefixer": "^10.4.19",
         "postcss": "^8.5.1",
         "postcss-import": "^16.1.0",
+        "rollup": "^4.34.5",
         "rollup-plugin-postcss": "^4.0.2",
         "sass": "^1.84.0",
         "tailwindcss": "^4.0.4"
@@ -46,12 +47,12 @@
     },
     "exports": {
         "./aircard": "./src/aircard/AirCard.vue",
-        "./airflightinfo": "./src/airflightinfo/AirFlightInfo.vue",
-        "./airheader": "./src/airheader/AirHeader.vue",
-        "./airlayout": "./src/airlayout/AirLayout.vue",
+        "./airflightinfo": "./src/airflightinfo/Airflightinfo.vue",
+        "./airheader": "./src/airheader/Airheader.vue",
+        "./airlayout": "./src/airlayout/Airlayout.vue",
         "./airplane": "./src/airplane/AirPlane.vue",
         "./airseat": "./src/airseat/AirSeat.vue",
-        "./airstep": "./src/airstep/AirStep.vue",
+        "./airstep": "./src/airstep/Airstep.vue",
         "./*": "./*"
     }
 }

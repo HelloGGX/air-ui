@@ -2,11 +2,21 @@
  * @module AirCard
  */
 
+import type { VNode } from 'vue';
 import type { DefineComponent, EmitFn, GlobalComponentConstructor } from '../index';
-// import { VNode } from 'vue';
 
 /**
- * 定义AircCard组件的当前内联状态
+ * 定义 AirCard 组件的当前上下文
+ */
+export interface AirCardContext {
+    /**
+     * 组件的当前状态
+     */
+    state: AirCardState;
+}
+
+/**
+ * 定义 AirCard 组件的当前内联状态
  */
 export interface AirCardState {
     /**
@@ -16,19 +26,19 @@ export interface AirCardState {
 }
 
 /**
- * 定义AirCard组件的有效属性
+ * 定义 AirCard 组件的有效属性
  */
 export interface AirCardProps {
     /**
-     * 序号
+     * 卡片序号
      */
     num?: number | undefined;
     /**
-     * 姓名
+     * 显示的姓名
      */
     name?: string | undefined;
     /**
-     * 座位号
+     * 显示的座位号
      */
     seatNum?: string | undefined;
     /**
@@ -36,18 +46,20 @@ export interface AirCardProps {
      */
     height?: string | undefined;
     /**
-     * 是否显示关闭图标
+     * 是否显示关闭按钮
      * @defaultValue false
      */
     showClose?: boolean | undefined;
 }
 
+export interface AirCardSlots {}
+
 /**
- * 定义AirCard组件的有效事件
+ * 定义 AirCard 组件的有效事件
  */
 export interface AirCardEmitsOptions {
     /**
-     * 点击关闭时触发
+     * 点击关闭按钮时触发
      */
     close: () => void;
     /**
@@ -58,11 +70,11 @@ export interface AirCardEmitsOptions {
 
 export declare type AirCardEmits = EmitFn<AirCardEmitsOptions>;
 
-declare const AirCard: DefineComponent<AirCardProps, AirCardEmits>;
+declare const AirCard: DefineComponent<AirCardProps, AirCardSlots, AirCardEmits>;
 
 declare module 'vue' {
     export interface GlobalComponents {
-        AirCard: GlobalComponentConstructor<AirCardProps, AirCardEmits>;
+        AirCard: GlobalComponentConstructor<AirCardProps, AirCardSlots, AirCardEmits>;
     }
 }
 
