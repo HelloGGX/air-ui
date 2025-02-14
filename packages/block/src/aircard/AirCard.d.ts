@@ -2,7 +2,6 @@
  * @module AirCard
  */
 
-import type { VNode } from 'vue';
 import type { DefineComponent, EmitFn, GlobalComponentConstructor } from '../index';
 
 /**

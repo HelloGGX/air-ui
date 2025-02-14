@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
 import AirPlane from './AirPlane.vue';
-import { expect, userEvent, within, waitFor } from '@storybook/test';
+import { expect, within, userEvent, waitFor } from '@storybook/test';
 
 const meta: Meta<typeof AirPlane> = {
     title: '物料库/AirPlane',
@@ -1355,15 +1355,79 @@ export const Default = Template.bind({});
 Default.play = async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    // 模拟滑动操作
-    const upButton = canvas.getByTestId('up');
-    const downButton = canvas.getByTestId('down');
+    await step('初始状态检查', async () => {
+        // 检查按钮状态
+        const upButton = canvas.getByTestId('up');
+        const downButton = canvas.getByTestId('down');
 
-    // 模拟向上滑动
-    await step('按钮的初始化状态应该是上面是置灰不可用，下面点击', async () => {
-        // 检查按钮状态变化
         expect(upButton).toBeDisabled();
         expect(downButton).toBeEnabled();
+
+        // 检查座位区域是否渲染
+        const airplaneLeft = canvas.getByTestId('airplane-left');
+        expect(airplaneLeft).toBeInTheDocument();
+    });
+};
+
+// 测试用例2：测试座位选择
+export const SeatSelection = Template.bind({});
+SeatSelection.play = async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    await step('座位选择测试', async () => {
+        // 模拟选择座位
+
+        const availableSeats = canvas
+            .getAllByTestId('airseat-ref')
+            .filter((seat) => seat.getAttribute('data-status') === 'available');
+        if (availableSeats.length > 0) {
+            await userEvent.click(availableSeats[0]);
+            // 验证选中状态
+            expect(availableSeats[0]).toHaveAttribute('data-status', 'selected');
+        }
+    });
+};
+
+// 测试用例3：测试滚动功能
+export const ScrollingBehavior = Template.bind({});
+ScrollingBehavior.play = async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    await step('滚动功能测试', async () => {
+        const downButton = canvas.getByTestId('down');
+        const upButton = canvas.getByTestId('up');
+
+        // 测试向下滚动
+        await userEvent.click(downButton);
+
+        // 验证上按钮变为可用
+        await waitFor(() => {
+            expect(upButton).toBeEnabled();
+        });
+    });
+};
+
+// 测试用例4：测试紧急出口座位
+export const EmergencyExitSeats = Template.bind({});
+EmergencyExitSeats.play = async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    await step('紧急出口座位检查', async () => {
+        // 滚动到紧急出口位置
+        const airplaneLeft = canvas.getByTestId('airplane-left');
+        airplaneLeft.scrollTo(0, 200);
+
+        // 等待滚动完成
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        const emergencyRightSeats = canvas
+            .getAllByTestId('airseat-ref')
+            .filter((seat) => seat.getAttribute('data-status') === 'emergency-right');
+        expect(emergencyRightSeats.length).toBeGreaterThan(0);
+        const emergencyLeftSeats = canvas
+            .getAllByTestId('airseat-ref')
+            .filter((seat) => seat.getAttribute('data-status') === 'emergency-left');
+        expect(emergencyLeftSeats.length).toBeGreaterThan(0);
     });
 };
 
