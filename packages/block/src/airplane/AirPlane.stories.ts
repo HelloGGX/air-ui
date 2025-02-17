@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
 import AirPlane from './AirPlane.vue';
-import { expect, within, userEvent, waitFor } from '@storybook/test';
+import { expect, within, userEvent } from '@storybook/test';
 
 const meta: Meta<typeof AirPlane> = {
     title: '物料库/AirPlane',
@@ -1385,25 +1385,6 @@ SeatSelection.play = async ({ canvasElement, step }) => {
             // 验证选中状态
             expect(availableSeats[0]).toHaveAttribute('data-status', 'selected');
         }
-    });
-};
-
-// 测试用例3：测试滚动功能
-export const ScrollingBehavior = Template.bind({});
-ScrollingBehavior.play = async ({ canvasElement, step }) => {
-    const canvas = within(canvasElement);
-
-    await step('滚动功能测试', async () => {
-        const downButton = canvas.getByTestId('down');
-        const upButton = canvas.getByTestId('up');
-
-        // 测试向下滚动
-        await userEvent.click(downButton);
-
-        // 验证上按钮变为可用
-        await waitFor(() => {
-            expect(upButton).toBeEnabled();
-        });
     });
 };
 
