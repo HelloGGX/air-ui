@@ -178,8 +178,8 @@ const ENTRY = {
                 (pkg.main = path.basename(options?.main) ? `./${path.basename(options.main)}` : pkg.main);
             pkg.module = path.basename(options?.module) ? `./${path.basename(options.module)}` : packageJson.module;
             pkg.types && (pkg.types = './index.d.ts');
-            pkg.style = './style.css'; // 添加这行
-
+            pkg.style = './style.css'; 
+            
             fs.writeFileSync(packageJson, JSON.stringify(pkg, null, 4));
         }
     }

@@ -24,3 +24,7 @@ export { default as Airheader } from './airheader/AirHeader.vue';
 //airplane ------------------------------
 export * from './airplane/AirPlane.vue';
 export { default as AirPlane } from './airplane/AirPlane.vue';
+
+//airbg ------------------------------
+export * from './airbg/AirBg.vue';
+export { default as AirBg } from './airbg/AirBg.vue';

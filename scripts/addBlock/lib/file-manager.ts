@@ -30,10 +30,15 @@ export class FileManager {
 
     async writeFiles(dir, name, type, templates) {
         const typeConfig = config.types[type];
+        const fileNameMap = {
+            package: 'package.json',
+            vue: `${name}.vue`,
+            stories: `${name}.stories.ts`,
+            dts: `${name}.d.ts`
+        };
 
         for (const file of typeConfig.files) {
-            const extension = config.fileExtensions[file] || file;
-            const filename = `${name}.${extension}`;
+            const filename = fileNameMap[file] || `${name}.${file}`;
             await fs.writeFile(path.join(dir, filename), templates[file], 'utf8');
             logger.success(`创建文件: ${filename}`);
         }
