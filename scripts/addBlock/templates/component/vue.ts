@@ -5,7 +5,7 @@ interface TemplateParams {
 
 export default function generateVue({ componentName, name }: TemplateParams): string {
     return `<template>
-    <div data-testid="${name}-ref" class="${name}">
+    <div data-testid="${name}-ref" @click="handleClick">
         {{ props.title }}
         <slot></slot>
     </div>
@@ -34,10 +34,5 @@ const handleClick = (event: MouseEvent) => {
 
 defineExpose({ ${name}Ref });
 </script>
-
-<style scoped>
-.${name} {
-    /* 基础样式 */
-}
-</style>`;
+`;
 }

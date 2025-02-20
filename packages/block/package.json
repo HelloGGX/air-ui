@@ -46,7 +46,6 @@
         "node": ">=20.0.0"
     },
     "exports": {
-        "./airbg": "./src/airbg/AirBg.vue",
         "./aircard": "./src/aircard/AirCard.vue",
         "./airflightinfo": "./src/airflightinfo/AirFlightInfo.vue",
         "./airheader": "./src/airheader/AirHeader.vue",

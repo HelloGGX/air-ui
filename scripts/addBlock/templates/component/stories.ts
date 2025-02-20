@@ -1,21 +1,63 @@
+import { minifyHtml } from '../../utils';
+
 interface TemplateParams {
     componentName: string;
     name: string;
+    componentTypes: string[];
+    businessScenes: string[];
+    description: string;
 }
 
-export default function generateStories({ componentName, name }: TemplateParams): string {
+export default function generateStories({
+    componentName,
+    name,
+    componentTypes,
+    businessScenes,
+    description
+}: TemplateParams): string {
+    const tagsHtml = minifyHtml(`
+        <div class="space-y-4">
+            <p class="text-lg font-semibold">${description}</p>
+            <div class="flex gap-2">
+                <div class="flex flex-wrap gap-2">
+                    ${componentTypes
+                        .map(
+                            (type) => `
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            ${type}
+                        </span>
+                    `
+                        )
+                        .join('')}
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    ${businessScenes
+                        .map(
+                            (scene) => `
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                            ${scene}
+                        </span>
+                    `
+                        )
+                        .join('')}
+                </div>
+            </div>
+        </div>
+    `);
+
     return `import type { Meta, StoryFn } from '@storybook/vue3';
-import { expect, within, userEvent } from '@storybook/test';
 import ${componentName} from './${componentName}.vue';
+import { userEvent, within, expect } from '@storybook/test';
 
 const meta: Meta<typeof ${componentName}> = {
     title: '物料库/${componentName}',
     component: ${componentName},
     tags: ['autodocs'],
     parameters: {
+        layout: 'centered',
         docs: {
             description: {
-                component: '${componentName} 组件描述'
+                component: \`${tagsHtml}\`
             }
         }
     },
@@ -25,18 +67,12 @@ const meta: Meta<typeof ${componentName}> = {
             description: '标题',
             table: {
                 type: { summary: 'string' },
-                defaultValue: { summary: '' }
+                defaultValue: { summary: 'placeholder' }
             }
         },
-        onClick: {
-            description: '点击事件',
-            table: {
-                type: { summary: 'function' }
-            }
-        }
     },
     args: {
-        title: '示例标题'
+        title: '旅客姓名',
     }
 };
 

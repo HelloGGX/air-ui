@@ -44,6 +44,35 @@ async function promptUser() {
 
                 return true;
             }
+        },
+        {
+            type: 'input',
+            name: 'description',
+            message: '请输入组件描述:',
+            validate: (input) => {
+                if (!input) return '描述不能为空';
+                return true;
+            }
+        },
+        {
+            type: 'checkbox',
+            name: 'componentTypes',
+            message: '请选择组件类型 (可多选):',
+            choices: config.componentTypes.map((type) => ({ name: type, value: type })),
+            validate: (input) => {
+                if (input.length === 0) return '至少选择一个组件类型';
+                return true;
+            }
+        },
+        {
+            type: 'checkbox',
+            name: 'businessScenes',
+            message: '请选择业务场景 (可多选):',
+            choices: config.businessScenes.map((scene) => ({ name: scene, value: scene })),
+            validate: (input) => {
+                if (input.length === 0) return '至少选择一个业务场景';
+                return true;
+            }
         }
     ]);
 }
@@ -51,7 +80,6 @@ async function promptUser() {
 async function main() {
     try {
         const answers = await promptUser();
-        // 移除这行，因为现在要求输入就必须是驼峰格式
         const componentName = answers.name;
 
         logger.info('正在加载模板...');
@@ -68,7 +96,10 @@ async function main() {
                 ...acc,
                 [key]: templateManager.processTemplate(template, {
                     componentName,
-                    name: componentName.toLowerCase()
+                    name: componentName.toLowerCase(),
+                    componentTypes: answers.componentTypes,
+                    businessScenes: answers.businessScenes,
+                    description: answers.description
                 })
             }),
             {}
