@@ -2,7 +2,6 @@ import { minifyHtml } from '../../utils';
 
 interface TemplateParams {
     componentName: string;
-    name: string;
     componentTypes: string[];
     businessScenes: string[];
     description: string;
@@ -14,37 +13,38 @@ export default function generateSnippetStories({
     businessScenes,
     description
 }: TemplateParams): string {
-    const tagsHtml = minifyHtml(`
-  <div class="space-y-4">
-      <p class="text-lg font-semibold">${description}</p>
-      <div class="flex gap-2">
-          <div class="flex flex-wrap gap-2">
-              ${componentTypes
-                  .map(
-                      (type) => `
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                      ${type}
-                  </span>
-              `
-                  )
-                  .join('')}
-          </div>
-          <div class="flex flex-wrap gap-2">
-              ${businessScenes
-                  .map(
-                      (scene) => `
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                      ${scene}
-                  </span>
-              `
-                  )
-                  .join('')}
-          </div>
-      </div>
-  </div>
-`);
+    const componentTypesHtml = componentTypes
+        .map(
+            (type) => `
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">${type}</span>
+        `
+        )
+        .join('');
+
+    const businessScenesHtml = businessScenes
+        .map(
+            (scene) => `
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">${scene}</span>
+        `
+        )
+        .join('');
+
+    const descriptionTemplate = `
+    <div class="flex justify-between items-start">
+        <div class="flex-1 space-y-4">
+            <p class="text-lg font-semibold">\${description}</p>
+            <div class="flex justify-between items-center space-y-4">
+                <div class="flex flex-wrap gap-2">
+                    ${componentTypesHtml}
+                    ${businessScenesHtml}
+                </div>
+            </div>
+        </div>
+    </div>`;
 
     return `import type { Meta, StoryFn } from '@storybook/vue3';
+
+const description = '${description}';
 
 const meta: Meta = {
     title: '物料库/${componentName}',
@@ -52,7 +52,7 @@ const meta: Meta = {
     parameters: {
         docs: {
             description: {
-                component: \`${tagsHtml}\`
+                component: \`${minifyHtml(descriptionTemplate)}\`
             },
             source: {
                 type: 'code',

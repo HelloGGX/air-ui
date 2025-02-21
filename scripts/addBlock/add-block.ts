@@ -96,7 +96,6 @@ async function main() {
                 ...acc,
                 [key]: templateManager.processTemplate(template, {
                     componentName,
-                    name: componentName.toLowerCase(),
                     componentTypes: answers.componentTypes,
                     businessScenes: answers.businessScenes,
                     description: answers.description

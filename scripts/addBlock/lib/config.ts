@@ -7,7 +7,8 @@ export const config = {
     paths: {
         components: path.resolve(ROOT_DIR, 'packages/block/src'),
         airblocks: path.resolve(ROOT_DIR, 'packages/block/src/airblocks.js'),
-        templates: path.resolve(ROOT_DIR, 'scripts/addBlock/templates')
+        templates: path.resolve(ROOT_DIR, 'scripts/addBlock/templates'),
+        packageJson: path.resolve(ROOT_DIR, 'packages/block/package.json')
     },
     validation: {
         namePattern: /^[A-Z][a-zA-Z0-9]*$/,
