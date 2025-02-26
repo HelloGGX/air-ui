@@ -10,8 +10,8 @@ import { VNode } from 'vue';
 
 export interface AirSeatProps {
     status: 'available' | 'selected' | 'unavailable' | 'emergency-left' | 'emergency-right';
-    seatNumber: number;
-    seatOwnerIndex: number;
+    seatNumber?: number;
+    seatOwnerIndex?: number;
 }
 export interface ISeat {
     seatRow: string | null;
