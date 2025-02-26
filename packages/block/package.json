@@ -5,12 +5,14 @@
         "build": "cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",
         "build:package": "pnpm run build:prebuild && rollup -c && pnpm run build:postbuild",
         "build:prebuild": "tsx ./scripts/prebuild.ts",
-        "build:postbuild": "tsx ./scripts/postbuild.ts"
+        "build:postbuild": "tsx ./scripts/postbuild.ts",
+        "add:block": "tsx ./scripts/addBlock/add-block.ts",
+        "publish": "tsx ./scripts/publish.ts"
     },
     "peerDependencies": {
-        "vue": "^3.5.13",
         "@element-plus/icons-vue": "^2.3.1",
-        "element-plus": "^2.9.3"
+        "element-plus": "^2.9.3",
+        "vue": "^3.5.13"
     },
     "keywords": [],
     "author": "玄子",
@@ -28,6 +30,7 @@
         "@types/postcss-import": "^14.0.3",
         "@vitejs/plugin-vue": "^5.1.0",
         "autoprefixer": "^10.4.19",
+        "find-up": "^7.0.0",
         "postcss": "^8.5.1",
         "postcss-import": "^16.1.0",
         "rollup": "^4.34.5",
@@ -35,16 +38,16 @@
         "sass": "^1.84.0",
         "tailwindcss": "^4.0.4"
     },
-    "dependencies": {},
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/HelloGGX/air-ui.git"
-    },
     "bugs": {},
     "engines": {
         "node": ">=20.0.0"
     },
+    "publishConfig": {
+        "access": "public",
+        "registry": "http://172.24.136.12:8081/repository/air-ui"
+    },
     "exports": {
+        "./airbg": "./src/airbg/AirBg.vue",
         "./aircard": "./src/aircard/AirCard.vue",
         "./airflightinfo": "./src/airflightinfo/AirFlightInfo.vue",
         "./airheader": "./src/airheader/AirHeader.vue",
@@ -53,5 +56,9 @@
         "./airseat": "./src/airseat/AirSeat.vue",
         "./airstep": "./src/airstep/AirStep.vue",
         "./*": "./*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/HelloGGX/air-ui.git"
     }
 }

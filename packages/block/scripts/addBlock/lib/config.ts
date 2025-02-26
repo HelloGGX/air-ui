@@ -1,14 +1,17 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { findUpSync } from 'find-up';
 
-const ROOT_DIR = fileURLToPath(new URL('../../../', import.meta.url));
+const CURRENT_FILE = fileURLToPath(import.meta.url);
+const CURRENT_DIR = path.dirname(CURRENT_FILE);
+const ROOT_DIR = path.dirname(findUpSync('package.json', { cwd: CURRENT_DIR }) || CURRENT_DIR);
 
 export const config = {
     paths: {
-        components: path.resolve(ROOT_DIR, 'packages/block/src'),
-        airblocks: path.resolve(ROOT_DIR, 'packages/block/src/airblocks.js'),
-        templates: path.resolve(ROOT_DIR, 'scripts/addBlock/templates'),
-        packageJson: path.resolve(ROOT_DIR, 'packages/block/package.json')
+        components: path.resolve(ROOT_DIR, 'src'),
+        airblocks: path.resolve(ROOT_DIR, 'src/airblocks.js'),
+        templates: path.resolve(CURRENT_DIR, '../templates'),
+        packageJson: path.resolve(ROOT_DIR, 'package.json')
     },
     validation: {
         namePattern: /^[A-Z][a-zA-Z0-9]*$/,
