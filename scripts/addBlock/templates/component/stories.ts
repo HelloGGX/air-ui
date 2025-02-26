@@ -18,7 +18,7 @@ export default function generateStories({
     const componentTypesHtml = componentTypes
         .map(
             (type) => `
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">${type}</span>
+            <span class="story-tag-blue">${type}</span>
         `
         )
         .join('');
@@ -26,7 +26,7 @@ export default function generateStories({
     const businessScenesHtml = businessScenes
         .map(
             (scene) => `
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">${scene}</span>
+            <span class="story-tag-purple">${scene}</span>
         `
         )
         .join('');
@@ -34,13 +34,13 @@ export default function generateStories({
     const descriptionTemplate = `
     <div class="flex justify-between items-start">
         <div class="flex-1 space-y-4">
-            <p class="text-lg font-semibold">\${description}</p>
+            <p class="story-descrip">\${description}</p>
             <div class="flex justify-between items-center space-y-4">
                 <div class="flex flex-wrap gap-2">
                     ${componentTypesHtml}
                     ${businessScenesHtml}
                 </div>
-                <code class="text-sm text-gray-700 bg-gray-100 px-3 py-1 rounded">npm i ${packageJson.name}</code>
+                <code class="story-npm">npm i ${packageJson.name}</code>
             </div>
         </div>
     </div>`;
