@@ -14,7 +14,7 @@ export class FileManager {
      * @param templates 模板内容
      */
     async createComponent(name: string, type: 'component' | 'snippet', templates: Record<string, string>) {
-        const componentDir = path.join(config.paths.components, name.toLowerCase());
+        const componentDir = path.join(config.paths.components(), name.toLowerCase());
 
         await this.ensureDirectoryExists(componentDir);
         await this.writeFiles(componentDir, name, type, templates);
@@ -59,7 +59,7 @@ export class FileManager {
 export * from './${name.toLowerCase()}/${name}.vue';
 export { default as ${name} } from './${name.toLowerCase()}/${name}.vue';\n`;
 
-        await fs.appendFile(config.paths.airblocks, exportLines, 'utf8');
+        await fs.appendFile(config.paths.airblocks(), exportLines, 'utf8');
         logger.success(`更新 airblocks.js: ${name}`);
     }
 }

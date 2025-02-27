@@ -1,43 +1,30 @@
 import path from 'path';
-import { fileURLToPath } from 'url';
 
-let WORKSPACE_ROOT: string;
-
-// 获取当前文件和目录
-const CURRENT_FILE = fileURLToPath(import.meta.url);
-const CURRENT_DIR = path.dirname(CURRENT_FILE);
-
-// 构建路径的辅助函数
-const buildPath = (relativePath: string) => path.resolve(WORKSPACE_ROOT, relativePath);
+let WORKSPACE_ROOT: string = '.';
 
 // 设置工作空间根目录
 export const setWorkspaceRoot = (root: string) => {
     WORKSPACE_ROOT = root;
 };
 
-// 获取工作空间的 package.json 路径
-export const getWorkspacePackageJsonPath = () => path.resolve(WORKSPACE_ROOT, 'package.json');
+// 构建路径的辅助函数
+const buildPath = (relativePath: string) => path.resolve(WORKSPACE_ROOT, relativePath);
 
-// 常量定义
-const COMPONENTS_DIR = buildPath('block/src');
-const DIST_DIR = buildPath('block/dist');
-const THEME_DIR = buildPath('theme');
-const BLOCK_PACKAGE_JSON = buildPath('block/package.json');
-const THEME_PACKAGE_JSON = buildPath('theme/package.json');
+// 动态计算路径的 getter 函数
+export const paths = {
+    theme: () => buildPath('packages/theme'),
+    components: () => buildPath('packages/block/src'),
+    blockDist: () => buildPath('packages/block/dist'),
+    airblocks: () => buildPath('packages/block/src/airblocks.js'),
+    blockPackageJson: () => buildPath('packages/block/package.json'),
+    themePackageJson: () => buildPath('packages/theme/package.json'),
+    workspacePackageJson: () => buildPath('package.json')
+};
 
 // 配置对象
 export const config = {
     setWorkspaceRoot, // 导出设置工作空间根目录的方法
-    paths: {
-        theme: THEME_DIR,
-        components: COMPONENTS_DIR,
-        dist: DIST_DIR,
-        airblocks: buildPath('block/src/airblocks.js'),
-        templates: path.resolve(CURRENT_DIR, '../templates/block'),
-        blockPackageJson: BLOCK_PACKAGE_JSON,
-        themePackageJson: THEME_PACKAGE_JSON,
-        packageJson: getWorkspacePackageJsonPath() // 这里可以使用函数调用
-    },
+    paths, // 导出路径对象
     validation: {
         namePattern: /^[A-Z][a-zA-Z0-9]*$/,
         nameMessage: '名称必须以大写字母开头的驼峰格式 (例如: MyButton)'

@@ -1,9 +1,8 @@
 interface TemplateParams {
     componentName: string;
-    name: string;
 }
 
-export default function generateDts({ componentName }: TemplateParams): string {
+export function generateDts({ componentName }: TemplateParams): string {
     return `/**
  * ${componentName} 组件
  * @module ${componentName}

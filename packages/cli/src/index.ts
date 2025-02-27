@@ -36,16 +36,17 @@ function registerCommands() {
     program
         .command('add')
         .description('添加新组件')
-        .argument('<type>', '组件类型 (block)')
+        .argument('[type]', '组件类型 (block)')
         .option('-t, --template <template>', '指定模板')
         .action(add)
         .on('--help', () => {
             console.log('  示例:');
             console.log('    $ air add component');
             console.log('    $ air add snippet --template my-template');
+            console.log('    $ air add');
         });
 
-    program.command('publish').description('发布组件').argument('<type>', '组件类型 (block)').action(publish);
+    program.command('publish').description('发布组件').argument('[type]', '组件类型 (block)').action(publish);
 }
 
 // 错误处理函数

@@ -33,8 +33,8 @@ async function getNextVersions(currentVersion: string) {
     }));
 }
 
-const COMPONENTS_DIR = config.paths.components;
-const DIST_DIR = config.paths.dist;
+const COMPONENTS_DIR = config.paths.components();
+const DIST_DIR = config.paths.blockDist();
 
 // 错误处理函数
 function handleError(error: unknown) {

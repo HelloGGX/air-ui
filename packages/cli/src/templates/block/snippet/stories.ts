@@ -7,7 +7,7 @@ interface TemplateParams {
     description: string;
 }
 
-export default function generateSnippetStories({
+export function generateSnippetStories({
     componentName,
     componentTypes,
     businessScenes,

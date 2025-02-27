@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import inquirer, { Answers } from 'inquirer';
 import { config } from '@/config';
-import { TemplateManager } from '@/utils/template-manager';
+import { TemplateManager, TemplateParams } from '@/utils/template-manager';
 import { FileManager } from '@/utils/file-manager';
 import { logger } from '@/utils/logger';
 
@@ -10,7 +10,7 @@ const templateManager = new TemplateManager();
 const fileManager = new FileManager();
 
 async function checkComponentExists(name: string): Promise<boolean> {
-    const componentDir = path.join(config.paths.components, name.toLowerCase());
+    const componentDir = path.join(config.paths.components(), name.toLowerCase());
     try {
         await fs.access(componentDir);
         return true;
@@ -64,9 +64,9 @@ async function promptUser(): Promise<Answers> {
 
 async function createComponent(answers: Answers) {
     logger.info('正在加载模板...');
-    const templates: Record<string, (variables: unknown) => string> = {};
+    const templates: Record<string, ((variables: TemplateParams) => string) | undefined> = {};
     const typeConfig = config.types[answers.type as keyof typeof config.types];
-
+    
     for (const file of typeConfig.files) {
         templates[file] = await templateManager.loadTemplate(answers.type, file);
     }

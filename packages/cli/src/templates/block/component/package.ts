@@ -6,12 +6,12 @@ interface TemplateParams {
 }
 
 function getPackagePrefix(): Promise<string> {
-    const packageJson = fs.readFileSync(config.paths.packageJson, 'utf8');
+    const packageJson = fs.readFileSync(config.paths.workspacePackageJson(), 'utf8');
     const { name } = JSON.parse(packageJson);
     return name;
 }
 
-export default function generatePackage({ componentName }: TemplateParams): string {
+export function generatePackage({ componentName }: TemplateParams): string {
     const prefix = getPackagePrefix();
     const name = componentName.toLocaleLowerCase();
     return JSON.stringify(

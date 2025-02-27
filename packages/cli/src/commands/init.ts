@@ -20,13 +20,12 @@ async function createProjectDirectory(targetDir: string, projectName: string) {
 async function updatePackageJson(pkgPath: string, updates: Partial<Record<string, unknown>>) {
     const pkg = await fs.readJson(pkgPath);
     const newPkg = { ...pkg, ...updates };
-    console.log(pkgPath, newPkg);
     await fs.writeJson(pkgPath, newPkg, { spaces: 4 });
 }
 
 async function updateThemePackage(answers: Answers) {
     const { name, registry } = answers;
-    await updatePackageJson(config.paths.themePackageJson, {
+    await updatePackageJson(config.paths.themePackageJson(), {
         name: `@${name}/theme`,
         publishConfig: { access: 'public', registry }
     });
@@ -34,7 +33,7 @@ async function updateThemePackage(answers: Answers) {
 
 async function updateBlockPackageJson(answers: Answers) {
     const { name, registry } = answers;
-    await updatePackageJson(config.paths.blockPackageJson, {
+    await updatePackageJson(config.paths.blockPackageJson(), {
         name: `@${name}/block`,
         publishConfig: { access: 'public', registry }
     });
@@ -74,6 +73,7 @@ async function promptUser() {
 export async function init(targetDir: string) {
     const answers = await promptUser();
     const projectDir = await createProjectDirectory(targetDir, answers.name);
+    console.log(projectDir);
     const spinner = ora('正在下载项目模板...').start();
 
     try {
@@ -82,7 +82,7 @@ export async function init(targetDir: string) {
 
         config.setWorkspaceRoot(projectDir);
 
-        await updatePackageJson(config.paths.packageJson, {
+        await updatePackageJson(config.paths.workspacePackageJson(), {
             name: answers.name,
             description: answers.description,
             author: answers.author,

@@ -1,11 +1,11 @@
 interface TemplateParams {
     componentName: string;
-    name: string;
+
 }
 
-export default function generateVue({ componentName, name }: TemplateParams): string {
+export function generateVue({ componentName }: TemplateParams): string {
     return `<template>
-    <div data-testid="${name}-ref" @click="handleClick">
+    <div data-testid="${componentName}-ref" @click="handleClick">
         {{ props.title }}
         <slot></slot>
     </div>
@@ -15,7 +15,7 @@ export default function generateVue({ componentName, name }: TemplateParams): st
 import { ref } from 'vue';
 
 defineOptions({ name: '${componentName}' });
-const ${name}Ref = ref<HTMLElement>();
+const ${componentName}Ref = ref<HTMLElement>();
 
 const props = defineProps({
     title: {
@@ -32,7 +32,7 @@ const handleClick = (event: MouseEvent) => {
     emit('click', event);
 };
 
-defineExpose({ ${name}Ref });
+defineExpose({ ${componentName}Ref });
 </script>
 `;
 }
