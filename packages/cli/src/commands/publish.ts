@@ -3,7 +3,7 @@ import inquirer from 'inquirer';
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
-import { config } from '@/utils/config';
+import { config } from '@/config';
 
 /**
  * - patch: 修复版本 (1.0.0 -> 1.0.1)
@@ -60,7 +60,14 @@ export async function publish() {
             type: 'list',
             name: 'component',
             message: '选择要发布的组件:',
-            choices: components
+            choices: components,
+            filter: (input) => {
+                // 过滤组件列表
+                return components.filter((name) => name.toLowerCase().includes(input.toLowerCase()));
+            },
+            pageSize: 10,
+            loop: false,
+            when: () => components.length > 0,
         }
     ]);
 

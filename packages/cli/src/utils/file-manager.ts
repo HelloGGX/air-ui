@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { config } from './config';
+import { config } from '@/config';
 import { logger } from './logger.js';
 
 /**
@@ -47,7 +47,7 @@ export class FileManager {
         };
 
         for (const file of typeConfig.files) {
-            const filename = fileNameMap[file] || `${name}.${file}`;
+            const filename = fileNameMap[file as keyof typeof fileNameMap] || `${name}.${file}`;
             await fs.writeFile(path.join(dir, filename), templates[file], 'utf8');
             logger.success(`创建文件: ${filename}`);
         }

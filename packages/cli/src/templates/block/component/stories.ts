@@ -1,4 +1,4 @@
-import { minifyHtml } from '../../utils';
+import { minifyHtml } from '@/utils';
 import generatePackage from './package';
 
 interface TemplateParams {
@@ -7,7 +7,6 @@ interface TemplateParams {
     businessScenes: string[];
     description: string;
 }
-
 export default function generateStories({
     componentName,
     componentTypes,

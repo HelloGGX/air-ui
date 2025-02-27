@@ -1,4 +1,4 @@
-import { config } from '../../lib/config';
+import { config } from '@/config';
 import fs from 'fs';
 
 interface TemplateParams {
@@ -8,7 +8,7 @@ interface TemplateParams {
 function getPackagePrefix(): Promise<string> {
     const packageJson = fs.readFileSync(config.paths.packageJson, 'utf8');
     const { name } = JSON.parse(packageJson);
-    return name.split('/')[0];
+    return name;
 }
 
 export default function generatePackage({ componentName }: TemplateParams): string {
@@ -16,7 +16,7 @@ export default function generatePackage({ componentName }: TemplateParams): stri
     const name = componentName.toLocaleLowerCase();
     return JSON.stringify(
         {
-            name: `${prefix}/${name}`,
+            name: `@${prefix}/${name}`,
             version: '0.0.0',
             main: `./${componentName}.vue`,
             types: `./${componentName}.d.ts`,

@@ -1,5 +1,5 @@
 import path from 'path';
-import { config } from './config';
+import { config } from '@/config';
 
 export class TemplateManager {
     templatesCache: Map<string, unknown>;

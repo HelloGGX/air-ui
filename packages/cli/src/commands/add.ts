@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import inquirer, { Answers } from 'inquirer';
-import { config } from '@/utils/config';
+import { config } from '@/config';
 import { TemplateManager } from '@/utils/template-manager';
 import { FileManager } from '@/utils/file-manager';
 import { logger } from '@/utils/logger';
@@ -62,43 +62,43 @@ async function promptUser(): Promise<Answers> {
     ]);
 }
 
+async function createComponent(answers: Answers) {
+    logger.info('正在加载模板...');
+    const templates: Record<string, (variables: unknown) => string> = {};
+    const typeConfig = config.types[answers.type as keyof typeof config.types];
+
+    for (const file of typeConfig.files) {
+        templates[file] = await templateManager.loadTemplate(answers.type, file);
+    }
+
+    logger.info('正在处理模板...');
+
+    const processedTemplates = Object.entries(templates).reduce(
+        (acc, [key, template]) => ({
+            ...acc,
+            [key]: templateManager.processTemplate(template, {
+                componentName: answers.name,
+                componentTypes: answers.componentTypes,
+                businessScenes: answers.businessScenes,
+                description: answers.description
+            })
+        }),
+        {}
+    );
+
+    logger.info('正在创建文件...');
+    await fileManager.createComponent(answers.name, answers.type, processedTemplates);
+    logger.success('\n✨ 创建成功！');
+
+    if (answers.type === 'snippet') {
+        logger.info('💡 提示: 请在 stories.ts 文件中编写你的 HTML 代码片段');
+    }
+}
+
 export async function add() {
     try {
         const answers = await promptUser();
-        const componentName = answers.name;
-
-        logger.info('正在加载模板...');
-        const templates: Record<string, (variables: unknown) => string> = {};
-        const typeConfig = config.types[answers.type as keyof typeof config.types];
-
-        for (const file of typeConfig.files) {
-            templates[file] = await templateManager.loadTemplate(answers.type, file);
-        }
-
-        logger.info('正在处理模板...');
-
-        const processedTemplates = Object.entries(templates).reduce(
-            (acc, [key, template]) => ({
-                ...acc,
-                [key]: templateManager.processTemplate(template, {
-                    componentName,
-                    componentTypes: answers.componentTypes,
-                    businessScenes: answers.businessScenes,
-                    description: answers.description
-                })
-            }),
-            {}
-        );
-
-        console.log('****', processedTemplates);
-
-        logger.info('正在创建文件...');
-        await fileManager.createComponent(componentName, answers.type, processedTemplates);
-
-        logger.success('\n✨ 创建成功！');
-        if (answers.type === 'snippet') {
-            logger.info('💡 提示: 请在 stories.ts 文件中编写你的 HTML 代码片段');
-        }
+        await createComponent(answers);
     } catch (error) {
         logger.error(error instanceof Error ? error.message : '发生了一个未知错误');
         process.exit(1);

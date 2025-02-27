@@ -1,4 +1,4 @@
-import { minifyHtml } from '../../utils';
+import { minifyHtml } from '@/utils';
 
 interface TemplateParams {
     componentName: string;

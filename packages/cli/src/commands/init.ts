@@ -1,24 +1,54 @@
-import inquirer from 'inquirer';
+import inquirer, { Answers } from 'inquirer';
 import fs from 'fs-extra';
 import path from 'path';
 import validateNpmName from 'validate-npm-package-name';
 import { downloadTemplate } from '@/utils/download';
 import ora from 'ora';
 import chalk from 'chalk';
-import { config } from '@/utils/config';
+import { config } from '@/config';
 
-export async function init(targetDir: string) {
-    const answers = await inquirer.prompt([
+async function createProjectDirectory(targetDir: string, projectName: string) {
+    const projectDir = path.join(targetDir, projectName);
+    if (fs.existsSync(projectDir)) {
+        console.error(chalk.red('该项目名称已存在，请选择其他名称。'));
+        process.exit(1);
+    }
+    await fs.mkdir(projectDir, { recursive: true });
+    return projectDir;
+}
+
+async function updatePackageJson(pkgPath: string, updates: Partial<Record<string, unknown>>) {
+    const pkg = await fs.readJson(pkgPath);
+    const newPkg = { ...pkg, ...updates };
+    console.log(pkgPath, newPkg);
+    await fs.writeJson(pkgPath, newPkg, { spaces: 4 });
+}
+
+async function updateThemePackage(answers: Answers) {
+    const { name, registry } = answers;
+    await updatePackageJson(config.paths.themePackageJson, {
+        name: `@${name}/theme`,
+        publishConfig: { access: 'public', registry }
+    });
+}
+
+async function updateBlockPackageJson(answers: Answers) {
+    const { name, registry } = answers;
+    await updatePackageJson(config.paths.blockPackageJson, {
+        name: `@${name}/block`,
+        publishConfig: { access: 'public', registry }
+    });
+}
+
+async function promptUser() {
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'name',
             message: '请输入项目名称:',
             validate: (input: string) => {
                 const result = validateNpmName(input);
-                if (!result.validForNewPackages) {
-                    return '无效的项目名称';
-                }
-                return true;
+                return result.validForNewPackages ? true : '无效的项目名称';
             }
         },
         {
@@ -35,58 +65,41 @@ export async function init(targetDir: string) {
         {
             type: 'input',
             name: 'registry',
-            message: '请输入 npm registry 地址:',
+            message: '请输入用于发布物料的 npm 地址:',
             default: config.defaultRegistry
         }
     ]);
+}
 
+export async function init(targetDir: string) {
+    const answers = await promptUser();
+    const projectDir = await createProjectDirectory(targetDir, answers.name);
     const spinner = ora('正在下载项目模板...').start();
 
     try {
-        // 下载模板
-        await downloadTemplate(config.templateRepo, targetDir);
+        await downloadTemplate(config.templateRepo, projectDir);
         spinner.succeed('模板下载完成');
 
-        // 更新 package.json
-        const pkgPath = path.join(targetDir, 'package.json');
-        const pkg = await fs.readJson(pkgPath);
+        config.setWorkspaceRoot(projectDir);
 
-        const newPkg = {
-            ...pkg,
+        await updatePackageJson(config.paths.packageJson, {
             name: answers.name,
             description: answers.description,
             author: answers.author,
             version: '0.0.0'
-        };
-
-        // 更新 block 包的 package.json
-        const blockPkgPath = path.join(targetDir, 'packages/block/package.json');
-        const blockPkg = await fs.readJson(blockPkgPath);
-
-        const newBlockPkg = {
-            ...blockPkg,
-            name: `${answers.name}`,
-            publishConfig: {
-                access: 'public',
-                registry: answers.registry
-            }
-        };
-
-        await fs.writeJson(pkgPath, newPkg, { spaces: 4 });
-        await fs.writeJson(blockPkgPath, newBlockPkg, { spaces: 4 });
+        });
+        await updateBlockPackageJson(answers);
+        await updateThemePackage(answers);
 
         console.log(chalk.green('\n✨ 项目创建成功！\n'));
         console.log('下一步：');
-        console.log(chalk.cyan(`cd ${targetDir}`));
+        console.log(chalk.cyan(`cd ${projectDir}`));
         console.log(chalk.cyan('pnpm install'));
         console.log(chalk.cyan('pnpm run story\n'));
+        console.log(chalk.yellow('请确保在进入项目目录后，使用 "air add" 命令来创建物料库。'));
     } catch (error: unknown) {
         spinner.fail('项目创建失败');
-        if (error instanceof Error) {
-            console.error(chalk.red(error.message));
-        } else {
-            console.error(chalk.red('发生了一个未知错误'));
-        }
+        console.error(chalk.red(error instanceof Error ? error.message : '发生了一个未知错误'));
         process.exit(1);
     }
 }
