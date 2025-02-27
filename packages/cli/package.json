@@ -1,0 +1,36 @@
+{
+    "name": "@air-ui/cli",
+    "version": "0.0.0",
+    "type": "module",
+    "bin": {
+        "air": "bin/air.js"
+    },
+    "files": [
+        "dist",
+        "bin"
+    ],
+    "scripts": {
+        "dev": "tsup --watch",
+        "build": "tsup",
+        "prepublishOnly": "pnpm build"
+    },
+    "dependencies": {
+        "chalk": "^5.3.0",
+        "commander": "^11.0.0",
+        "fs-extra": "^11.2.0",
+        "inquirer": "^9.2.12",
+        "ora": "^7.0.1",
+        "validate-npm-package-name": "^5.0.0",
+        "degit": "^2.8.4",
+        "find-up": "^7.0.0",
+        "tsup": "^8.0.1",
+        "typescript": "^5.3.3"
+    },
+    "devDependencies": {
+        "@types/degit": "^2.8.6",
+        "@types/fs-extra": "^11.0.4",
+        "@types/inquirer": "^9.0.7",
+        "@types/node": "^20.11.0",
+        "@types/validate-npm-package-name": "^4.0.2"
+    }
+}
