@@ -3,6 +3,7 @@ import inquirer from 'inquirer';
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
+import { config } from '@/utils/config';
 
 /**
  * - patch: 修复版本 (1.0.0 -> 1.0.1)
@@ -32,9 +33,22 @@ async function getNextVersions(currentVersion: string) {
     }));
 }
 
+const COMPONENTS_DIR = config.paths.components;
+const DIST_DIR = config.paths.dist;
+
+// 错误处理函数
+function handleError(error: unknown) {
+    if (error instanceof Error) {
+        console.error('❌ 发布失败:', error.message);
+    } else {
+        console.error('❌ 发布失败: 未知错误');
+    }
+    process.exit(1);
+}
+
 export async function publish() {
     // 使用 src 目录而不是 dist 目录，因为我们需要先构建再发布
-    const componentsDir = path.resolve(__dirname, '../src');
+    const componentsDir = COMPONENTS_DIR;
     const components = fs.readdirSync(componentsDir).filter((name) => {
         const stats = fs.statSync(path.join(componentsDir, name));
         // 排除非目录和特殊文件/目录
@@ -51,7 +65,7 @@ export async function publish() {
     ]);
 
     const componentSrcPath = path.join(componentsDir, component);
-    const componentDistPath = path.join(__dirname, '../dist', component);
+    const componentDistPath = path.join(DIST_DIR, component);
 
     const componentPackageJson = path.join(componentSrcPath, 'package.json');
     const currentVersion = JSON.parse(fs.readFileSync(componentPackageJson, 'utf-8')).version || '0.0.0';
@@ -97,7 +111,6 @@ export async function publish() {
 
         console.log(`✨ 组件 ${component} 发布成功！`);
     } catch (error) {
-        console.error('❌ 发布失败:', error);
-        process.exit(1);
+        handleError(error);
     }
 }

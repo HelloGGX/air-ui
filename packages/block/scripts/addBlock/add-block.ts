@@ -91,6 +91,7 @@ async function main() {
         }
 
         logger.info('正在处理模板...');
+
         const processedTemplates = Object.entries(templates).reduce(
             (acc, [key, template]) => ({
                 ...acc,

@@ -11,7 +11,7 @@ export async function downloadTemplate(repo: string, targetDir: string) {
         await emitter.clone(targetDir);
     } catch (error: unknown) {
         if (error instanceof Error) {
-            logger.error(`下载模板失败: ${error.message}`);
+            logger.error(`下载模板失败: ${error.message} (Repo: ${repo}, Target: ${targetDir})`);
         } else {
             logger.error('下载模板失败: 未知错误');
         }

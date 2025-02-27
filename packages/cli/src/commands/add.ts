@@ -1,17 +1,17 @@
 import fs from 'fs/promises';
 import path from 'path';
-import inquirer from 'inquirer';
-import { config } from '../utils/config';
-import { TemplateManager } from '../utils/template-manager';
-import { FileManager } from '../utils/file-manager';
-import { logger } from '../utils/logger';
+import inquirer, { Answers } from 'inquirer';
+import { config } from '@/utils/config';
+import { TemplateManager } from '@/utils/template-manager';
+import { FileManager } from '@/utils/file-manager';
+import { logger } from '@/utils/logger';
 
 const templateManager = new TemplateManager();
 const fileManager = new FileManager();
 
 async function checkComponentExists(name: string): Promise<boolean> {
+    const componentDir = path.join(config.paths.components, name.toLowerCase());
     try {
-        const componentDir = path.join(config.paths.components, name.toLowerCase());
         await fs.access(componentDir);
         return true;
     } catch {
@@ -19,7 +19,7 @@ async function checkComponentExists(name: string): Promise<boolean> {
     }
 }
 
-async function promptUser() {
+async function promptUser(): Promise<Answers> {
     return inquirer.prompt([
         {
             type: 'list',
@@ -36,43 +36,28 @@ async function promptUser() {
                 if (!config.validation.namePattern.test(input)) {
                     return config.validation.nameMessage;
                 }
-
-                const exists = await checkComponentExists(input);
-                if (exists) {
-                    return `组件 ${input} 已存在`;
-                }
-
-                return true;
+                return (await checkComponentExists(input)) ? `组件 ${input} 已存在` : true;
             }
         },
         {
             type: 'input',
             name: 'description',
             message: '请输入组件描述:',
-            validate: (input) => {
-                if (!input) return '描述不能为空';
-                return true;
-            }
+            validate: (input) => (input ? true : '描述不能为空')
         },
         {
             type: 'checkbox',
             name: 'componentTypes',
             message: '请选择组件类型 (可多选):',
             choices: config.componentTypes.map((type) => ({ name: type, value: type })),
-            validate: (input) => {
-                if (input.length === 0) return '至少选择一个组件类型';
-                return true;
-            }
+            validate: (input) => (input.length > 0 ? true : '至少选择一个组件类型')
         },
         {
             type: 'checkbox',
             name: 'businessScenes',
             message: '请选择业务场景 (可多选):',
             choices: config.businessScenes.map((scene) => ({ name: scene, value: scene })),
-            validate: (input) => {
-                if (input.length === 0) return '至少选择一个业务场景';
-                return true;
-            }
+            validate: (input) => (input.length > 0 ? true : '至少选择一个业务场景')
         }
     ]);
 }
@@ -83,7 +68,7 @@ export async function add() {
         const componentName = answers.name;
 
         logger.info('正在加载模板...');
-        const templates: Record<string, string> = {};
+        const templates: Record<string, (variables: unknown) => string> = {};
         const typeConfig = config.types[answers.type as keyof typeof config.types];
 
         for (const file of typeConfig.files) {
@@ -91,6 +76,7 @@ export async function add() {
         }
 
         logger.info('正在处理模板...');
+
         const processedTemplates = Object.entries(templates).reduce(
             (acc, [key, template]) => ({
                 ...acc,
@@ -104,6 +90,8 @@ export async function add() {
             {}
         );
 
+        console.log('****', processedTemplates);
+
         logger.info('正在创建文件...');
         await fileManager.createComponent(componentName, answers.type, processedTemplates);
 
@@ -112,11 +100,7 @@ export async function add() {
             logger.info('💡 提示: 请在 stories.ts 文件中编写你的 HTML 代码片段');
         }
     } catch (error) {
-        if (error instanceof Error) {
-            logger.error(error.message);
-        } else {
-            logger.error('发生了一个未知错误');
-        }
+        logger.error(error instanceof Error ? error.message : '发生了一个未知错误');
         process.exit(1);
     }
 }

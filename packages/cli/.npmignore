@@ -1,0 +1,9 @@
+# 忽略 TypeScript 源代码
+src/
+# 忽略测试文件
+__tests__/
+# 忽略构建工具配置
+tsconfig.json
+tsup.config.ts
+# 忽略本地配置文件
+*.log

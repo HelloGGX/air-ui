@@ -2,10 +2,10 @@ import inquirer from 'inquirer';
 import fs from 'fs-extra';
 import path from 'path';
 import validateNpmName from 'validate-npm-package-name';
-import { downloadTemplate } from '../utils/download';
+import { downloadTemplate } from '@/utils/download';
 import ora from 'ora';
 import chalk from 'chalk';
-import { config } from '../utils/config';
+import { config } from '@/utils/config';
 
 export async function init(targetDir: string) {
     const answers = await inquirer.prompt([
@@ -77,12 +77,16 @@ export async function init(targetDir: string) {
 
         console.log(chalk.green('\n✨ 项目创建成功！\n'));
         console.log('下一步：');
-        console.log(chalk.cyan(`  cd ${targetDir}`));
-        console.log(chalk.cyan('  pnpm install'));
-        console.log(chalk.cyan('  pnpm run story\n'));
-    } catch (error) {
+        console.log(chalk.cyan(`cd ${targetDir}`));
+        console.log(chalk.cyan('pnpm install'));
+        console.log(chalk.cyan('pnpm run story\n'));
+    } catch (error: unknown) {
         spinner.fail('项目创建失败');
-        console.error(chalk.red(error.message));
+        if (error instanceof Error) {
+            console.error(chalk.red(error.message));
+        } else {
+            console.error(chalk.red('发生了一个未知错误'));
+        }
         process.exit(1);
     }
 }

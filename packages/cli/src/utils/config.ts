@@ -10,6 +10,7 @@ const ROOT_DIR = path.resolve(WORKSPACE_ROOT, 'packages/block');
 export const config = {
     paths: {
         components: path.resolve(ROOT_DIR, 'src'),
+        dist: path.resolve(ROOT_DIR, 'dist'),
         airblocks: path.resolve(ROOT_DIR, 'src/airblocks.js'),
         templates: path.resolve(CURRENT_DIR, '../templates/block'),
         packageJson: path.resolve(ROOT_DIR, 'package.json')
@@ -30,7 +31,7 @@ export const config = {
             files: ['stories']
         }
     } as const,
-    templateRepo: 'HelloGGX/air-ui#main',
+    templateRepo: 'https://github.com/HelloGGX/air-block.git',
     defaultRegistry: 'http://172.24.136.12:8081/repository/air-ui',
     fileExtensions: {
         vue: 'vue',

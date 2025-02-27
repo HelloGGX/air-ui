@@ -3,8 +3,17 @@ import path from 'path';
 import { config } from './config';
 import { logger } from './logger.js';
 
+/**
+ * FileManager 类用于管理文件的创建和更新
+ */
 export class FileManager {
-    async createComponent(name: string, type: string, templates: any) {
+    /**
+     * 创建组件文件
+     * @param name 组件名称
+     * @param type 组件类型
+     * @param templates 模板内容
+     */
+    async createComponent(name: string, type: 'component' | 'snippet', templates: Record<string, string>) {
         const componentDir = path.join(config.paths.components, name.toLowerCase());
 
         await this.ensureDirectoryExists(componentDir);
@@ -15,12 +24,12 @@ export class FileManager {
         }
     }
 
-    async ensureDirectoryExists(dir) {
+    async ensureDirectoryExists(dir: string) {
         try {
             await fs.access(dir);
             throw new Error('目录已存在');
-        } catch (error) {
-            if (error.code === 'ENOENT') {
+        } catch (error: unknown) {
+            if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
                 await fs.mkdir(dir, { recursive: true });
             } else {
                 throw error;
@@ -28,7 +37,7 @@ export class FileManager {
         }
     }
 
-    async writeFiles(dir, name, type, templates) {
+    async writeFiles(dir: string, name: string, type: 'component' | 'snippet', templates: Record<string, string>) {
         const typeConfig = config.types[type];
         const fileNameMap = {
             package: 'package.json',
@@ -44,7 +53,7 @@ export class FileManager {
         }
     }
 
-    async updateAirblocks(name) {
+    async updateAirblocks(name: string) {
         const exportLines = `
 //${name.toLowerCase()} ------------------------------
 export * from './${name.toLowerCase()}/${name}.vue';

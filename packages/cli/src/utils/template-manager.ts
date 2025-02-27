@@ -9,7 +9,6 @@ export class TemplateManager {
 
     async loadTemplate(type: string, name: string) {
         const cacheKey = `${type}/${name}`;
-
         if (this.templatesCache.has(cacheKey)) {
             return this.templatesCache.get(cacheKey);
         }
@@ -27,14 +26,9 @@ export class TemplateManager {
         }
     }
 
-    processTemplate(template, variables) {
+    processTemplate(template: (variables: unknown) => string, variables: Record<string, unknown>) {
         if (typeof template === 'function') {
             return template(variables);
         }
-        // 保留原有的字符串模板处理方式作为后备
-        return Object.entries(variables).reduce(
-            (result, [key, value]) => result.replace(new RegExp(`{{${key}}}`, 'g'), value),
-            template
-        );
     }
 }
