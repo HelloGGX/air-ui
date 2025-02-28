@@ -18,7 +18,8 @@ export const paths = {
     airblocks: () => buildPath('packages/block/src/airblocks.js'),
     blockPackageJson: () => buildPath('packages/block/package.json'),
     themePackageJson: () => buildPath('packages/theme/package.json'),
-    workspacePackageJson: () => buildPath('package.json')
+    workspacePackageJson: () => buildPath('package.json'),
+    publishSummary: () => buildPath('pnpm-publish-summary.json')
 };
 
 // 配置对象
@@ -50,16 +51,48 @@ export const config = {
         package: 'json'
     },
     componentTypes: [
-        '基础组件', '布局组件', '表单组件', '数据展示', '导航组件',
-        '反馈组件', '信息组件', '图表组件', '工具组件', '业务组件',
-        '动画组件', '交互组件', '卡片组件', '模态框组件', '标签组件',
-        '轮播组件', '树形组件', '日历组件', '图像组件', '视频组件',
+        '基础组件',
+        '布局组件',
+        '表单组件',
+        '数据展示',
+        '导航组件',
+        '反馈组件',
+        '信息组件',
+        '图表组件',
+        '工具组件',
+        '业务组件',
+        '动画组件',
+        '交互组件',
+        '卡片组件',
+        '模态框组件',
+        '标签组件',
+        '轮播组件',
+        '树形组件',
+        '日历组件',
+        '图像组件',
+        '视频组件',
         '图标组件'
     ],
     businessScenes: [
-        '值机', '选座', '支付', '行李', '登机',
-        '航班信息', '乘客信息', '舱位选择', '餐食服务', '特殊服务',
-        '改签服务', '退票服务', '会员服务', '通用', '客户支持',
-        '投诉处理', '信息查询', '活动管理', '数据分析', '报告生成'
+        '值机',
+        '选座',
+        '支付',
+        '行李',
+        '登机',
+        '航班信息',
+        '乘客信息',
+        '舱位选择',
+        '餐食服务',
+        '特殊服务',
+        '改签服务',
+        '退票服务',
+        '会员服务',
+        '通用',
+        '客户支持',
+        '投诉处理',
+        '信息查询',
+        '活动管理',
+        '数据分析',
+        '报告生成'
     ]
 };

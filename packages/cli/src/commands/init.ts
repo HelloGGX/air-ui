@@ -25,18 +25,31 @@ async function updatePackageJson(pkgPath: string, updates: Partial<Record<string
 
 async function updateThemePackage(answers: Answers) {
     const { name, registry } = answers;
+    const themePackageName = `@${name}/theme`;
     await updatePackageJson(config.paths.themePackageJson(), {
-        name: `@${name}/theme`,
+        name: themePackageName,
         publishConfig: { access: 'public', registry }
     });
+    return themePackageName;
 }
 
 async function updateBlockPackageJson(answers: Answers) {
     const { name, registry } = answers;
+    const blockPackageName = `@${name}/block`;
     await updatePackageJson(config.paths.blockPackageJson(), {
-        name: `@${name}/block`,
+        name: blockPackageName,
         publishConfig: { access: 'public', registry }
     });
+    return blockPackageName;
+}
+
+async function updatePublishSummary(pkgPath: string, publishedPackages: string[]) {
+    const summary = await fs.readJson(pkgPath);
+    const packagesWithVersion = publishedPackages.map((pkgName) => ({
+        name: pkgName,
+        version: '0.0.0'
+    }));
+    await fs.writeJson(pkgPath, { ...summary, publishedPackages: packagesWithVersion }, { spaces: 4 });
 }
 
 async function promptUser() {
@@ -88,8 +101,10 @@ export async function init(targetDir: string) {
             author: answers.author,
             version: '0.0.0'
         });
-        await updateBlockPackageJson(answers);
-        await updateThemePackage(answers);
+        const blockPackageName = await updateBlockPackageJson(answers); // 获取 block 名称
+        const themePackageName = await updateThemePackage(answers); // 获取 theme 名称
+
+        await updatePublishSummary(config.paths.publishSummary(), [blockPackageName, themePackageName]);
 
         console.log(chalk.green('\n✨ 项目创建成功！\n'));
         console.log('下一步：');

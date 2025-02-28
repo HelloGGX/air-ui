@@ -39,7 +39,7 @@ export function generateStories({
                     ${componentTypesHtml}
                     ${businessScenesHtml}
                 </div>
-                <code class="story-npm">npm i ${packageJson.name}</code>
+                <div class="story-npm">npm i ${packageJson.name}</div>
             </div>
         </div>
     </div>`;
