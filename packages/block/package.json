@@ -3,8 +3,9 @@
     "version": "0.0.0",
     "scripts": {
         "build": "cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ pnpm run build:package",
-        "build:one": "cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ COMPONENT_NAME=$npm_config_name rollup -c && cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ COMPONENT_NAME=$npm_config_name pnpm run build:postbuild",
+        "build:one": "cross-env NODE_ENV=production INPUT_DIR=src/ OUTPUT_DIR=dist/ COMPONENT_NAME=$npm_config_name pnpm run build:package:one",
         "build:package": "pnpm run build:prebuild && rollup -c && pnpm run build:postbuild",
+        "build:package:one": "rollup -c && pnpm run build:postbuild",
         "build:prebuild": "tsx ./scripts/prebuild.ts",
         "build:postbuild": "tsx ./scripts/postbuild.ts"
     },

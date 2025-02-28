@@ -203,14 +203,16 @@ function addFiles() {
 }
 function addFile() {
     const inputDir = path.resolve(__dirname, process.env.INPUT_DIR);
-    const componentPath = path.resolve(inputDir, COMPONENT_NAME);
+    const componentName = COMPONENT_NAME.toLowerCase();
+    const componentPath = path.resolve(inputDir, componentName);
+
     if (fs.existsSync(componentPath)) {
         fs.readdirSync(componentPath).forEach((file) => {
             const name = file.split(/(.vue)$|(.js)$/)[0].toLowerCase();
 
-            if (name === COMPONENT_NAME.toLowerCase()) {
+            if (name === componentName) {
                 const input = path.join(componentPath, file);
-                const output = path.join(process.env.OUTPUT_DIR, COMPONENT_NAME, 'index');
+                const output = path.join(process.env.OUTPUT_DIR, componentName, 'index');
                 ENTRY.format.es({ input, output });
             }
         });

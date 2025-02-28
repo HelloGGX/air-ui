@@ -60,7 +60,8 @@ async function ensureComponentExists(componentSrcPath: string) {
 // 构建组件
 async function buildComponent(component: string) {
     console.log(`📦 正在构建组件 ${component}...`);
-    execSync(`npm run build`, {
+    // 使用 build:one 命令只构建指定组件
+    execSync(`npm run build:one --name=${component}`, {
         cwd: path.dirname(config.paths.blockPackageJson()),
         stdio: 'inherit'
     });
