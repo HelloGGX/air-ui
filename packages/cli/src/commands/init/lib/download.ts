@@ -1,5 +1,5 @@
 import degit from 'degit';
-import { logger } from './logger';
+import log from '@/core/npmlog';
 
 export async function downloadTemplate(repo: string, targetDir: string) {
     try {
@@ -11,9 +11,9 @@ export async function downloadTemplate(repo: string, targetDir: string) {
         await emitter.clone(targetDir);
     } catch (error: unknown) {
         if (error instanceof Error) {
-            logger.error(`下载模板失败: ${error.message} (Repo: ${repo}, Target: ${targetDir})`);
+            log.error(`下载模板失败: ${error.message} (Repo: ${repo}, Target: ${targetDir})`);
         } else {
-            logger.error('下载模板失败: 未知错误');
+            log.error('下载模板失败: 未知错误');
         }
         throw error;
     }

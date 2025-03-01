@@ -16,7 +16,7 @@ export function generateSnippetStories({
     const componentTypesHtml = componentTypes
         .map(
             (type) => `
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">${type}</span>
+            <span class="story-tag-blue">${type}</span>
         `
         )
         .join('');
@@ -24,7 +24,7 @@ export function generateSnippetStories({
     const businessScenesHtml = businessScenes
         .map(
             (scene) => `
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">${scene}</span>
+            <span class="story-tag-purple">${scene}</span>
         `
         )
         .join('');
@@ -66,7 +66,7 @@ const meta: Meta = {
     </div>
     <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
       <p class="text-sm/6 text-gray-900">
-        <strong class="font-semibold">GeneriCon 2023</strong><svg viewBox="0 0 2 2" class="mx-2 inline size-0.5 fill-current" aria-hidden="true"><circle cx="1" cy="1" r="1" /></svg>Join us in Denver from June 7 – 9 to see what’s coming next.
+        <strong class="font-semibold">GeneriCon 2029</strong><svg viewBox="0 0 2 2" class="mx-2 inline size-0.5 fill-current" aria-hidden="true"><circle cx="1" cy="1" r="1" /></svg>Join us in Denver from June 7 – 9 to see what’s coming next.
       </p>
       <a href="#" class="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-xs hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">Register now <span aria-hidden="true">&rarr;</span></a>
     </div>

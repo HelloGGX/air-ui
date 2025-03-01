@@ -19,7 +19,8 @@ export const paths = {
     blockPackageJson: () => buildPath('packages/block/package.json'),
     themePackageJson: () => buildPath('packages/theme/package.json'),
     workspacePackageJson: () => buildPath('package.json'),
-    publishSummary: () => buildPath('pnpm-publish-summary.json')
+    publishSummary: () => buildPath('pnpm-publish-summary.json'),
+    workspaceRoot: () => buildPath('')
 };
 
 // 配置对象

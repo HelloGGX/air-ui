@@ -3,7 +3,7 @@ import inquirer from 'inquirer';
 import fs from 'fs';
 import path from 'path';
 import semver from 'semver';
-import { config } from '@/config';
+import { config } from '@/core/index';
 import autocomplete from 'inquirer-autocomplete-prompt';
 
 inquirer.registerPrompt('autocomplete', autocomplete);
@@ -127,3 +127,6 @@ export async function publish() {
         handleError(error);
     }
 }
+export function factory() {
+    return publish();
+};

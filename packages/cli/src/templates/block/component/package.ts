@@ -1,4 +1,4 @@
-import { config } from '@/config';
+import { config } from '@/core/index';
 import fs from 'fs';
 
 interface TemplateParams {

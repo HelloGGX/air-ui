@@ -1,10 +1,10 @@
-import fs from 'fs/promises';
-import path from 'path';
 import inquirer, { Answers } from 'inquirer';
-import { config } from '@/config';
-import { TemplateManager, TemplateParams } from '@/utils/template-manager';
-import { FileManager } from '@/utils/file-manager';
-import { logger } from '@/utils/logger';
+import { TemplateManager, TemplateParams } from '@/commands/add/lib/template-manager';
+import { FileManager } from '@/commands/add/lib/file-manager';
+import { config } from '@/core/index';
+import log from '@/core/npmlog';
+import path from 'path';
+import fs from 'fs/promises';
 
 const templateManager = new TemplateManager();
 const fileManager = new FileManager();
@@ -63,15 +63,15 @@ async function promptUser(): Promise<Answers> {
 }
 
 async function createComponent(answers: Answers) {
-    logger.info('正在加载模板...');
+    log.info('正在加载模板...');
     const templates: Record<string, ((variables: TemplateParams) => string) | undefined> = {};
     const typeConfig = config.types[answers.type as keyof typeof config.types];
-    
+
     for (const file of typeConfig.files) {
         templates[file] = await templateManager.loadTemplate(answers.type, file);
     }
 
-    logger.info('正在处理模板...');
+    log.info('正在处理模板...');
 
     const processedTemplates = Object.entries(templates).reduce(
         (acc, [key, template]) => ({
@@ -86,21 +86,24 @@ async function createComponent(answers: Answers) {
         {}
     );
 
-    logger.info('正在创建文件...');
+    log.info('正在创建文件...');
     await fileManager.createComponent(answers.name, answers.type, processedTemplates);
-    logger.success('\n✨ 创建成功！');
+    log.success('\n✨ 创建成功！');
+    log.info(`组件名称: ${answers.name}`);
+    log.info(`组件类型: ${answers.type}`);
+    log.info(`描述: ${answers.description}`);
 
     if (answers.type === 'snippet') {
-        logger.info('💡 提示: 请在 stories.ts 文件中编写你的 HTML 代码片段');
+        log.info('💡 提示: 请在 stories.ts 文件中编写你的 HTML 代码片段');
+        //触发 .storybook/preview.js 的保存操作
+        //todo 目前还不知道如何解决当添加代码片段时，storybook 网页无法自动更新tailwindcss样式
+        const previewJsPath = path.join(config.paths.workspaceRoot(), '.storybook', 'preview.js');
+        const now = new Date();
+        await fs.utimes(previewJsPath, now, now);
     }
 }
 
-export async function add() {
-    try {
-        const answers = await promptUser();
-        await createComponent(answers);
-    } catch (error) {
-        logger.error(error instanceof Error ? error.message : '发生了一个未知错误');
-        process.exit(1);
-    }
-}
+export async function factory() {
+    const answers = await promptUser();
+    createComponent(answers);
+};

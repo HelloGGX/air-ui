@@ -2,10 +2,11 @@ import inquirer, { Answers } from 'inquirer';
 import fs from 'fs-extra';
 import path from 'path';
 import validateNpmName from 'validate-npm-package-name';
-import { downloadTemplate } from '@/utils/download';
+import { downloadTemplate } from '@/commands/init/lib/download';
 import ora from 'ora';
 import chalk from 'chalk';
-import { config } from '@/config';
+import { config } from '@/core/index';
+
 
 async function createProjectDirectory(targetDir: string, projectName: string) {
     const projectDir = path.join(targetDir, projectName);
@@ -83,10 +84,10 @@ async function promptUser() {
     ]);
 }
 
-export async function init(targetDir: string) {
+async function init(targetDir: string) {
     const answers = await promptUser();
     const projectDir = await createProjectDirectory(targetDir, answers.name);
-    console.log(projectDir);
+    
     const spinner = ora('正在下载项目模板...').start();
 
     try {
@@ -117,4 +118,8 @@ export async function init(targetDir: string) {
         console.error(chalk.red(error instanceof Error ? error.message : '发生了一个未知错误'));
         process.exit(1);
     }
+}
+
+export function factory(args: { targetDir: string }) {
+    init(args.targetDir);
 }

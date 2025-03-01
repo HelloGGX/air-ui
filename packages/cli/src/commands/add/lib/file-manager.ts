@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { config } from '@/config';
-import { logger } from './logger.js';
+import { config } from '@/core/index';
+import log from '@/core/npmlog';
 
 /**
  * FileManager 类用于管理文件的创建和更新
@@ -49,7 +49,7 @@ export class FileManager {
         for (const file of typeConfig.files) {
             const filename = fileNameMap[file as keyof typeof fileNameMap] || `${name}.${file}`;
             await fs.writeFile(path.join(dir, filename), templates[file], 'utf8');
-            logger.success(`创建文件: ${filename}`);
+            log.success(`创建文件: ${filename}`);
         }
     }
 
@@ -60,6 +60,6 @@ export * from './${name.toLowerCase()}/${name}.vue';
 export { default as ${name} } from './${name.toLowerCase()}/${name}.vue';\n`;
 
         await fs.appendFile(config.paths.airblocks(), exportLines, 'utf8');
-        logger.success(`更新 airblocks.js: ${name}`);
+        log.success(`更新 airblocks.js: ${name}`);
     }
 }
